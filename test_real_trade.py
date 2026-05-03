@@ -1,73 +1,69 @@
 """
-Day 2 test: place a real paper order, then close it.
+Day 3 final test: full integration check.
+Alpaca + Discord + DuckDB + logger all working together.
 """
 
-import time
 from brokers.alpaca import (
     get_account,
     get_quote,
     place_market_order,
-    get_positions,
-    close_position,
+    cancel_all_orders,
 )
 from utils.discord import send_info, send_trade_alert
+from utils.logger import info, warning, error
+from data.db import get_trades, trade_count_today
 
-print("=" * 50)
-print("DAY 2 - REAL TRADE TEST")
-print("=" * 50)
+info("Day 3 integration test starting", source="test")
 
-print("\n1. Account check...")
+# 1. Account
 account = get_account()
-print(f"   Status: {account['status']}")
-print(f"   Cash: ${account['cash']:,.2f}")
-print(f"   Buying power: ${account['buying_power']:,.2f}")
+info(f"Account active. Cash: ${account['cash']:,.2f}", source="test")
 
-print("\n2. Getting SPY quote...")
+# 2. Get quote
 quote = get_quote("SPY")
-print(f"   SPY bid: ${quote['bid']:.2f}")
-print(f"   SPY ask: ${quote['ask']:.2f}")
-print(f"   SPY mid: ${quote['mid']:.2f}")
+info(f"SPY mid price: ${quote['mid']:.2f}", source="test")
 
-print("\n3. Buying 1 share SPY...")
-order = place_market_order("SPY", qty=1, side="buy")
-print(f"   Order ID: {order['id']}")
-print(f"   Status: {order['status']}")
-
-send_trade_alert(
+# 3. Place trade (auto-logs to DB and via logger)
+trades_before = trade_count_today()
+order = place_market_order(
     ticker="SPY",
-    side="buy",
     qty=1,
-    price=quote["mid"],
-    strategy="day2-test",
+    side="buy",
+    strategy="day3-final",
+)
+info(f"Order accepted: {order['id']}", source="test")
+
+# 4. Discord alert
+send_trade_alert("SPY", "buy", 1, quote["mid"], strategy="day3-final")
+
+# 5. Verify DB has new row
+trades_after = trade_count_today()
+assert trades_after == trades_before + 1, "Trade was not logged"
+info(f"DB confirmed: {trades_before} -> {trades_after} trades", source="test")
+
+# 6. Pull most recent trade
+recent = get_trades(limit=1)[0]
+info(
+    f"Latest trade: {recent['side'].upper()} {recent['ticker']} "
+    f"x{recent['qty']} @ ${recent['price']:.2f} ({recent['strategy']})",
+    source="test",
 )
 
-print("\n4. Waiting 5 seconds for fill...")
-time.sleep(5)
-
-print("\n5. Checking positions...")
-positions = get_positions()
-spy_position = next((p for p in positions if p["ticker"] == "SPY"), None)
-if spy_position:
-    print(f"   Holding: {spy_position['qty']} SPY @ ${spy_position['avg_entry']:.2f}")
-else:
-    print("   No SPY position found yet (might still be filling)")
-
-print("\n6. Closing SPY position...")
+# 7. Test warning + error logging too
+warning("This is a test warning - safe to ignore", source="test")
 try:
-    close_result = close_position("SPY")
-    print(f"   Closed order ID: {close_result['closed_order_id']}")
-    send_trade_alert(
-        ticker="SPY",
-        side="sell",
-        qty=1,
-        price=quote["mid"],
-        strategy="day2-test",
-    )
-except Exception as e:
-    print(f"   Close failed (likely market closed - order will fill Monday): {e}")
+    raise ValueError("Test exception - safe to ignore")
+except ValueError as e:
+    error(str(e), source="test", exc=e)
+
+# 8. Cancel test order
+cancel_all_orders()
+info("Test order cancelled", source="test")
+
+# 9. Final summary
+info("Day 3 integration test PASSED", source="test")
+send_info("Day 3 complete - bot has memory, logging, and audit trail.")
 
 print("\n" + "=" * 50)
-print("DAY 2 TEST COMPLETE")
+print("ALL DAY 3 SYSTEMS GREEN")
 print("=" * 50)
-
-send_info("Day 2 test passed - bot can trade end-to-end.")

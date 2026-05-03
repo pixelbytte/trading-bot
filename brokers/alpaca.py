@@ -12,6 +12,8 @@ from alpaca.trading.enums import OrderSide, TimeInForce, OrderStatus
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestQuoteRequest, StockBarsRequest
 from alpaca.data.timeframe import TimeFrame
+from data.db import log_trade, log_error
+from utils.logger import info as log_info, error as log_error_msg
 
 load_dotenv()
 
@@ -24,7 +26,7 @@ if not _KEY or not _SECRET:
 trading = TradingClient(_KEY, _SECRET, paper=True)
 data = StockHistoricalDataClient(_KEY, _SECRET)
 
-
+log_info("Alpaca client initialized (paper mode)", source="alpaca")
 def get_account():
     """Return account info: cash, equity, status."""
     a = trading.get_account()
@@ -64,25 +66,43 @@ def get_positions():
     ]
 
 
-def place_market_order(ticker, qty, side):
-    """Place a market order. side = 'buy' or 'sell'."""
-    order_side = OrderSide.BUY if side.lower() == "buy" else OrderSide.SELL
-    req = MarketOrderRequest(
-        symbol=ticker,
-        qty=qty,
-        side=order_side,
-        time_in_force=TimeInForce.DAY,
-    )
-    order = trading.submit_order(req)
-    return {
-        "id": str(order.id),
-        "ticker": order.symbol,
-        "qty": float(order.qty),
-        "side": str(order.side),
-        "status": str(order.status),
-    }
+def place_market_order(ticker, qty, side, strategy="", portfolio_type="day_trading"):
+    """Place a market order. side = 'buy' or 'sell'. Logs to DB."""
+    log_info(f"Placing {side.upper()} {ticker} x{qty} ({strategy})", source="alpaca")
+    try:
+        order_side = OrderSide.BUY if side.lower() == "buy" else OrderSide.SELL
+        req = MarketOrderRequest(
+            symbol=ticker,
+            qty=qty,
+            side=order_side,
+            time_in_force=TimeInForce.DAY,
+        )
+        order = trading.submit_order(req)
 
+        # Get a quote for logging the price (market order won't have fill price yet)
+        quote = get_quote(ticker)
 
+        log_trade(
+            ticker=ticker,
+            side=side.lower(),
+            qty=float(qty),
+            price=quote["mid"],
+            strategy=strategy,
+            portfolio_type=portfolio_type,
+            order_id=str(order.id),
+            status=str(order.status),
+        )
+
+        return {
+            "id": str(order.id),
+            "ticker": order.symbol,
+            "qty": float(order.qty),
+            "side": str(order.side),
+            "status": str(order.status),
+        }
+    except Exception as e:
+        log_error(source="alpaca.place_market_order", message=str(e))
+        raise
 def close_position(ticker):
     """Close an open position for a ticker."""
     closed = trading.close_position(ticker)

@@ -6,7 +6,6 @@ The bot pings you here for trades, errors, and daily summaries.
 import os
 import requests
 from dotenv import load_dotenv
-
 load_dotenv()
 
 _WEBHOOK = os.getenv("DISCORD_WEBHOOK")
@@ -21,9 +20,8 @@ def _post(content):
         r = requests.post(_WEBHOOK, json={"content": content}, timeout=10)
         return r.status_code == 204
     except Exception as e:
-        print(f"Discord post failed: {e}")
+        log_error(source="discord._post", message=str(e))
         return False
-
 
 def send_info(message):
     """General info message."""
