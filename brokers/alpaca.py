@@ -50,7 +50,42 @@ def get_quote(ticker):
         "mid": (float(q.bid_price) + float(q.ask_price)) / 2,
     }
 
+def get_bars(ticker, days=90, timeframe="day"):
+    """Get historical bars for a ticker. timeframe: 'day', 'hour', '15min'."""
+    from datetime import datetime, timedelta
+    from alpaca.data.enums import DataFeed
 
+    end = datetime.now() - timedelta(minutes=20)
+    start = end - timedelta(days=days)
+
+    tf_map = {
+        "day": TimeFrame.Day,
+        "hour": TimeFrame.Hour,
+        "15min": TimeFrame(15, "Min"),
+    }
+
+    req = StockBarsRequest(
+        symbol_or_symbols=ticker,
+        timeframe=tf_map.get(timeframe, TimeFrame.Day),
+        start=start,
+        end=end,
+        feed=DataFeed.IEX,
+    )
+    bars = data.get_stock_bars(req).df
+    bars = bars.reset_index()
+    bars = bars[bars["symbol"] == ticker] if "symbol" in bars.columns else bars
+
+    return [
+        {
+            "ts": row["timestamp"],
+            "open": float(row["open"]),
+            "high": float(row["high"]),
+            "low": float(row["low"]),
+            "close": float(row["close"]),
+            "volume": float(row["volume"]),
+        }
+        for _, row in bars.iterrows()
+    ]
 def get_positions():
     """List currently held positions."""
     positions = trading.get_all_positions()
