@@ -13,6 +13,7 @@ from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestQuoteRequest, StockBarsRequest
 from alpaca.data.timeframe import TimeFrame
 from data.db import log_trade, log_error
+from risk.check import check_order
 from utils.logger import info as log_info, error as log_error_msg
 
 load_dotenv()
@@ -102,8 +103,26 @@ def get_positions():
 
 
 def place_market_order(ticker, qty, side, strategy="", portfolio_type="day_trading"):
-    """Place a market order. side = 'buy' or 'sell'. Logs to DB."""
+    """Place a market order. side = 'buy' or 'sell'. Risk-checked, logs to DB."""
     log_info(f"Placing {side.upper()} {ticker} x{qty} ({strategy})", source="alpaca")
+
+    # Get current price first (needed for risk check)
+    quote = get_quote(ticker)
+    price = quote["mid"]
+
+    # Risk check
+    allowed, reason = check_order(ticker, qty, side, price)
+    if not allowed:
+        log_info(f"Order BLOCKED: {reason}", source="alpaca")
+        return {
+            "id": None,
+            "ticker": ticker,
+            "qty": qty,
+            "side": side,
+            "status": "blocked",
+            "blocked_reason": reason,
+        }
+
     try:
         order_side = OrderSide.BUY if side.lower() == "buy" else OrderSide.SELL
         req = MarketOrderRequest(
@@ -114,14 +133,11 @@ def place_market_order(ticker, qty, side, strategy="", portfolio_type="day_tradi
         )
         order = trading.submit_order(req)
 
-        # Get a quote for logging the price (market order won't have fill price yet)
-        quote = get_quote(ticker)
-
         log_trade(
             ticker=ticker,
             side=side.lower(),
             qty=float(qty),
-            price=quote["mid"],
+            price=price,
             strategy=strategy,
             portfolio_type=portfolio_type,
             order_id=str(order.id),

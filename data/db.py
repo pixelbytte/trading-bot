@@ -97,6 +97,15 @@ def init_schema():
         """)
 
         con.execute("""
+            CREATE TABLE IF NOT EXISTS kill_switch (
+                date DATE PRIMARY KEY,
+                value BOOLEAN NOT NULL,
+                reason VARCHAR,
+                ts TIMESTAMP NOT NULL
+            )
+        """)
+
+        con.execute("""
             CREATE SEQUENCE IF NOT EXISTS trades_seq START 1
         """)
         con.execute("""
@@ -194,5 +203,67 @@ def trade_count_today():
             WHERE DATE(ts) = CURRENT_DATE
         """).fetchone()
         return result[0] if result else 0
+    finally:
+        con.close()
+
+
+def is_trading_halted():
+    """Check if kill switch is currently flipped."""
+    con = _connect()
+    try:
+        result = con.execute("""
+            SELECT value FROM kill_switch WHERE date = CURRENT_DATE
+        """).fetchone()
+        return bool(result[0]) if result else False
+    finally:
+        con.close()
+
+
+def set_trading_halted(reason=""):
+    """Flip the kill switch. Use when daily loss exceeded."""
+    con = _connect()
+    try:
+        con.execute("""
+            INSERT INTO kill_switch (date, value, reason, ts)
+            VALUES (CURRENT_DATE, TRUE, ?, ?)
+            ON CONFLICT (date) DO UPDATE SET value = TRUE, reason = excluded.reason
+        """, [reason, datetime.now()])
+    finally:
+        con.close()
+
+
+def reset_kill_switch():
+    """Clear today's kill switch (run at midnight)."""
+    con = _connect()
+    try:
+        con.execute("""
+            DELETE FROM kill_switch WHERE date = CURRENT_DATE
+        """)
+    finally:
+        con.close()
+
+
+def trades_in_last_hour():
+    """Count trades placed in the last 60 minutes (circuit breaker check)."""
+    con = _connect()
+    try:
+        result = con.execute("""
+            SELECT COUNT(*) FROM trades
+            WHERE ts > NOW() - INTERVAL '1 hour'
+        """).fetchone()
+        return result[0] if result else 0
+    finally:
+        con.close()
+
+
+def daily_pnl_so_far():
+    """Sum of realized P&L from today's closed trades."""
+    con = _connect()
+    try:
+        result = con.execute("""
+            SELECT COALESCE(SUM(pnl), 0) FROM trades
+            WHERE DATE(ts) = CURRENT_DATE AND pnl IS NOT NULL
+        """).fetchone()
+        return float(result[0]) if result else 0.0
     finally:
         con.close()

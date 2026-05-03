@@ -1,0 +1,6 @@
+alpaca-py
+duckdb
+pandas
+ta
+python-dotenv
+requests
