@@ -7,8 +7,11 @@ The rest of the bot uses these functions, not Alpaca SDK directly.
 import os
 from dotenv import load_dotenv
 from alpaca.trading.client import TradingClient
-from alpaca.trading.requests import MarketOrderRequest, GetOrdersRequest
-from alpaca.trading.enums import OrderSide, TimeInForce, OrderStatus
+from alpaca.trading.requests import (
+    MarketOrderRequest, GetOrdersRequest, ReplaceOrderRequest,
+    TakeProfitRequest, StopLossRequest,
+)
+from alpaca.trading.enums import OrderSide, TimeInForce, OrderStatus, OrderClass, QueryOrderStatus
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestQuoteRequest, StockBarsRequest
 from alpaca.data.timeframe import TimeFrame
@@ -154,6 +157,116 @@ def place_market_order(ticker, qty, side, strategy="", portfolio_type="day_tradi
     except Exception as e:
         log_error(source="alpaca.place_market_order", message=str(e))
         raise
+def place_bracket_order(ticker, qty, side, entry_price, stop_price, target_price,
+                         strategy="", portfolio_type="day_trading"):
+    """
+    Place a bracket order: market entry + stop-loss + take-profit legs.
+
+    Args:
+        ticker: Stock symbol
+        qty: Number of shares
+        side: 'buy' or 'sell'
+        entry_price: Expected entry price (for risk check and DB logging)
+        stop_price: Stop-loss price (1.5 * ATR below entry for longs)
+        target_price: Take-profit limit price (3.0 * ATR above entry for longs)
+    """
+    log_info(
+        f"Placing bracket {side.upper()} {ticker} x{qty} "
+        f"entry~{entry_price:.2f} stop={stop_price:.2f} target={target_price:.2f}",
+        source="alpaca",
+    )
+
+    allowed, reason = check_order(ticker, qty, side, entry_price)
+    if not allowed:
+        log_info(f"Bracket order BLOCKED: {reason}", source="alpaca")
+        return {
+            "id": None,
+            "ticker": ticker,
+            "qty": qty,
+            "side": side,
+            "status": "blocked",
+            "blocked_reason": reason,
+        }
+
+    try:
+        order_side = OrderSide.BUY if side.lower() == "buy" else OrderSide.SELL
+        req = MarketOrderRequest(
+            symbol=ticker,
+            qty=qty,
+            side=order_side,
+            time_in_force=TimeInForce.DAY,
+            order_class=OrderClass.BRACKET,
+            take_profit=TakeProfitRequest(limit_price=round(float(target_price), 2)),
+            stop_loss=StopLossRequest(stop_price=round(float(stop_price), 2)),
+        )
+        order = trading.submit_order(req)
+
+        log_trade(
+            ticker=ticker,
+            side=side.lower(),
+            qty=float(qty),
+            price=entry_price,
+            strategy=strategy,
+            portfolio_type=portfolio_type,
+            order_id=str(order.id),
+            status=str(order.status),
+            notes=f"bracket stop={stop_price:.2f} target={target_price:.2f}",
+        )
+
+        return {
+            "id": str(order.id),
+            "ticker": order.symbol,
+            "qty": float(order.qty),
+            "side": str(order.side),
+            "status": str(order.status),
+            "stop_price": stop_price,
+            "target_price": target_price,
+        }
+    except Exception as e:
+        log_error(source="alpaca.place_bracket_order", message=str(e))
+        raise
+
+
+def update_stop_order(ticker, new_stop_price):
+    """
+    Find the open stop-loss leg for a position and move it to new_stop_price.
+    Used to trail stops on winning trades.
+
+    Returns dict with updated order info, or None if no stop order found.
+    """
+    try:
+        req = GetOrdersRequest(
+            status=QueryOrderStatus.OPEN,
+            symbols=[ticker],
+        )
+        orders = trading.get_orders(req)
+
+        # Stop-loss leg is a stop-type sell order (for long positions)
+        stop_order = next(
+            (o for o in orders
+             if str(o.order_type) in ("stop", "OrderType.STOP")
+             and str(o.side) in ("sell", "OrderSide.SELL")),
+            None,
+        )
+
+        if stop_order is None:
+            log_info(f"No open stop order found for {ticker}", source="alpaca")
+            return None
+
+        updated = trading.replace_order_by_id(
+            str(stop_order.id),
+            ReplaceOrderRequest(stop_price=round(float(new_stop_price), 2)),
+        )
+        log_info(
+            f"Trailing stop updated for {ticker}: → {new_stop_price:.2f}",
+            source="alpaca",
+        )
+        return {"id": str(updated.id), "ticker": ticker, "new_stop": new_stop_price}
+    except Exception as e:
+        log_error_msg(f"Failed to update stop for {ticker}: {e}", source="alpaca")
+        return None
+
+
 def close_position(ticker):
     """Close an open position for a ticker."""
     closed = trading.close_position(ticker)
