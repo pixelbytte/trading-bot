@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trading Bot Dashboard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 16px;
+    }
+
+    header h1 { font-size: 1.4rem; color: #f0f6fc; font-weight: 600; }
+    #updated { font-size: 0.78rem; color: #8b949e; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+
+    .card .label { font-size: 0.75rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .card .value { font-size: 1.6rem; font-weight: 700; color: #f0f6fc; }
+    .card .value.pos { color: #3fb950; }
+    .card .value.neg { color: #f85149; }
+
+    section { margin-bottom: 32px; }
+    section h2 { font-size: 0.95rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    th {
+      text-align: left;
+      padding: 8px 12px;
+      color: #8b949e;
+      font-weight: 500;
+      border-bottom: 1px solid #21262d;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 7px 12px;
+      border-bottom: 1px solid #161b22;
+      vertical-align: middle;
+    }
+
+    tr:hover td { background: #161b22; }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .tag-buy  { background: #0d3027; color: #3fb950; }
+    .tag-sell { background: #2d1217; color: #f85149; }
+    .tag-acted { background: #0d2149; color: #58a6ff; }
+    .tag-skip  { background: #1c1c1c; color: #8b949e; }
+
+    .pos { color: #3fb950; }
+    .neg { color: #f85149; }
+    .dim { color: #8b949e; }
+
+    .bar-chart { display: flex; gap: 4px; align-items: flex-end; height: 60px; margin-bottom: 8px; }
+    .bar-wrap { display: flex; flex-direction: column; align-items: center; flex: 1; height: 100%; justify-content: flex-end; }
+    .bar {
+      width: 100%;
+      min-height: 2px;
+      border-radius: 2px 2px 0 0;
+      transition: height 0.3s;
+    }
+    .bar.pos-bar { background: #3fb950; }
+    .bar.neg-bar { background: #f85149; }
+    .bar.zero-bar { background: #30363d; height: 2px !important; }
+    .bar-label { font-size: 0.6rem; color: #8b949e; margin-top: 3px; text-align: center; white-space: nowrap; overflow: hidden; }
+
+    #no-data { text-align: center; color: #8b949e; padding: 60px; font-size: 0.9rem; }
+    #error-msg { color: #f85149; text-align: center; padding: 40px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Trading Bot &mdash; Live Dashboard</h1>
+  <span id="updated">Loading...</span>
+</header>
+
+<div id="root">
+  <p id="no-data">Fetching data...</p>
+</div>
+
+<script>
+async function load() {
+  const root = document.getElementById('root');
+  try {
+    const res = await fetch('data.json?t=' + Date.now());
+    if (!res.ok) throw new Error('data.json not found');
+    const d = await res.json();
+
+    document.getElementById('updated').textContent =
+      'Updated: ' + new Date(d.generated_at).toLocaleString();
+
+    const s = d.summary;
+    const pnlClass = s.realized_pnl >= 0 ? 'pos' : 'neg';
+    const pnlSign = s.realized_pnl >= 0 ? '+' : '';
+
+    root.innerHTML = `
+      <div class="cards">
+        <div class="card">
+          <div class="label">Today's P&L</div>
+          <div class="value ${pnlClass}">${pnlSign}$${s.realized_pnl.toFixed(2)}</div>
+        </div>
+        <div class="card">
+          <div class="label">Trades Today</div>
+          <div class="value">${s.trades_today}</div>
+        </div>
+        <div class="card">
+          <div class="label">Win Rate</div>
+          <div class="value">${(s.win_rate * 100).toFixed(0)}%</div>
+        </div>
+        <div class="card">
+          <div class="label">Wins / Losses</div>
+          <div class="value"><span class="pos">${s.wins}</span> / <span class="neg">${s.losses}</span></div>
+        </div>
+      </div>
+
+      ${renderBarChart(d.daily_history)}
+      ${renderTrades(d.recent_trades)}
+      ${renderSignals(d.recent_signals)}
+    `;
+  } catch (e) {
+    root.innerHTML = `<p id="error-msg">Could not load data.json &mdash; run the EOD workflow first.<br><small>${e.message}</small></p>`;
+  }
+}
+
+function renderBarChart(history) {
+  if (!history || history.length === 0) return '';
+  const days = [...history].reverse().slice(-20);
+  const max = Math.max(...days.map(d => Math.abs(d.pnl)), 1);
+
+  const bars = days.map(d => {
+    const pct = Math.abs(d.pnl) / max * 100;
+    const cls = d.pnl > 0 ? 'pos-bar' : d.pnl < 0 ? 'neg-bar' : 'zero-bar';
+    const label = d.date.slice(5); // MM-DD
+    return `<div class="bar-wrap">
+      <div class="bar ${cls}" style="height:${Math.max(pct, 2)}%"></div>
+      <div class="bar-label">${label}</div>
+    </div>`;
+  }).join('');
+
+  return `
+    <section>
+      <h2>Daily P&L (last ${days.length} sessions)</h2>
+      <div class="bar-chart">${bars}</div>
+    </section>`;
+}
+
+function renderTrades(trades) {
+  if (!trades || trades.length === 0) {
+    return `<section><h2>Recent Trades</h2><p class="dim" style="padding:12px">No trades recorded yet.</p></section>`;
+  }
+  const rows = trades.map(t => {
+    const pnl = t.pnl != null
+      ? `<span class="${t.pnl >= 0 ? 'pos' : 'neg'}">${t.pnl >= 0 ? '+' : ''}$${t.pnl.toFixed(2)}</span>`
+      : '<span class="dim">open</span>';
+    const side = `<span class="tag tag-${t.side}">${t.side.toUpperCase()}</span>`;
+    const ts = new Date(t.ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    return `<tr>
+      <td class="dim">${ts}</td>
+      <td><strong>${t.ticker}</strong></td>
+      <td>${side}</td>
+      <td>${t.qty}</td>
+      <td>$${t.price.toFixed(2)}</td>
+      <td class="dim">${t.strategy}</td>
+      <td>${pnl}</td>
+    </tr>`;
+  }).join('');
+
+  return `
+    <section>
+      <h2>Recent Trades</h2>
+      <table>
+        <thead><tr>
+          <th>Time</th><th>Ticker</th><th>Side</th><th>Qty</th><th>Price</th><th>Strategy</th><th>P&L</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </section>`;
+}
+
+function renderSignals(signals) {
+  if (!signals || signals.length === 0) {
+    return `<section><h2>Signal Log</h2><p class="dim" style="padding:12px">No signals recorded yet.</p></section>`;
+  }
+  const rows = signals.map(s => {
+    const acted = s.acted
+      ? '<span class="tag tag-acted">ACTED</span>'
+      : '<span class="tag tag-skip">SKIP</span>';
+    const conf = s.confidence != null ? (s.confidence * 100).toFixed(0) + '%' : '-';
+    const ts = new Date(s.ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    return `<tr>
+      <td class="dim">${ts}</td>
+      <td><strong>${s.ticker}</strong></td>
+      <td class="dim">${s.strategy}</td>
+      <td><span class="tag tag-${s.action}">${s.action.toUpperCase()}</span></td>
+      <td class="dim">${conf}</td>
+      <td>${acted}</td>
+      <td class="dim" style="font-size:0.78rem">${s.skip_reason}</td>
+    </tr>`;
+  }).join('');
+
+  return `
+    <section>
+      <h2>Signal Log</h2>
+      <table>
+        <thead><tr>
+          <th>Time</th><th>Ticker</th><th>Strategy</th><th>Action</th><th>Confidence</th><th>Status</th><th>Reason</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </section>`;
+}
+
+load();
+// Auto-refresh every 5 minutes
+setInterval(load, 5 * 60 * 1000);
+</script>
+</body>
+</html>
