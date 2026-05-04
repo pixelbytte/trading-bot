@@ -4,22 +4,24 @@
 
 ---
 
-## Immediate task (read this first)
+## Current state (as of Day 34 self-audit — 2026-05-04)
 
-We are mid-way through **Day 6** of a 35-day plan. Days 1–5 complete. Day 6 has two pieces remaining:
+Build phase is complete. All 35 days of code have been written. The bot is deployed to GitHub Actions and scheduled. It has NOT yet completed a full market session end-to-end.
 
-1. **Step 3** — Wire bracket orders into `routines/intraday.py`. Currently the routine calls `place_market_order`. Replace with `place_bracket_order`, computing entry/stop/target via `risk/sizing.py` (already written and tested). Position size comes from `compute_position_size`, not from the routine guessing.
+### Before calling this "launched", do these three things:
 
-2. **Step 4** — Add trailing stop logic for winning positions. When an open position reaches +1R profit (1× the original risk amount), trail the stop to breakeven. At +2R, trail behind by 1R. This needs a new routine or a function called by the existing intraday loop. Use Alpaca's order replacement to update the stop on the existing bracket order.
+1. **Fix ephemeral DB persistence** — bot.db is recreated on every Actions run. This silently breaks: (a) daily P&L kill-switch accumulation across the 15-min intraday cycles, (b) pre-market sentiment being readable by the intraday routine. Fix: have `eod.yml` commit a `docs/trades_snapshot.json` and import it at the start of each intraday run. Or use a free external DB (Neon/Supabase).
 
-Before writing any code, confirm understanding by:
-- Reading `brokers/alpaca.py` to see `place_bracket_order` signature
-- Reading `risk/sizing.py` to see `compute_atr`, `compute_stop_target`, `compute_position_size`
-- Reading `routines/intraday.py` to see what we're modifying
-- Reading `strategies/base.py` to see the `Signal` shape
-- Reading `risk/limits.py` and `config/settings.py` for constraints
+2. **Observe one real trading week** — let the bot run Mon-Fri during market hours. Check the Alpaca paper account dashboard after Day 1 and confirm bracket orders are appearing. Check Actions logs for "Acted: X" entries. Do not add new features until you've seen real execution.
 
-After Step 3 and 4 are done, instruct the user to test locally with `python -m routines.intraday`, then commit + push, then we move to Day 7 (backtesting framework).
+3. **Optionally disable mean reversion** — Sharpe 0.22 over 52 trades is marginal edge. Consider setting `TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum", "mean_reversion"}` so it only runs in corrections, or removing it until a longer backtest confirms edge.
+
+### What to run for health checks:
+```bash
+python -m scripts.stress_test      # 20/20 must pass
+python -m scripts.security_audit   # 14/14 must pass
+python -m scripts.backtest         # re-run if strategy code changes
+```
 
 ---
 
@@ -199,51 +201,35 @@ Liquid US large caps only. Day-trading universe. Long-term universe (~30 names) 
 
 | Day | Status | Notes |
 |-----|--------|-------|
-| 1 | done | accounts, repo, secrets, .env, connection test |
-| 2 | done | Alpaca wrapper, Discord wrapper, first paper order |
-| 3 | done | DuckDB schema, central logger, auto-logging wrappers |
-| 4 | done | Strategy base class, MA+RSI, watchlist scanner, walk-forward validation |
-| 5 | done | Risk layer, intraday + EOD GitHub Actions workflows running on schedule |
-| 6 | IN PROGRESS | ATR + position sizing built. Bracket orders just added to wrapper. Next: wire bracket orders into intraday routine, then trailing stops |
-| 7 | next | Backtesting framework (`vectorbt`) + performance metrics |
-| 8–10 | planned | Add 2 more strategies (mean reversion, momentum), comparison report |
-| 11 | planned | Portfolio manager — handle multi-strategy conflicts |
-| 12 | planned | Stops + take-profits in DB, position lifecycle tracking |
-| 13 | planned | HTML dashboard via GitHub Pages |
-| 14 | planned | Hardening checkpoint |
-| 15 | planned | First Claude Routine — pre-market news scan |
-| 16 | planned | Knowledge base — investing books + investor letters distilled to `/knowledge/` |
-| 17–18 | planned | Claude analysis Routine + LLM filter on signals |
-| 19 | planned | Sunday weekly review Routine |
-| 20–21 | planned | Strategy adjustment + buffer |
-| 22 | planned | Split portfolio: day_trading vs long_term (60/40) |
-| 23 | planned | Fundamentals data via Financial Modeling Prep |
-| 24 | planned | Thesis generation Routine (Claude reads earnings calls) |
-| 25 | planned | Long-term screener + ranking |
-| 26 | planned | DCA logic for long-term picks |
-| 27 | planned | Long-term workflows in Actions |
-| 28 | planned | Unified reporting (both portfolios) |
-| 29–31 | planned | Error handling, circuit breakers, dashboard polish |
-| 32 | planned | Stress test (replay a week with injected failures) |
-| 33–34 | planned | Security audit + config freeze |
-| 35 | planned | Launch |
+| 1 | DONE | accounts, repo, secrets, .env, connection test |
+| 2 | DONE | Alpaca wrapper, Discord wrapper, first paper order |
+| 3 | DONE | DuckDB schema, central logger, auto-logging wrappers |
+| 4 | DONE | Strategy base class, MA+RSI, watchlist scanner, walk-forward validation |
+| 5 | DONE | Risk layer, intraday + EOD GitHub Actions workflows running on schedule |
+| 6 | DONE | Bracket orders wired, ATR sizing, trailing stops (+1R BE, +2R trail), emergency exit at -2R |
+| 7 | DONE | Backtesting framework — 500-day walk-forward on real Alpaca IEX data |
+| 8–10 | DONE | Momentum (+0.341R, Sharpe 2.86, live), mean_reversion (+0.030R, Sharpe 0.22, marginal) |
+| 11 | DONE | Portfolio manager (filter_buy_signals), strategy priority, slot cap |
+| 12 | DONE | reconcile.py — bracket exit reconciliation, P&L written back to trades table |
+| 13 | DONE | GitHub Pages dashboard (docs/index.html + data.json, committed by EOD workflow) |
+| 14 | DONE | Hardening — pre-loss warning at 80% kill-switch, SPY regime gate, fail-open LLM |
+| 15 | DONE | Pre-market sentiment scan via Alpaca News + Claude Haiku → llm_outputs table |
+| 16 | DONE | Knowledge base in /knowledge/ — 6 files, O'Neil/Minervini/Livermore principles |
+| 17–18 | DONE | LLM signal filter (analyse_signal) — reads knowledge base, calls Haiku, fail-open |
+| 19 | DONE | Weekly review routine — queries DB, Claude generates summary, sends to Discord |
+| 20–21 | DONE | breakout_52w + rs_pullback added to backtest; insufficient sample (3 / 19 trades) — not live |
+| 22 | DONE | 60/40 split, Stage2TrendStrategy, LONG_TERM_WATCHLIST (26 tickers), longterm.yml |
+| 23 | DONE | FMP fundamentals client (data/fundamentals.py), fetch_fundamentals.py, DB table |
+| 24 | DONE | Thesis generation (routines/thesis.py + thesis.yml — Sunday 7am ET) |
+| 25–26 | DONE | Screener (composite score), DCA logic (5-12% pullbacks, max 2 tranches) |
+| 27 | DONE | EOD portfolio split reporting (DT/LT breakdown in Discord + dashboard) |
+| 28 | DONE | Unified dashboard — strategy stats table, open positions, DT/LT trade tags |
+| 29–31 | DONE | Health check (utils/health.py, wired into midnight.yml), pre-loss warning |
+| 32 | DONE | Stress test (scripts/stress_test.py) — 20/20 pass |
+| 33–34 | DONE | Security audit (scripts/security_audit.py) — 14/14 pass, 0 secrets found |
+| 35 | PENDING | One real trading week observation required before declaring launch |
 
 ---
-
-## Day 6 — current detailed status
-
-### Completed
-- `risk/sizing.py` with `compute_atr()`, `compute_stop_target()`, `compute_position_size()`
-- ATR(14) using `ta.volatility.AverageTrueRange`
-- Stop = entry − (1.5 × ATR), Target = entry + (3.0 × ATR), 2:1 reward:risk
-- Position sizing scaled to volatility, capped by `MAX_POSITION_USD`
-- `place_bracket_order()` added to `brokers/alpaca.py` with auto risk-check + DB log
-
-### In progress / next
-- Test `place_bracket_order` end-to-end
-- Update `routines/intraday.py` to use bracket orders instead of plain market orders
-- Add trailing stop logic for winners
-- Commit + push Day 6
 
 ---
 
