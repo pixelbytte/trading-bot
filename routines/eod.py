@@ -8,6 +8,7 @@ import sys
 from datetime import datetime, date
 from brokers.alpaca import get_account, get_positions
 from data.db import init_schema, _connect
+from routines.reconcile import reconcile_exits
 from utils.logger import info, error
 from utils.discord import send_daily_pnl, send_info
 
@@ -17,6 +18,13 @@ def run_eod():
     info("EOD routine starting", source="eod")
 
     init_schema()
+
+    # Reconcile all bracket exits before computing P&L — ensures every closed
+    # position has its realized P&L recorded before the Discord summary is sent
+    try:
+        reconcile_exits()
+    except Exception as e:
+        error(f"Reconcile failed: {e}", source="eod", exc=e)
 
     # Pull current account state
     account = get_account()

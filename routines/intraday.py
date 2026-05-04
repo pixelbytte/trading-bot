@@ -17,6 +17,7 @@ from brokers.alpaca import (
 from strategies.ma_rsi import MARSIStrategy
 from strategies.mean_reversion import MeanReversionStrategy
 from routines.portfolio import filter_buy_signals
+from routines.reconcile import reconcile_exits
 from config.settings import WATCHLIST
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size
 from risk.limits import RISK_PER_TRADE_USD
@@ -93,6 +94,13 @@ def run_intraday():
     if is_trading_halted():
         warning("Trading halted - skipping intraday cycle", source="intraday")
         return
+
+    # Reconcile any bracket exits that filled since last cycle — updates pnl in DB
+    # so daily_pnl_so_far() and the kill switch see accurate realized losses
+    try:
+        reconcile_exits()
+    except Exception as e:
+        error(f"Reconcile failed: {e}", source="intraday", exc=e)
 
     # Trail stops before scanning for new entries
     try:

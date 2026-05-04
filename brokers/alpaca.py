@@ -267,6 +267,41 @@ def update_stop_order(ticker, new_stop_price):
         return None
 
 
+def get_recent_orders(ticker=None, side=None, limit=20):
+    """
+    Return recently closed (filled) orders, optionally filtered by ticker and side.
+    Used by the reconciler to find bracket exit fills and record P&L.
+
+    Returns list of dicts with: ticker, side, qty, fill_price, filled_at, order_id.
+    """
+    from alpaca.trading.enums import OrderStatus as _OS
+
+    req = GetOrdersRequest(
+        status=QueryOrderStatus.CLOSED,
+        symbols=[ticker] if ticker else None,
+        limit=limit,
+    )
+    orders = trading.get_orders(req)
+
+    result = []
+    for o in orders:
+        if o.status != _OS.FILLED:
+            continue
+        if side and str(o.side).lower() not in (side.lower(), f"orderside.{side.lower()}"):
+            continue
+        if o.filled_avg_price is None:
+            continue
+        result.append({
+            "order_id": str(o.id),
+            "ticker": o.symbol,
+            "side": str(o.side),
+            "qty": float(o.filled_qty),
+            "fill_price": float(o.filled_avg_price),
+            "filled_at": o.filled_at,
+        })
+    return result
+
+
 def close_position(ticker):
     """Close an open position for a ticker."""
     closed = trading.close_position(ticker)

@@ -5,7 +5,6 @@ The DB file lives at data/bot.db and is gitignored.
 """
 
 import duckdb
-import os
 from datetime import datetime
 from pathlib import Path
 
@@ -252,6 +251,44 @@ def trades_in_last_hour():
             WHERE ts > NOW() - INTERVAL '1 hour'
         """).fetchone()
         return result[0] if result else 0
+    finally:
+        con.close()
+
+
+def get_open_trade_entries():
+    """
+    Return buy-side trades that have not yet been reconciled (pnl IS NULL).
+    These are bracket entries waiting for their stop or target to fill.
+    """
+    con = _connect()
+    try:
+        rows = con.execute("""
+            SELECT id, ticker, qty, price, order_id, ts
+            FROM trades
+            WHERE side = 'buy'
+              AND pnl IS NULL
+              AND notes LIKE 'bracket%'
+              AND ts >= NOW() - INTERVAL '3 days'
+            ORDER BY ts DESC
+        """).fetchall()
+        return [
+            {"id": r[0], "ticker": r[1], "qty": r[2],
+             "price": r[3], "order_id": r[4], "ts": r[5]}
+            for r in rows
+        ]
+    finally:
+        con.close()
+
+
+def update_trade_pnl(trade_id, exit_price, pnl, notes=""):
+    """Record the exit price and realized P&L on an existing trade entry."""
+    con = _connect()
+    try:
+        con.execute("""
+            UPDATE trades
+            SET pnl = ?, notes = COALESCE(notes || ' | ', '') || ?
+            WHERE id = ?
+        """, [pnl, f"exit={exit_price:.2f} {notes}", trade_id])
     finally:
         con.close()
 
