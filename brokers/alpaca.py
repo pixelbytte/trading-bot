@@ -43,53 +43,62 @@ def get_account():
 
 
 def get_quote(ticker):
-    """Get latest bid/ask for a ticker."""
-    req = StockLatestQuoteRequest(symbol_or_symbols=ticker)
-    quotes = data.get_stock_latest_quote(req)
-    q = quotes[ticker]
-    return {
-        "ticker": ticker,
-        "bid": float(q.bid_price),
-        "ask": float(q.ask_price),
-        "mid": (float(q.bid_price) + float(q.ask_price)) / 2,
-    }
+    """Get latest bid/ask for a ticker. Retries up to 3x on transient failure."""
+    from utils.retry import with_retry
+
+    def _fetch():
+        req = StockLatestQuoteRequest(symbol_or_symbols=ticker)
+        quotes = data.get_stock_latest_quote(req)
+        q = quotes[ticker]
+        return {
+            "ticker": ticker,
+            "bid": float(q.bid_price),
+            "ask": float(q.ask_price),
+            "mid": (float(q.bid_price) + float(q.ask_price)) / 2,
+        }
+
+    return with_retry(_fetch, retries=3, source="alpaca")
 
 def get_bars(ticker, days=90, timeframe="day"):
-    """Get historical bars for a ticker. timeframe: 'day', 'hour', '15min'."""
+    """Get historical bars for a ticker. timeframe: 'day', 'hour', '15min'. Retries 3x."""
     from datetime import datetime, timedelta
     from alpaca.data.enums import DataFeed
+    from utils.retry import with_retry
 
-    end = datetime.now() - timedelta(minutes=20)
-    start = end - timedelta(days=days)
+    def _fetch():
+        end = datetime.now() - timedelta(minutes=20)
+        start = end - timedelta(days=days)
 
-    tf_map = {
-        "day": TimeFrame.Day,
-        "hour": TimeFrame.Hour,
-        "15min": TimeFrame(15, "Min"),
-    }
-
-    req = StockBarsRequest(
-        symbol_or_symbols=ticker,
-        timeframe=tf_map.get(timeframe, TimeFrame.Day),
-        start=start,
-        end=end,
-        feed=DataFeed.IEX,
-    )
-    bars = data.get_stock_bars(req).df
-    bars = bars.reset_index()
-    bars = bars[bars["symbol"] == ticker] if "symbol" in bars.columns else bars
-
-    return [
-        {
-            "ts": row["timestamp"],
-            "open": float(row["open"]),
-            "high": float(row["high"]),
-            "low": float(row["low"]),
-            "close": float(row["close"]),
-            "volume": float(row["volume"]),
+        tf_map = {
+            "day": TimeFrame.Day,
+            "hour": TimeFrame.Hour,
+            "15min": TimeFrame(15, "Min"),
         }
-        for _, row in bars.iterrows()
-    ]
+
+        req = StockBarsRequest(
+            symbol_or_symbols=ticker,
+            timeframe=tf_map.get(timeframe, TimeFrame.Day),
+            start=start,
+            end=end,
+            feed=DataFeed.IEX,
+        )
+        bars = data.get_stock_bars(req).df
+        bars = bars.reset_index()
+        bars = bars[bars["symbol"] == ticker] if "symbol" in bars.columns else bars
+
+        return [
+            {
+                "ts": row["timestamp"],
+                "open": float(row["open"]),
+                "high": float(row["high"]),
+                "low": float(row["low"]),
+                "close": float(row["close"]),
+                "volume": float(row["volume"]),
+            }
+            for _, row in bars.iterrows()
+        ]
+
+    return with_retry(_fetch, retries=3, source="alpaca")
 def get_positions():
     """List currently held positions."""
     positions = trading.get_all_positions()

@@ -23,7 +23,7 @@ from risk.sizing import compute_atr, compute_stop_target, compute_position_size
 from risk.limits import RISK_PER_TRADE_USD
 from data.db import init_schema, log_signal, log_trade, is_trading_halted
 from utils.logger import info, warning, error
-from utils.discord import send_trade_alert
+from utils.discord import send_trade_alert, send_error
 
 # Strategies cleared for live deployment (backed by backtest results)
 STRATEGIES = [
@@ -265,4 +265,5 @@ if __name__ == "__main__":
         run_intraday()
     except Exception as e:
         error(f"Intraday routine crashed: {e}", source="intraday", exc=e)
+        send_error(f"Intraday routine crashed: {e}")
         sys.exit(1)

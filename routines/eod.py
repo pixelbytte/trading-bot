@@ -5,12 +5,12 @@ Reconciles positions, computes daily P&L, sends Discord summary.
 """
 
 import sys
-from datetime import datetime, date
+from datetime import datetime
 from brokers.alpaca import get_account, get_positions
 from data.db import init_schema, _connect
 from routines.reconcile import reconcile_exits
 from utils.logger import info, error
-from utils.discord import send_daily_pnl, send_info
+from utils.discord import send_daily_pnl, send_info, send_error
 
 
 def run_eod():
@@ -108,4 +108,5 @@ if __name__ == "__main__":
         run_eod()
     except Exception as e:
         error(f"EOD routine crashed: {e}", source="eod", exc=e)
+        send_error(f"EOD routine crashed: {e}")
         sys.exit(1)

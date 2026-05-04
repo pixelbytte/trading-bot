@@ -4,6 +4,7 @@ The bot pings you here for trades, errors, and daily summaries.
 """
 
 import os
+import sys
 import requests
 from dotenv import load_dotenv
 load_dotenv()
@@ -11,16 +12,18 @@ load_dotenv()
 _WEBHOOK = os.getenv("DISCORD_WEBHOOK")
 
 if not _WEBHOOK:
-    raise RuntimeError("DISCORD_WEBHOOK missing from .env")
+    print("WARNING: DISCORD_WEBHOOK not set — Discord notifications disabled.", file=sys.stderr)
 
 
 def _post(content):
-    """Internal: send a message to Discord."""
+    """Internal: send a message to Discord. Never raises — failures are logged to stderr only."""
+    if not _WEBHOOK:
+        return False
     try:
         r = requests.post(_WEBHOOK, json={"content": content}, timeout=10)
         return r.status_code == 204
     except Exception as e:
-        log_error(source="discord._post", message=str(e))
+        print(f"Discord post failed: {e}", file=sys.stderr)
         return False
 
 def send_info(message):
