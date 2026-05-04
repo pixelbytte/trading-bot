@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python -c \"from brokers.alpaca import get_bars; bars = get_bars\\('SPY', days=10\\); print\\(f'Got {len\\(bars\\)} bars'\\); print\\(bars[-1]\\)\")"
+      "Bash(python -c \"from brokers.alpaca import get_bars; bars = get_bars\\('SPY', days=10\\); print\\(f'Got {len\\(bars\\)} bars'\\); print\\(bars[-1]\\)\")",
+      "Bash(git rm *)"
     ]
-  }
+  },
+  "disabledMcpjsonServers": [
+    "claude-flow"
+  ]
 }
