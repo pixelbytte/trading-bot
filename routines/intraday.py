@@ -21,7 +21,8 @@ from routines.reconcile import reconcile_exits
 from config.settings import WATCHLIST
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size
 from risk.limits import RISK_PER_TRADE_USD
-from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments
+from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output
+from routines.llm_filter import analyse_signal
 from utils.logger import info, warning, error
 from utils.discord import send_trade_alert, send_error
 
@@ -207,6 +208,27 @@ def run_intraday():
                     confidence=s.confidence, acted=False,
                     skip_reason="position size computed as 0",
                 )
+                signals_skipped += 1
+                continue
+
+            # LLM signal filter: Claude reviews setup against entry_signals knowledge base
+            approved, llm_reason, llm_conviction = analyse_signal(
+                ticker, bars, strat_name, s.confidence or 0.5
+            )
+            log_llm_output(
+                source="signal_filter", ticker=ticker,
+                output_type="trade_approval",
+                content=llm_reason,
+                conviction=llm_conviction,
+                sentiment=1.0 if approved else -1.0,
+            )
+            if not approved:
+                log_signal(
+                    ticker=ticker, strategy=strat_name, action="buy",
+                    confidence=s.confidence, acted=False,
+                    skip_reason=f"LLM rejected: {llm_reason}",
+                )
+                info(f"{ticker}: buy rejected by LLM — {llm_reason}", source="intraday")
                 signals_skipped += 1
                 continue
 
