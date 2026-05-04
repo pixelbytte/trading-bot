@@ -29,7 +29,7 @@ from utils.logger import info, warning, error
 from utils.discord import send_info, send_error
 
 ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
-MODEL = "claude-sonnet-4-6"   # Sonnet for deep reasoning, not Haiku
+MODEL = "claude-opus-4-7"     # Opus — most capable model for high-stakes research
 
 
 def _build_price_context(all_bars: dict) -> str:
