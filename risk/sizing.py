@@ -40,20 +40,22 @@ def compute_atr(bars):
     return float(atr.iloc[-1])
 
 
-def compute_stop_target(entry_price, atr, side="buy"):
+def compute_stop_target(entry_price, atr, side="buy",
+                        stop_mult=None, target_mult=None):
     """
     Given entry price and ATR, compute stop-loss and take-profit prices.
 
     For a long (buy):
-      stop = entry - (STOP_MULT * ATR)
-      target = entry + (TARGET_MULT * ATR)
+      stop = entry - (stop_mult * ATR)
+      target = entry + (target_mult * ATR)
 
-    For a short (sell):
-      stop = entry + (STOP_MULT * ATR)
-      target = entry - (TARGET_MULT * ATR)
+    stop_mult / target_mult default to the module-level constants.
+    Pass custom values for the long-term portfolio (wider stops).
     """
-    stop_distance = STOP_ATR_MULTIPLIER * atr
-    target_distance = TARGET_ATR_MULTIPLIER * atr
+    stop_mult = stop_mult if stop_mult is not None else STOP_ATR_MULTIPLIER
+    target_mult = target_mult if target_mult is not None else TARGET_ATR_MULTIPLIER
+    stop_distance = stop_mult * atr
+    target_distance = target_mult * atr
 
     if side.lower() == "buy":
         stop = entry_price - stop_distance

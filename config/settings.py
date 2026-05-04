@@ -14,6 +14,25 @@ WATCHLIST = [
     "META", "TSLA", "AMD", "JPM", "SPY",
 ]
 
+# Long-term portfolio: quality companies held for weeks-months.
+# Broader sector coverage than the day-trading watchlist.
+LONG_TERM_WATCHLIST = [
+    # Mega-cap tech (overlaps day-trading — fine, different portfolio type)
+    "AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META",
+    # Additional tech
+    "CRM", "ADBE", "AVGO", "NOW", "QCOM", "ORCL",
+    # Financials
+    "JPM", "V", "MA", "GS",
+    # Healthcare
+    "LLY", "UNH", "ABBV",
+    # Consumer
+    "COST", "WMT", "HD",
+    # Industrial
+    "CAT", "DE",
+    # Energy
+    "XOM",
+]
+
 DAY_TRADING_BUDGET_USD = ACCOUNT_SIZE_USD * 0.60
 LONG_TERM_BUDGET_USD = ACCOUNT_SIZE_USD * 0.40
 

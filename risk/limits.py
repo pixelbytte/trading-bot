@@ -16,9 +16,13 @@ MAX_DAILY_LOSS_USD = 150             # 3% daily stop -> halt trading
 MAX_TRADES_PER_DAY = 10              # prevent overtrading
 MAX_TRADES_PER_HOUR = 5              # circuit breaker for runaway loops
 
-# Portfolio limits
+# Portfolio limits — day trading
 MAX_OPEN_POSITIONS = 4
 MAX_CONCENTRATION_PCT = 0.30         # one ticker can't be > 30% of portfolio
+
+# Portfolio limits — long-term holds
+MAX_LONGTERM_POSITIONS = 3           # max simultaneous long-term positions
+MAX_LONGTERM_POSITION_USD = 800      # ~16% of account per long-term position
 
 # Asset filters
 MIN_PRICE_USD = 5                    # no penny stocks
