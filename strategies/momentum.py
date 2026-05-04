@@ -29,7 +29,7 @@ class MomentumStrategy(BaseStrategy):
     def __init__(
         self,
         roc_window: int = 20,
-        roc_threshold: float = 3.0,
+        roc_threshold: float = 5.0,   # raised from 3% — reduces noise signals
         sma_window: int = 50,
         rsi_period: int = 14,
         rsi_min: float = 50.0,
@@ -50,6 +50,15 @@ class MomentumStrategy(BaseStrategy):
 
         df = pd.DataFrame(bars)
         df["close"] = df["close"].astype(float)
+
+        # SEPA Stage 2 gate (Minervini): price must be above both 150-day and
+        # 200-day MA, and 150-day must be above 200-day — confirms confirmed uptrend
+        if len(df) >= 205:
+            sma150 = float(df["close"].rolling(150).mean().iloc[-1])
+            sma200 = float(df["close"].rolling(200).mean().iloc[-1])
+            last_close = float(df["close"].iloc[-1])
+            if last_close < sma150 or last_close < sma200 or sma150 < sma200:
+                return []
 
         df["roc"] = ROCIndicator(close=df["close"], window=self.roc_window).roc()
         df["sma50"] = SMAIndicator(close=df["close"], window=self.sma_window).sma_indicator()

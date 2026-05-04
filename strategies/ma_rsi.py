@@ -34,6 +34,13 @@ class MARSIStrategy(BaseStrategy):
         df = pd.DataFrame(bars)
         df["close"] = df["close"].astype(float)
 
+        # 200-day MA trend gate (Paul Tudor Jones / Minervini): skip buys when
+        # the stock is below its long-term trend — reduces false entries in downtrends
+        if len(df) >= 205:
+            sma200 = float(df["close"].rolling(200).mean().iloc[-1])
+            if float(df["close"].iloc[-1]) < sma200:
+                return []
+
         df["sma_short"] = SMAIndicator(close=df["close"], window=self.short_window).sma_indicator()
         df["sma_long"] = SMAIndicator(close=df["close"], window=self.long_window).sma_indicator()
         df["rsi"] = RSIIndicator(close=df["close"], window=self.rsi_period).rsi()

@@ -46,6 +46,13 @@ class MeanReversionStrategy(BaseStrategy):
         df = pd.DataFrame(bars)
         df["close"] = df["close"].astype(float)
 
+        # 200-day MA trend gate: below SMA200 a BB lower-band touch often means
+        # continuation (breakdown), not mean reversion — skip the buy
+        if len(df) >= 205:
+            sma200 = float(df["close"].rolling(200).mean().iloc[-1])
+            if float(df["close"].iloc[-1]) < sma200:
+                return []
+
         bb = BollingerBands(close=df["close"], window=self.bb_window, window_dev=self.bb_std)
         df["bb_lower"] = bb.bollinger_lband()
         df["bb_upper"] = bb.bollinger_hband()
