@@ -23,6 +23,8 @@ from config.settings import WATCHLIST
 from strategies.ma_rsi import MARSIStrategy
 from strategies.mean_reversion import MeanReversionStrategy
 from strategies.momentum import MomentumStrategy
+from strategies.breakout_52w import Breakout52WStrategy
+from strategies.rs_pullback import RSPullbackStrategy
 
 BACKTEST_DAYS = 365
 
@@ -183,6 +185,8 @@ def run_backtest():
         MARSIStrategy(),
         MeanReversionStrategy(),
         MomentumStrategy(),
+        Breakout52WStrategy(),
+        RSPullbackStrategy(),
     ]
 
     summary_rows = []
