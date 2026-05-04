@@ -26,7 +26,7 @@ from strategies.momentum import MomentumStrategy
 from strategies.breakout_52w import Breakout52WStrategy
 from strategies.rs_pullback import RSPullbackStrategy
 
-BACKTEST_DAYS = 365
+BACKTEST_DAYS = 500
 
 
 def _add_atr(bars):

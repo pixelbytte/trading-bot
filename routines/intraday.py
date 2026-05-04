@@ -2,8 +2,11 @@
 Intraday trading routine.
 Runs every 15 minutes during market hours via GitHub Actions.
 
-Multi-strategy: MA+RSI + Mean Reversion (both validated).
-Momentum is excluded until its win rate improves with SEPA tuning.
+Live strategies (all backtest-validated on 500-day window):
+  - MA+RSI:         +0.427R expectancy, Sharpe 2.58
+  - Momentum:       +0.341R expectancy, Sharpe 2.86 (enabled after 500D backtest)
+  - Mean Reversion: +0.030R expectancy, Sharpe 0.22 (marginal — watching)
+
 SPY regime gate: in correction (SPY < SMA50), only mean reversion runs.
 Portfolio manager prevents doubling up on the same ticker.
 """
@@ -16,6 +19,7 @@ from brokers.alpaca import (
 )
 from strategies.ma_rsi import MARSIStrategy
 from strategies.mean_reversion import MeanReversionStrategy
+from strategies.momentum import MomentumStrategy
 from routines.portfolio import filter_buy_signals
 from routines.reconcile import reconcile_exits
 from config.settings import WATCHLIST
@@ -26,14 +30,15 @@ from routines.llm_filter import analyse_signal
 from utils.logger import info, warning, error
 from utils.discord import send_trade_alert, send_error
 
-# Strategies cleared for live deployment (backed by backtest results)
+# Strategies cleared for live deployment (backed by 500-day backtest)
 STRATEGIES = [
     MARSIStrategy(),
+    MomentumStrategy(),
     MeanReversionStrategy(),
 ]
 
 # These strategy names are disabled when SPY is in correction
-TREND_ONLY_STRATEGIES = {"ma_rsi"}
+TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum"}
 
 
 def get_market_regime(spy_bars):

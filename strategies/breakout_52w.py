@@ -31,7 +31,7 @@ from ta.momentum import RSIIndicator
 from typing import List
 from strategies.base import BaseStrategy, Signal
 
-LOOKBACK_52W = 252   # trading days in one year
+LOOKBACK_52W = 200   # ~10 months; stays within what 300-day bar fetch can provide
 VOLUME_RATIO_MIN = 1.5
 RSI_MIN = 50.0
 RSI_MAX = 80.0
@@ -53,8 +53,9 @@ class Breakout52WStrategy(BaseStrategy):
         self.rsi_max = rsi_max
 
     def generate_signals(self, ticker: str, bars: list) -> List[Signal]:
-        # Need enough bars for all indicators + 52-week high calculation
-        min_bars = max(self.lookback, SMA200_WINDOW, 50) + 5
+        # Need SMA200 + a buffer. The 52W lookback uses whatever prior bars are
+        # available — scaled to min(lookback, available) inside the calculation.
+        min_bars = SMA200_WINDOW + 20
         if len(bars) < min_bars:
             return []
 
@@ -72,7 +73,9 @@ class Breakout52WStrategy(BaseStrategy):
             return []
 
         last = df.iloc[-1]
-        prev_closes = df["close"].iloc[-(self.lookback + 1):-1]
+        # Use however much history is available, capped at lookback target
+        actual_lookback = min(self.lookback, len(df) - 1)
+        prev_closes = df["close"].iloc[-(actual_lookback + 1):-1]
 
         close = float(last["close"])
         prev_52w_max = float(prev_closes.max())
@@ -98,8 +101,8 @@ class Breakout52WStrategy(BaseStrategy):
             action="buy",
             confidence=0.78,
             reason=(
-                f"52W high breakout: close ${close:.2f} vs prior high ${prev_52w_max:.2f} "
-                f"(+{pct_above_52w:.1f}%), vol {vol_mult:.1f}x avg, "
-                f"RSI={rsi_val:.1f}, above SMA200"
+                f"{actual_lookback}D high breakout: close ${close:.2f} vs "
+                f"prior high ${prev_52w_max:.2f} (+{pct_above_52w:.1f}%), "
+                f"vol {vol_mult:.1f}x avg, RSI={rsi_val:.1f}, above SMA200"
             ),
         )]
