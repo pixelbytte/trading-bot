@@ -21,7 +21,7 @@ from routines.reconcile import reconcile_exits
 from config.settings import WATCHLIST
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size
 from risk.limits import RISK_PER_TRADE_USD
-from data.db import init_schema, log_signal, log_trade, is_trading_halted
+from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments
 from utils.logger import info, warning, error
 from utils.discord import send_trade_alert, send_error
 
@@ -166,11 +166,30 @@ def run_intraday():
     signals_acted = 0
     signals_skipped = 0
 
+    # Load today's pre-market sentiment scores (empty dict = no scores, fail open)
+    try:
+        sentiments = get_ticker_sentiments()
+    except Exception as e:
+        error(f"Could not load sentiment scores: {e}", source="intraday", exc=e)
+        sentiments = {}
+
     # --- Execute buys ---
     for strat_name, s in to_buy:
         ticker = s.ticker
         bars = all_bars[ticker]
         try:
+            # Sentiment gate: skip bearish tickers (threshold -0.3)
+            ticker_sentiment = sentiments.get(ticker, {}).get("sentiment", 0.0)
+            if ticker_sentiment < -0.3:
+                log_signal(
+                    ticker=ticker, strategy=strat_name, action="buy",
+                    confidence=s.confidence, acted=False,
+                    skip_reason=f"bearish news sentiment ({ticker_sentiment:.2f})",
+                )
+                info(f"{ticker}: buy skipped — bearish sentiment {ticker_sentiment:.2f}", source="intraday")
+                signals_skipped += 1
+                continue
+
             atr = compute_atr(bars)
             if atr is None:
                 info(f"{ticker}: insufficient bars for ATR, skipping", source="intraday")

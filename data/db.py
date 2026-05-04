@@ -293,6 +293,43 @@ def update_trade_pnl(trade_id, exit_price, pnl, notes=""):
         con.close()
 
 
+def log_llm_output(source, ticker, output_type, content, conviction=None, sentiment=None):
+    """Log a Claude analysis result (sentiment score, trade thesis, etc.)."""
+    con = _connect()
+    try:
+        con.execute("""
+            INSERT INTO llm_outputs (id, ts, source, ticker, output_type, content, conviction, sentiment)
+            VALUES (nextval('llm_seq'), ?, ?, ?, ?, ?, ?, ?)
+        """, [datetime.now(), source, ticker, output_type, content, conviction, sentiment])
+    finally:
+        con.close()
+
+
+def get_ticker_sentiments():
+    """
+    Return today's latest pre-market sentiment per ticker.
+    Dict: {ticker: {"sentiment": float, "conviction": float, "content": str}}
+    Empty dict if no scores logged today.
+    """
+    con = _connect()
+    try:
+        rows = con.execute("""
+            SELECT DISTINCT ON (ticker) ticker, sentiment, conviction, content
+            FROM llm_outputs
+            WHERE source = 'premarket_news'
+              AND output_type = 'sentiment'
+              AND DATE(ts) = CURRENT_DATE
+              AND ticker IS NOT NULL
+            ORDER BY ticker, ts DESC
+        """).fetchall()
+        return {
+            r[0]: {"sentiment": float(r[1] or 0), "conviction": float(r[2] or 0), "content": r[3] or ""}
+            for r in rows
+        }
+    finally:
+        con.close()
+
+
 def daily_pnl_so_far():
     """Sum of realized P&L from today's closed trades."""
     con = _connect()
