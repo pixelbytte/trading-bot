@@ -191,7 +191,7 @@ def run_intraday():
     # threshold so there's a chance to review before trading fully halts.
     try:
         daily_pnl = daily_pnl_so_far()
-        warn_level = -MAX_DAILY_LOSS_USD * 0.80   # -$120 of -$150 limit
+        warn_level = -MAX_DAILY_LOSS_USD * 0.80   # 80% of daily loss limit
         if daily_pnl <= warn_level:
             send_info(
                 f"WARNING: Daily P&L is ${daily_pnl:.2f} — "

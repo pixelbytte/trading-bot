@@ -139,7 +139,9 @@ def test_risk_blocks_over_limit():
     from risk.check import check_order
     from risk.limits import MAX_POSITION_USD
 
-    qty, price = 10, 80.0  # $800 > $750 limit
+    # Pick a notional that's clearly over MAX_POSITION_USD
+    price = 100.0
+    qty = int(MAX_POSITION_USD / price) + 50  # 50 shares over the cap
     with patch("risk.check.is_trading_halted", return_value=False), \
          patch("risk.check.daily_pnl_so_far", return_value=0.0), \
          patch("risk.check.trade_count_today", return_value=0), \

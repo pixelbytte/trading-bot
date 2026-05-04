@@ -183,7 +183,7 @@ def _ask_claude(stats):
 
     prompt = f"""You are a trading performance coach reviewing a paper trading bot's weekly results.
 The bot trades US large-cap stocks systematically using MA+RSI and Mean Reversion strategies
-on a $5,000 paper account. Risk per trade: $50 (1%). Daily stop: $150 (3%).
+on a $100,000 paper account. Risk per trade: $1,000 (1%). Daily stop: $3,000 (3%).
 
 WEEKLY STATISTICS:
 Period: {stats['period']}

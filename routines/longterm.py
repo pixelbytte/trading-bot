@@ -9,8 +9,8 @@ Day 25-26 additions:
 
 Portfolio constraints:
   - Max 3 simultaneous long-term positions (MAX_LONGTERM_POSITIONS)
-  - Max $800 per position (MAX_LONGTERM_POSITION_USD)
-  - Same $50 risk-per-trade — consistent risk sizing
+  - Max $16,000 per position (MAX_LONGTERM_POSITION_USD = 16% of account)
+  - Same 1%-of-equity risk-per-trade — consistent with day-trading sizing
   - Won't enter if already in the ticker across either portfolio
   - Kill switch respected
 """

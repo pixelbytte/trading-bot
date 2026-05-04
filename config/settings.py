@@ -1,10 +1,11 @@
 """Central configuration for the trading bot."""
 
-ACCOUNT_SIZE_USD = 5000
+ACCOUNT_SIZE_USD = 100_000
 
-MAX_POSITION_USD = 750
-MAX_DAILY_LOSS_USD = 150
-RISK_PER_TRADE_USD = 50
+# All ratios preserved from the $5k tune — only absolute dollars scaled 20x.
+MAX_POSITION_USD = 15_000     # 15% of account
+MAX_DAILY_LOSS_USD = 3_000    # 3% daily kill switch
+RISK_PER_TRADE_USD = 1_000    # 1% risk per trade
 MAX_OPEN_POSITIONS = 4
 MAX_TRADES_PER_DAY = 10
 MIN_PRICE_USD = 5
