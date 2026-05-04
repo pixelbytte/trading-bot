@@ -76,3 +76,24 @@ def get_fundamentals(ticker):
         "fcf_yield":       float(m.get("freeCashFlowYieldTTM") or 0),
         "market_cap":      float(m.get("marketCapTTM") or 0),
     }
+
+
+def has_earnings_soon(ticker: str, days: int = 3) -> bool:
+    """
+    Return True if the ticker has an earnings report within `days` calendar days.
+    Uses FMP earnings calendar endpoint.
+
+    Fails open (returns False) if FMP is unavailable — never blocks a trade
+    due to a missing API key or network error.
+    """
+    from datetime import date, timedelta
+    today = date.today()
+    date_to = today + timedelta(days=days)
+    data = _get(
+        "/earning_calendar",
+        {"from": today.isoformat(), "to": date_to.isoformat()},
+    )
+    if not data or not isinstance(data, list):
+        return False
+    tickers_with_earnings = {row.get("symbol", "").upper() for row in data}
+    return ticker.upper() in tickers_with_earnings

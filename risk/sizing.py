@@ -67,36 +67,43 @@ def compute_stop_target(entry_price, atr, side="buy",
     return round(stop, 2), round(target, 2)
 
 
-def compute_position_size(entry_price, stop_price):
+def compute_position_size(entry_price, stop_price, risk_override=None):
     """
     Size the position so we risk RISK_PER_TRADE_USD if the stop hits.
 
     Formula: qty = risk_dollars / (entry_price - stop_price)
 
-    Then clamp to:
-      - max position notional (MAX_POSITION_USD)
-      - max sanity qty (MAX_ORDER_QTY)
-      - min position notional (MIN_POSITION_USD)
+    risk_override: pass a custom dollar risk amount (e.g. 1% of current equity
+    for proportional compounding). If None, uses the hardcoded RISK_PER_TRADE_USD.
 
-    Returns int qty (whole shares only for now).
+    Returns int qty (whole shares only).
     """
+    risk = risk_override if risk_override is not None else RISK_PER_TRADE_USD
     stop_distance = abs(entry_price - stop_price)
     if stop_distance <= 0:
         return 0
 
-    raw_qty = RISK_PER_TRADE_USD / stop_distance
+    raw_qty = risk / stop_distance
     qty = int(raw_qty)  # round down
 
-    # Cap by max position size
-    notional = qty * entry_price
-    if notional > MAX_POSITION_USD:
-        qty = int(MAX_POSITION_USD / entry_price)
+    # Cap by max position size (scale with risk_override if provided)
+    max_pos = MAX_POSITION_USD
+    if risk_override is not None:
+        max_pos = risk_override * 15  # keep 15x risk = 15% of account cap
 
-    # Cap by sanity limit
+    notional = qty * entry_price
+    if notional > max_pos:
+        qty = int(max_pos / entry_price)
+
     qty = min(qty, MAX_ORDER_QTY)
 
-    # Reject if too small
     if qty * entry_price < MIN_POSITION_USD:
         return 0
 
     return max(0, qty)
+
+
+def dynamic_risk_usd(account_equity: float) -> float:
+    """Return 1% of current equity as the risk-per-trade amount.
+    Used for proportional (compounding) position sizing."""
+    return max(account_equity * 0.01, 25.0)  # floor at $25

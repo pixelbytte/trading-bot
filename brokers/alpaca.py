@@ -114,8 +114,10 @@ def get_positions():
     ]
 
 
-def place_market_order(ticker, qty, side, strategy="", portfolio_type="day_trading"):
-    """Place a market order. side = 'buy' or 'sell'. Risk-checked, logs to DB."""
+def place_market_order(ticker, qty, side, strategy="", portfolio_type="day_trading",
+                        notes=""):
+    """Place a market order. side = 'buy' or 'sell'. Risk-checked, logs to DB.
+    notes: optional tag stored on the trade row (e.g. 'pyramid_1')."""
     log_info(f"Placing {side.upper()} {ticker} x{qty} ({strategy})", source="alpaca")
 
     # Get current price first (needed for risk check)
@@ -154,6 +156,7 @@ def place_market_order(ticker, qty, side, strategy="", portfolio_type="day_tradi
             portfolio_type=portfolio_type,
             order_id=str(order.id),
             status=str(order.status),
+            notes=notes,
         )
 
         return {

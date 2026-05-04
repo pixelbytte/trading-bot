@@ -10,31 +10,62 @@ MAX_TRADES_PER_DAY = 10
 MIN_PRICE_USD = 5
 
 WATCHLIST = [
+    # Original 10 — mega-cap tech + SPY
     "AAPL", "MSFT", "NVDA", "GOOGL", "AMZN",
     "META", "TSLA", "AMD", "JPM", "SPY",
+    # Tier 1 expansion — high-momentum large caps
+    "CRWD", "NFLX", "UBER", "PLTR", "MU",
+    # Financials / payments
+    "V", "MA", "GS", "BAC",
+    # Healthcare / consumer / energy
+    "LLY", "UNH", "COST", "HD", "XOM", "AVGO",
 ]
 
 # Long-term portfolio: quality companies held for weeks-months.
-# Broader sector coverage than the day-trading watchlist.
+# Curated for structural tailwinds + Stage 2 uptrend entries.
+# Removed: ADBE/CRM/ORCL/NOW (poor Stage 2 results in backtest).
+# Sunday deep research (Opus) supplements this list with weekly picks.
 LONG_TERM_WATCHLIST = [
-    # Mega-cap tech (overlaps day-trading — fine, different portfolio type)
+    # Mega-cap tech — proven compounders
     "AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META",
-    # Additional tech
-    "CRM", "ADBE", "AVGO", "NOW", "QCOM", "ORCL",
-    # Financials
+
+    # Semiconductors — AI hardware supercycle
+    "AVGO",   # Broadcom: custom AI chips for Apple/Google, 50%+ FCF margins
+    "QCOM",   # Qualcomm: mobile + automotive + AI edge chips
+    "ARM",    # ARM Holdings: architecture for every AI chip ever built, royalty model
+
+    # AI infrastructure & software
+    "PLTR",   # Palantir: AI platform govt + enterprise, accelerating commercial growth
+    "APP",    # AppLovin: mobile ad platform, 70%+ EBITDA margins, fastest-growing ad co
+
+    # Power (AI data centers need massive electricity)
+    "CEG",    # Constellation Energy: nuclear renaissance, locked in Microsoft contract
+    "VST",    # Vistra Energy: nuclear + gas power, pricing power from AI demand
+
+    # Defense tech
+    "AXON",   # Axon Enterprise: tasers + AI body cams + software, 90%+ gross margin on SaaS
+
+    # Financials & payments
     "JPM", "V", "MA", "GS",
+
     # Healthcare
-    "LLY", "UNH", "ABBV",
+    "LLY",    # Eli Lilly: GLP-1 drugs (weight loss + diabetes), pipeline is deepest in pharma
+    "UNH",    # UnitedHealth: manages care + owns hospitals + PBM, durable compounder
+    "ABBV",   # AbbVie: Skyrizi/Rinvoq replacing Humira revenue, strong pipeline
+    "ISRG",   # Intuitive Surgical: robotic surgery near-monopoly, installed base compounds
+
     # Consumer
-    "COST", "WMT", "HD",
+    "COST",   # Costco: membership model, pricing power, deflationary for consumers
+    "WMT",    # Walmart: logistics + advertising revenue, e-commerce accelerating
+    "CELH",   # Celsius: energy drink brand taking share from Monster/Red Bull
+
     # Industrial
-    "CAT", "DE",
-    # Energy
-    "XOM",
+    "CAT",    # Caterpillar: mining + construction, Stage 2 returned +87.9% last cycle
+    "DE",     # Deere: precision ag + autonomous machinery, high switching cost moat
 ]
 
-DAY_TRADING_BUDGET_USD = ACCOUNT_SIZE_USD * 0.60
-LONG_TERM_BUDGET_USD = ACCOUNT_SIZE_USD * 0.40
+DAY_TRADING_BUDGET_USD = ACCOUNT_SIZE_USD * 0.40
+LONG_TERM_BUDGET_USD = ACCOUNT_SIZE_USD * 0.60
 
 MARKET_OPEN_HOUR = 9
 MARKET_OPEN_MINUTE = 30

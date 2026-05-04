@@ -270,6 +270,53 @@ def trades_in_last_hour():
         con.close()
 
 
+def get_pyramid_state(ticker: str):
+    """
+    Return (base_qty, base_entry_price, pyramid_level) for the most recent open
+    bracket entry on this ticker. pyramid_level is the count of pyramid orders
+    already placed (0 = none, 1 = +1R add done, 2 = both done).
+
+    Used by intraday.check_trailing_stops() to decide whether to add a new
+    pyramid tranche when a position crosses +1R or +2R.
+    """
+    con = _connect()
+    try:
+        # Find the latest open base entry for this ticker
+        base = con.execute("""
+            SELECT id, qty, price, ts FROM trades
+            WHERE ticker = ?
+              AND side = 'buy'
+              AND pnl IS NULL
+              AND notes LIKE 'bracket%'
+              AND ts >= NOW() - INTERVAL '14 days'
+            ORDER BY ts DESC
+            LIMIT 1
+        """, [ticker]).fetchone()
+
+        if not base:
+            return None
+
+        _, base_qty, base_price, base_ts = base
+
+        # Count pyramid orders for this ticker since the base entry
+        pyramid_count = con.execute("""
+            SELECT COUNT(*) FROM trades
+            WHERE ticker = ?
+              AND side = 'buy'
+              AND notes LIKE 'pyramid_%'
+              AND ts >= ?
+        """, [ticker, base_ts]).fetchone()[0]
+
+        return {
+            "base_qty": float(base_qty),
+            "base_entry": float(base_price),
+            "pyramid_level": int(pyramid_count),
+            "base_ts": base_ts,
+        }
+    finally:
+        con.close()
+
+
 def get_open_trade_entries():
     """
     Return buy-side trades that have not yet been reconciled (pnl IS NULL).

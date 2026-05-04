@@ -45,7 +45,21 @@ class MARSIStrategy(BaseStrategy):
         df["sma_long"] = SMAIndicator(close=df["close"], window=self.long_window).sma_indicator()
         df["rsi"] = RSIIndicator(close=df["close"], window=self.rsi_period).rsi()
 
-        df = df.dropna()
+        # Volume confirmation: institutional moves come with above-average volume.
+        # Only applied when volume data is reliable (avg > 500k/day = full SIP feed).
+        # IEX feed (paper accounts) only captures ~2% of market volume — skip filter there.
+        if "volume" in df.columns:
+            df["volume"] = pd.to_numeric(df["volume"], errors="coerce").fillna(0)
+            df["avg_vol20"] = df["volume"].rolling(20).mean()
+            df = df.dropna()
+            if len(df) >= 2:
+                avg_vol = float(df["avg_vol20"].iloc[-1])
+                cur_vol = float(df["volume"].iloc[-1])
+                if avg_vol > 500_000 and cur_vol < 1.2 * avg_vol:
+                    return []
+        else:
+            df = df.dropna()
+
         if len(df) < 2:
             return []
 
