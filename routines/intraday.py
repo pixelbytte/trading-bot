@@ -24,11 +24,12 @@ from routines.portfolio import filter_buy_signals
 from routines.reconcile import reconcile_exits
 from config.settings import WATCHLIST
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size
-from risk.limits import RISK_PER_TRADE_USD
-from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output
+from risk.limits import RISK_PER_TRADE_USD, MAX_DAILY_LOSS_USD
+from config.settings import LONG_TERM_WATCHLIST
+from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far
 from routines.llm_filter import analyse_signal
 from utils.logger import info, warning, error
-from utils.discord import send_trade_alert, send_error
+from utils.discord import send_trade_alert, send_error, send_info
 
 # Strategies cleared for live deployment (backed by 500-day backtest)
 STRATEGIES = [
@@ -57,11 +58,15 @@ def get_market_regime(spy_bars):
 
 def check_trailing_stops():
     """
-    Inspect all open positions and trail their stops for winning trades.
+    Inspect all open positions: trail stops on winners, emergency-close losers.
 
-    Rules (1R = RISK_PER_TRADE_USD = $50):
-      +1R: move stop to breakeven (avg entry price)
+    Trailing rules (1R = RISK_PER_TRADE_USD = $50):
+      +1R: move stop to breakeven
       +2R: move stop to entry + 1R per share
+
+    Emergency stop (day-trading only — long-term uses wider bracket stops):
+      -2R: close immediately. Protects against gap-downs or bad fills that
+           slip past the bracket stop.
     """
     positions = get_positions()
     for p in positions:
@@ -82,6 +87,7 @@ def check_trailing_stops():
                 source="intraday",
             )
             update_stop_order(ticker, new_stop)
+
         elif unrealized_pl >= RISK_PER_TRADE_USD:
             new_stop = round(entry, 2)
             info(
@@ -89,6 +95,19 @@ def check_trailing_stops():
                 source="intraday",
             )
             update_stop_order(ticker, new_stop)
+
+        elif unrealized_pl <= -2 * RISK_PER_TRADE_USD and ticker not in LONG_TERM_WATCHLIST:
+            # Emergency exit: day-trading position bleeding past 2R — something
+            # went wrong (gap-down, bracket stop not filled at expected price).
+            warning(
+                f"{ticker}: emergency close at -2R (${unrealized_pl:.2f})",
+                source="intraday",
+            )
+            try:
+                close_position(ticker)
+                send_trade_alert(ticker, "sell", int(qty), entry, strategy="emergency_stop")
+            except Exception as e:
+                error(f"{ticker}: emergency close failed: {e}", source="intraday", exc=e)
 
 
 def run_intraday():
@@ -100,6 +119,19 @@ def run_intraday():
     if is_trading_halted():
         warning("Trading halted - skipping intraday cycle", source="intraday")
         return
+
+    # Pre-loss warning: alert Discord when daily P&L crosses 80% of the kill switch
+    # threshold so there's a chance to review before trading fully halts.
+    try:
+        daily_pnl = daily_pnl_so_far()
+        warn_level = -MAX_DAILY_LOSS_USD * 0.80   # -$120 of -$150 limit
+        if daily_pnl <= warn_level:
+            send_info(
+                f"WARNING: Daily P&L is ${daily_pnl:.2f} — "
+                f"approaching kill switch at -${MAX_DAILY_LOSS_USD:.0f}."
+            )
+    except Exception:
+        pass  # never let this block trading
 
     # Reconcile any bracket exits that filled since last cycle — updates pnl in DB
     # so daily_pnl_so_far() and the kill switch see accurate realized losses

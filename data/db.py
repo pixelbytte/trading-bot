@@ -119,6 +119,21 @@ def init_schema():
         con.execute("""
             CREATE SEQUENCE IF NOT EXISTS errors_seq START 1
         """)
+
+        con.execute("""
+            CREATE TABLE IF NOT EXISTS fundamentals (
+                ticker VARCHAR NOT NULL,
+                date DATE NOT NULL,
+                pe_ratio DOUBLE,
+                eps_growth DOUBLE,
+                revenue_growth DOUBLE,
+                debt_to_equity DOUBLE,
+                gross_margin DOUBLE,
+                fcf_yield DOUBLE,
+                market_cap DOUBLE,
+                PRIMARY KEY (ticker, date)
+            )
+        """)
     finally:
         con.close()
 
@@ -326,6 +341,98 @@ def get_ticker_sentiments():
             r[0]: {"sentiment": float(r[1] or 0), "conviction": float(r[2] or 0), "content": r[3] or ""}
             for r in rows
         }
+    finally:
+        con.close()
+
+
+def store_fundamentals(ticker, data):
+    """Upsert fundamental metrics for a ticker (one row per ticker per day)."""
+    con = _connect()
+    try:
+        con.execute("""
+            INSERT INTO fundamentals
+                (ticker, date, pe_ratio, eps_growth, revenue_growth,
+                 debt_to_equity, gross_margin, fcf_yield, market_cap)
+            VALUES (?, CURRENT_DATE, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT (ticker, date) DO UPDATE SET
+                pe_ratio = excluded.pe_ratio,
+                eps_growth = excluded.eps_growth,
+                revenue_growth = excluded.revenue_growth,
+                debt_to_equity = excluded.debt_to_equity,
+                gross_margin = excluded.gross_margin,
+                fcf_yield = excluded.fcf_yield,
+                market_cap = excluded.market_cap
+        """, [ticker, data.get("pe_ratio"), data.get("eps_growth"),
+              data.get("revenue_growth"), data.get("debt_to_equity"),
+              data.get("gross_margin"), data.get("fcf_yield"), data.get("market_cap")])
+    finally:
+        con.close()
+
+
+def get_fundamentals(ticker):
+    """Return the most recent fundamental metrics for a ticker, or None."""
+    con = _connect()
+    try:
+        row = con.execute("""
+            SELECT pe_ratio, eps_growth, revenue_growth, debt_to_equity,
+                   gross_margin, fcf_yield, market_cap
+            FROM fundamentals
+            WHERE ticker = ?
+            ORDER BY date DESC LIMIT 1
+        """, [ticker]).fetchone()
+        if not row:
+            return None
+        return {
+            "pe_ratio": row[0], "eps_growth": row[1], "revenue_growth": row[2],
+            "debt_to_equity": row[3], "gross_margin": row[4],
+            "fcf_yield": row[5], "market_cap": row[6],
+        }
+    finally:
+        con.close()
+
+
+def get_latest_thesis(ticker):
+    """Return the most recent Claude thesis for a ticker, or None."""
+    con = _connect()
+    try:
+        row = con.execute("""
+            SELECT content, conviction, sentiment
+            FROM llm_outputs
+            WHERE source = 'thesis' AND ticker = ?
+            ORDER BY ts DESC LIMIT 1
+        """, [ticker]).fetchone()
+        if not row:
+            return None
+        return {"content": row[0], "conviction": float(row[1] or 0.5),
+                "sentiment": float(row[2] or 0)}
+    finally:
+        con.close()
+
+
+def get_longterm_open_positions():
+    """
+    Return open long-term positions with their average entry and tranche count.
+    An 'open' entry is a buy with pnl IS NULL placed within the last 120 days.
+    """
+    con = _connect()
+    try:
+        rows = con.execute("""
+            SELECT ticker,
+                   AVG(price)  AS avg_entry,
+                   COUNT(*)    AS entry_count,
+                   SUM(qty)    AS total_qty
+            FROM trades
+            WHERE side = 'buy'
+              AND portfolio_type = 'long_term'
+              AND pnl IS NULL
+              AND ts >= NOW() - INTERVAL '120 days'
+            GROUP BY ticker
+        """).fetchall()
+        return [
+            {"ticker": r[0], "avg_entry": float(r[1]),
+             "entry_count": int(r[2]), "qty": float(r[3])}
+            for r in rows
+        ]
     finally:
         con.close()
 

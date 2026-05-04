@@ -12,99 +12,132 @@
       background: #0d1117;
       color: #c9d1d9;
       min-height: 100vh;
-      padding: 24px;
+      padding: 20px;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       border-bottom: 1px solid #21262d;
-      padding-bottom: 16px;
+      padding-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    header h1 { font-size: 1.4rem; color: #f0f6fc; font-weight: 600; }
-    #updated { font-size: 0.78rem; color: #8b949e; }
+    header h1 { font-size: 1.3rem; color: #f0f6fc; font-weight: 600; }
+    #updated { font-size: 0.76rem; color: #8b949e; }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
     }
 
     .card {
       background: #161b22;
       border: 1px solid #21262d;
       border-radius: 8px;
-      padding: 18px 20px;
+      padding: 16px 18px;
     }
 
-    .card .label { font-size: 0.75rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-    .card .value { font-size: 1.6rem; font-weight: 700; color: #f0f6fc; }
+    .card .label {
+      font-size: 0.72rem;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+    .card .value { font-size: 1.5rem; font-weight: 700; color: #f0f6fc; }
     .card .value.pos { color: #3fb950; }
     .card .value.neg { color: #f85149; }
-
-    section { margin-bottom: 32px; }
-    section h2 { font-size: 0.95rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
+    .card .sub {
+      font-size: 0.72rem;
+      color: #8b949e;
+      margin-top: 4px;
     }
 
+    .split-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    section { margin-bottom: 28px; }
+    section h2 {
+      font-size: 0.82rem;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 10px;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
     th {
       text-align: left;
-      padding: 8px 12px;
+      padding: 7px 10px;
       color: #8b949e;
       font-weight: 500;
       border-bottom: 1px solid #21262d;
       white-space: nowrap;
     }
-
     td {
-      padding: 7px 12px;
+      padding: 6px 10px;
       border-bottom: 1px solid #161b22;
       vertical-align: middle;
     }
-
     tr:hover td { background: #161b22; }
 
     .tag {
       display: inline-block;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.04em;
     }
-
-    .tag-buy  { background: #0d3027; color: #3fb950; }
-    .tag-sell { background: #2d1217; color: #f85149; }
-    .tag-acted { background: #0d2149; color: #58a6ff; }
-    .tag-skip  { background: #1c1c1c; color: #8b949e; }
+    .tag-buy    { background: #0d3027; color: #3fb950; }
+    .tag-sell   { background: #2d1217; color: #f85149; }
+    .tag-acted  { background: #0d2149; color: #58a6ff; }
+    .tag-skip   { background: #1c1c1c; color: #8b949e; }
+    .tag-lt     { background: #1c1435; color: #bc8cff; }
+    .tag-dt     { background: #0d2149; color: #58a6ff; }
 
     .pos { color: #3fb950; }
     .neg { color: #f85149; }
     .dim { color: #8b949e; }
 
-    .bar-chart { display: flex; gap: 4px; align-items: flex-end; height: 60px; margin-bottom: 8px; }
-    .bar-wrap { display: flex; flex-direction: column; align-items: center; flex: 1; height: 100%; justify-content: flex-end; }
-    .bar {
-      width: 100%;
-      min-height: 2px;
-      border-radius: 2px 2px 0 0;
-      transition: height 0.3s;
-    }
-    .bar.pos-bar { background: #3fb950; }
-    .bar.neg-bar { background: #f85149; }
+    .bar-chart { display: flex; gap: 3px; align-items: flex-end; height: 56px; margin-bottom: 6px; }
+    .bar-wrap  { display: flex; flex-direction: column; align-items: center; flex: 1; height: 100%; justify-content: flex-end; }
+    .bar { width: 100%; min-height: 2px; border-radius: 2px 2px 0 0; transition: height 0.3s; }
+    .bar.pos-bar  { background: #3fb950; }
+    .bar.neg-bar  { background: #f85149; }
     .bar.zero-bar { background: #30363d; height: 2px !important; }
-    .bar-label { font-size: 0.6rem; color: #8b949e; margin-top: 3px; text-align: center; white-space: nowrap; overflow: hidden; }
+    .bar-label    { font-size: 0.58rem; color: #8b949e; margin-top: 2px; text-align: center; overflow: hidden; }
 
-    #no-data { text-align: center; color: #8b949e; padding: 60px; font-size: 0.9rem; }
+    .pill {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .pill-buy   { background: #0d3027; color: #3fb950; }
+    .pill-hold  { background: #1c1c1c; color: #8b949e; }
+    .pill-avoid { background: #2d1217; color: #f85149; }
+
+    #no-data   { text-align: center; color: #8b949e; padding: 60px; font-size: 0.9rem; }
     #error-msg { color: #f85149; text-align: center; padding: 40px; }
+
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      .split-row { grid-template-columns: 1fr; }
+      th, td { padding: 5px 6px; font-size: 0.76rem; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 <body>
@@ -129,54 +162,83 @@ async function load() {
     document.getElementById('updated').textContent =
       'Updated: ' + new Date(d.generated_at).toLocaleString();
 
-    const s = d.summary;
-    const pnlClass = s.realized_pnl >= 0 ? 'pos' : 'neg';
-    const pnlSign = s.realized_pnl >= 0 ? '+' : '';
+    root.innerHTML =
+      renderMetricCards(d.summary) +
+      renderPortfolioSplit(d.summary) +
+      renderBarChart(d.daily_history) +
+      renderOpenPositions(d.open_positions) +
+      renderStrategyStats(d.strategy_stats) +
+      renderTrades(d.recent_trades) +
+      renderSignals(d.recent_signals);
 
-    root.innerHTML = `
-      <div class="cards">
-        <div class="card">
-          <div class="label">Today's P&L</div>
-          <div class="value ${pnlClass}">${pnlSign}$${s.realized_pnl.toFixed(2)}</div>
-        </div>
-        <div class="card">
-          <div class="label">Trades Today</div>
-          <div class="value">${s.trades_today}</div>
-        </div>
-        <div class="card">
-          <div class="label">Win Rate</div>
-          <div class="value">${(s.win_rate * 100).toFixed(0)}%</div>
-        </div>
-        <div class="card">
-          <div class="label">Wins / Losses</div>
-          <div class="value"><span class="pos">${s.wins}</span> / <span class="neg">${s.losses}</span></div>
-        </div>
-      </div>
-
-      ${renderBarChart(d.daily_history)}
-      ${renderTrades(d.recent_trades)}
-      ${renderSignals(d.recent_signals)}
-    `;
   } catch (e) {
     root.innerHTML = `<p id="error-msg">Could not load data.json &mdash; run the EOD workflow first.<br><small>${e.message}</small></p>`;
   }
+}
+
+function fmt(val, prefix='$') {
+  if (val == null) return '-';
+  const sign = val >= 0 ? '+' : '';
+  return `${sign}${prefix}${Math.abs(val).toFixed(2)}`;
+}
+
+function renderMetricCards(s) {
+  const pnlClass = s.realized_pnl >= 0 ? 'pos' : 'neg';
+  const closed = s.wins + s.losses;
+  return `
+    <div class="cards">
+      <div class="card">
+        <div class="label">Today's P&L</div>
+        <div class="value ${pnlClass}">${fmt(s.realized_pnl)}</div>
+        <div class="sub">realized</div>
+      </div>
+      <div class="card">
+        <div class="label">Trades Today</div>
+        <div class="value">${s.trades_today}</div>
+      </div>
+      <div class="card">
+        <div class="label">Win Rate</div>
+        <div class="value">${closed > 0 ? (s.win_rate * 100).toFixed(0) : '-'}%</div>
+        <div class="sub">${s.wins}W / ${s.losses}L</div>
+      </div>
+      <div class="card">
+        <div class="label">Wins / Losses</div>
+        <div class="value"><span class="pos">${s.wins}</span> / <span class="neg">${s.losses}</span></div>
+      </div>
+    </div>`;
+}
+
+function renderPortfolioSplit(s) {
+  const dtClass = (s.dt_pnl || 0) >= 0 ? 'pos' : 'neg';
+  const ltClass = (s.lt_pnl || 0) >= 0 ? 'pos' : 'neg';
+  return `
+    <div class="split-row">
+      <div class="card">
+        <div class="label">Day-Trading P&L</div>
+        <div class="value ${dtClass}">${fmt(s.dt_pnl || 0)}</div>
+        <div class="sub">60% allocation</div>
+      </div>
+      <div class="card">
+        <div class="label">Long-Term P&L</div>
+        <div class="value ${ltClass}">${fmt(s.lt_pnl || 0)}</div>
+        <div class="sub">40% allocation</div>
+      </div>
+    </div>`;
 }
 
 function renderBarChart(history) {
   if (!history || history.length === 0) return '';
   const days = [...history].reverse().slice(-20);
   const max = Math.max(...days.map(d => Math.abs(d.pnl)), 1);
-
   const bars = days.map(d => {
-    const pct = Math.abs(d.pnl) / max * 100;
-    const cls = d.pnl > 0 ? 'pos-bar' : d.pnl < 0 ? 'neg-bar' : 'zero-bar';
-    const label = d.date.slice(5); // MM-DD
+    const pct  = Math.abs(d.pnl) / max * 100;
+    const cls  = d.pnl > 0 ? 'pos-bar' : d.pnl < 0 ? 'neg-bar' : 'zero-bar';
+    const lbl  = d.date.slice(5);
     return `<div class="bar-wrap">
-      <div class="bar ${cls}" style="height:${Math.max(pct, 2)}%"></div>
-      <div class="bar-label">${label}</div>
+      <div class="bar ${cls}" style="height:${Math.max(pct,2)}%"></div>
+      <div class="bar-label">${lbl}</div>
     </div>`;
   }).join('');
-
   return `
     <section>
       <h2>Daily P&L (last ${days.length} sessions)</h2>
@@ -184,23 +246,71 @@ function renderBarChart(history) {
     </section>`;
 }
 
+function renderOpenPositions(positions) {
+  if (!positions || positions.length === 0) return '';
+  const rows = positions.map(p => `
+    <tr>
+      <td><strong>${p.ticker}</strong></td>
+      <td class="dim">$${p.avg_entry.toFixed(2)}</td>
+      <td class="dim">${p.qty}</td>
+      <td class="dim">${p.entry_count} ${p.entry_count > 1 ? 'tranches' : 'tranche'}</td>
+      <td><span class="tag tag-lt">LONG-TERM</span></td>
+    </tr>`).join('');
+  return `
+    <section>
+      <h2>Open Long-Term Positions (${positions.length})</h2>
+      <table>
+        <thead><tr><th>Ticker</th><th>Avg Entry</th><th>Qty</th><th>Tranches</th><th>Type</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </section>`;
+}
+
+function renderStrategyStats(stats) {
+  if (!stats || stats.length === 0) return '';
+  const rows = stats.map(s => {
+    const pnlClass = s.total_pnl >= 0 ? 'pos' : 'neg';
+    const rClass   = s.avg_r >= 0 ? 'pos' : 'neg';
+    return `<tr>
+      <td><strong>${s.strategy}</strong></td>
+      <td class="dim">${s.trades}</td>
+      <td><span class="pos">${s.wins}</span>/<span class="neg">${s.losses}</span></td>
+      <td class="dim">${s.win_rate.toFixed(0)}%</td>
+      <td class="${pnlClass}">${fmt(s.total_pnl)}</td>
+      <td class="${rClass}">${s.avg_r >= 0 ? '+' : ''}${s.avg_r.toFixed(3)}R</td>
+    </tr>`;
+  }).join('');
+  return `
+    <section>
+      <h2>Strategy Performance (30 days)</h2>
+      <table>
+        <thead><tr><th>Strategy</th><th>Trades</th><th>W/L</th><th>Win%</th><th>Total P&L</th><th>Avg R</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </section>`;
+}
+
 function renderTrades(trades) {
-  if (!trades || trades.length === 0) {
-    return `<section><h2>Recent Trades</h2><p class="dim" style="padding:12px">No trades recorded yet.</p></section>`;
-  }
+  if (!trades || trades.length === 0)
+    return `<section><h2>Recent Trades</h2><p class="dim" style="padding:10px">No trades yet.</p></section>`;
+
   const rows = trades.map(t => {
-    const pnl = t.pnl != null
+    const pnl  = t.pnl != null
       ? `<span class="${t.pnl >= 0 ? 'pos' : 'neg'}">${t.pnl >= 0 ? '+' : ''}$${t.pnl.toFixed(2)}</span>`
       : '<span class="dim">open</span>';
     const side = `<span class="tag tag-${t.side}">${t.side.toUpperCase()}</span>`;
-    const ts = new Date(t.ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    const port = t.portfolio_type === 'long_term'
+      ? '<span class="tag tag-lt">LT</span>'
+      : '<span class="tag tag-dt">DT</span>';
+    const ts = new Date(t.ts).toLocaleString('en-US', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
     return `<tr>
       <td class="dim">${ts}</td>
       <td><strong>${t.ticker}</strong></td>
       <td>${side}</td>
-      <td>${t.qty}</td>
-      <td>$${t.price.toFixed(2)}</td>
-      <td class="dim">${t.strategy}</td>
+      <td class="dim">${t.qty}</td>
+      <td class="dim">$${t.price.toFixed(2)}</td>
+      <td class="dim" style="font-size:0.74rem">${t.strategy}</td>
+      <td>${port}</td>
       <td>${pnl}</td>
     </tr>`;
   }).join('');
@@ -209,32 +319,30 @@ function renderTrades(trades) {
     <section>
       <h2>Recent Trades</h2>
       <table>
-        <thead><tr>
-          <th>Time</th><th>Ticker</th><th>Side</th><th>Qty</th><th>Price</th><th>Strategy</th><th>P&L</th>
-        </tr></thead>
+        <thead><tr><th>Time</th><th>Ticker</th><th>Side</th><th>Qty</th><th>Price</th><th>Strategy</th><th>Type</th><th>P&L</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </section>`;
 }
 
 function renderSignals(signals) {
-  if (!signals || signals.length === 0) {
-    return `<section><h2>Signal Log</h2><p class="dim" style="padding:12px">No signals recorded yet.</p></section>`;
-  }
+  if (!signals || signals.length === 0)
+    return `<section><h2>Signal Log</h2><p class="dim" style="padding:10px">No signals yet.</p></section>`;
+
   const rows = signals.map(s => {
     const acted = s.acted
       ? '<span class="tag tag-acted">ACTED</span>'
       : '<span class="tag tag-skip">SKIP</span>';
     const conf = s.confidence != null ? (s.confidence * 100).toFixed(0) + '%' : '-';
-    const ts = new Date(s.ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    const ts = new Date(s.ts).toLocaleString('en-US', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
     return `<tr>
       <td class="dim">${ts}</td>
       <td><strong>${s.ticker}</strong></td>
-      <td class="dim">${s.strategy}</td>
+      <td class="dim" style="font-size:0.74rem">${s.strategy}</td>
       <td><span class="tag tag-${s.action}">${s.action.toUpperCase()}</span></td>
       <td class="dim">${conf}</td>
       <td>${acted}</td>
-      <td class="dim" style="font-size:0.78rem">${s.skip_reason}</td>
+      <td class="dim" style="font-size:0.74rem">${s.skip_reason}</td>
     </tr>`;
   }).join('');
 
@@ -242,16 +350,13 @@ function renderSignals(signals) {
     <section>
       <h2>Signal Log</h2>
       <table>
-        <thead><tr>
-          <th>Time</th><th>Ticker</th><th>Strategy</th><th>Action</th><th>Confidence</th><th>Status</th><th>Reason</th>
-        </tr></thead>
+        <thead><tr><th>Time</th><th>Ticker</th><th>Strategy</th><th>Action</th><th>Conf</th><th>Status</th><th>Reason</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </section>`;
 }
 
 load();
-// Auto-refresh every 5 minutes
 setInterval(load, 5 * 60 * 1000);
 </script>
 </body>

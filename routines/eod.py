@@ -5,7 +5,6 @@ Reconciles positions, computes daily P&L, sends Discord summary.
 """
 
 import sys
-from datetime import datetime
 from brokers.alpaca import get_account, get_positions
 from data.db import init_schema, _connect
 from routines.reconcile import reconcile_exits
@@ -78,25 +77,48 @@ def run_eod():
     finally:
         con.close()
 
+    # Portfolio split: day-trading vs long-term P&L
+    dt_pnl = con.execute("""
+        SELECT COALESCE(SUM(pnl), 0) FROM trades
+        WHERE DATE(ts) = CURRENT_DATE AND pnl IS NOT NULL
+          AND (portfolio_type = 'day_trading' OR portfolio_type IS NULL)
+    """).fetchone()[0]
+
+    lt_pnl = con.execute("""
+        SELECT COALESCE(SUM(pnl), 0) FROM trades
+        WHERE DATE(ts) = CURRENT_DATE AND pnl IS NOT NULL
+          AND portfolio_type = 'long_term'
+    """).fetchone()[0]
+
     # Build Discord summary
     info(f"Account equity: ${account['equity']:,.2f}", source="eod")
     info(f"Open positions: {len(positions)}", source="eod")
     info(f"Trades today: {trades_today}", source="eod")
-    info(f"Realized P&L: ${realized_pnl:.2f}", source="eod")
+    info(f"Realized P&L: ${realized_pnl:.2f} (day ${float(dt_pnl):+.2f} | long-term ${float(lt_pnl):+.2f})", source="eod")
     info(f"Unrealized P&L: ${unrealized:.2f}", source="eod")
     info(f"Total P&L: ${total_pnl:.2f}", source="eod")
 
     send_daily_pnl(total_pnl, trades_today, win_rate)
+
+    # Portfolio breakdown
+    pf_lines = [
+        f"**Portfolio breakdown:**",
+        f"  Day-trading P&L: ${float(dt_pnl):+.2f}",
+        f"  Long-term P&L:   ${float(lt_pnl):+.2f}",
+        f"  Unrealized:      ${unrealized:+.2f}",
+        f"  Account equity:  ${account['equity']:,.2f}",
+    ]
+    send_info("\n".join(pf_lines))
 
     # If we have open positions, list them
     if positions:
         lines = ["**Open positions:**"]
         for p in positions:
             pl = p["unrealized_pl"]
-            arrow = "🟢" if pl >= 0 else "🔴"
+            sign = "+" if pl >= 0 else ""
             lines.append(
-                f"{arrow} {p['ticker']}: {p['qty']:.0f} shares @ "
-                f"${p['avg_entry']:.2f}, P&L ${pl:+.2f}"
+                f"  {p['ticker']}: {p['qty']:.0f} sh @ "
+                f"${p['avg_entry']:.2f}, P&L {sign}${pl:.2f}"
             )
         send_info("\n".join(lines))
 

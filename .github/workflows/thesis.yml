@@ -1,14 +1,14 @@
-name: Long-Term Portfolio Scan
+name: Sunday Thesis Generation
 
 on:
   schedule:
-    # 13:35 UTC = 9:35am ET. Runs once at market open, Mon-Fri.
-    # 5-minute buffer after open lets the opening price settle.
-    - cron: "35 13 * * 1-5"
+    # 11:00 UTC = 7:00am ET. Runs every Sunday morning.
+    # Runs before the weekly review (21:00 UTC) so thesis scores are ready.
+    - cron: "0 11 * * 0"
   workflow_dispatch:
 
 jobs:
-  longterm-scan:
+  generate-thesis:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,11 +23,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run long-term scan
+      - name: Run thesis generation
         env:
           ALPACA_KEY: ${{ secrets.ALPACA_KEY }}
           ALPACA_SECRET: ${{ secrets.ALPACA_SECRET }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
           FMP_KEY: ${{ secrets.FMP_KEY }}
-        run: python -m routines.longterm
+        run: python -m routines.thesis
