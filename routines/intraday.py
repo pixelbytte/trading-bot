@@ -3,11 +3,14 @@ Intraday trading routine.
 Runs every 15 minutes during market hours via GitHub Actions.
 
 Live strategies (all backtest-validated on 500-day window):
-  - MA+RSI:         +0.427R expectancy, Sharpe 2.58
-  - Momentum:       +0.341R expectancy, Sharpe 2.86 (enabled after 500D backtest)
-  - Mean Reversion: +0.030R expectancy, Sharpe 0.22 (marginal — watching)
+  - MA+RSI:       +0.674R avg, 55.8% win, Profit Factor 2.82
+  - Momentum:     +0.566R avg, 53.2% win, Profit Factor 2.41
+  - RS Pullback:  +0.579R avg, 52.6% win, Profit Factor 2.18
 
-SPY regime gate: in correction (SPY < SMA50), only mean reversion runs.
+Mean reversion removed: PF 1.09 over 52 trades — no real edge.
+
+SPY regime gate: in correction (SPY < SMA50), only mean reversion ran.
+Now all three live strategies are trend-following, so all pause in correction.
 Portfolio manager prevents doubling up on the same ticker.
 """
 
@@ -18,8 +21,8 @@ from brokers.alpaca import (
     place_bracket_order, close_position, update_stop_order,
 )
 from strategies.ma_rsi import MARSIStrategy
-from strategies.mean_reversion import MeanReversionStrategy
 from strategies.momentum import MomentumStrategy
+from strategies.rs_pullback import RSPullbackStrategy
 from routines.portfolio import filter_buy_signals
 from routines.reconcile import reconcile_exits
 from config.settings import WATCHLIST
@@ -31,15 +34,15 @@ from routines.llm_filter import analyse_signal
 from utils.logger import info, warning, error
 from utils.discord import send_trade_alert, send_error, send_info
 
-# Strategies cleared for live deployment (backed by 500-day backtest)
+# Strategies cleared for live deployment (all Profit Factor > 2.0 on 500-day backtest)
 STRATEGIES = [
     MARSIStrategy(),
     MomentumStrategy(),
-    MeanReversionStrategy(),
+    RSPullbackStrategy(),
 ]
 
-# These strategy names are disabled when SPY is in correction
-TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum"}
+# All three are trend-following — disable all in correction (SPY < SMA50)
+TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum", "rs_pullback"}
 
 
 def get_market_regime(spy_bars):

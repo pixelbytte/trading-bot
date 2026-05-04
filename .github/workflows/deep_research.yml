@@ -1,0 +1,33 @@
+name: Sunday Deep Research
+
+on:
+  schedule:
+    # 10:00 UTC = 6:00am ET (before thesis.yml at 11:00 UTC / 7am ET)
+    - cron: "0 10 * * 0"
+  workflow_dispatch:
+
+jobs:
+  deep-research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run deep research
+        env:
+          ALPACA_KEY: ${{ secrets.ALPACA_KEY }}
+          ALPACA_SECRET: ${{ secrets.ALPACA_SECRET }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
+          FMP_KEY: ${{ secrets.FMP_KEY }}
+        run: python -m routines.deep_research
