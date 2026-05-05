@@ -8,7 +8,8 @@ import os
 from dotenv import load_dotenv
 from alpaca.trading.client import TradingClient
 from alpaca.trading.requests import (
-    MarketOrderRequest, GetOrdersRequest, ReplaceOrderRequest,
+    MarketOrderRequest, LimitOrderRequest, StopOrderRequest,
+    GetOrdersRequest, ReplaceOrderRequest,
     TakeProfitRequest, StopLossRequest,
 )
 from alpaca.trading.enums import OrderSide, TimeInForce, OrderStatus, OrderClass, QueryOrderStatus
@@ -202,11 +203,23 @@ def place_bracket_order(ticker, qty, side, entry_price, stop_price, target_price
 
     try:
         order_side = OrderSide.BUY if side.lower() == "buy" else OrderSide.SELL
-        req = MarketOrderRequest(
+
+        # IMPORTANT: bracket parents must be GTC so the stop/target child legs
+        # survive past market close. Market orders cannot be GTC on Alpaca, so
+        # we use a marketable LIMIT — limit set 0.5% beyond the quote, which
+        # fills like a market in normal conditions but caps slippage on gaps.
+        slip_pct = 0.005
+        if side.lower() == "buy":
+            limit_px = round(float(entry_price) * (1 + slip_pct), 2)
+        else:
+            limit_px = round(float(entry_price) * (1 - slip_pct), 2)
+
+        req = LimitOrderRequest(
             symbol=ticker,
             qty=qty,
             side=order_side,
-            time_in_force=TimeInForce.DAY,
+            limit_price=limit_px,
+            time_in_force=TimeInForce.GTC,
             order_class=OrderClass.BRACKET,
             take_profit=TakeProfitRequest(limit_price=round(float(target_price), 2)),
             stop_loss=StopLossRequest(stop_price=round(float(stop_price), 2)),
@@ -236,6 +249,30 @@ def place_bracket_order(ticker, qty, side, entry_price, stop_price, target_price
         }
     except Exception as e:
         log_error(source="alpaca.place_bracket_order", message=str(e))
+        raise
+
+
+def place_stop_order(ticker, qty, stop_price, side="sell"):
+    """
+    Place a standalone stop order (GTC) — used to retro-fit stops onto
+    naked positions when a bracket child has been canceled or expired.
+    """
+    try:
+        order_side = OrderSide.SELL if side.lower() == "sell" else OrderSide.BUY
+        req = StopOrderRequest(
+            symbol=ticker,
+            qty=qty,
+            side=order_side,
+            stop_price=round(float(stop_price), 2),
+            time_in_force=TimeInForce.GTC,
+        )
+        order = trading.submit_order(req)
+        log_info(f"Stop placed for {ticker}: qty={qty} stop=${stop_price:.2f} GTC",
+                 source="alpaca")
+        return {"id": str(order.id), "ticker": ticker, "qty": float(qty),
+                "stop_price": float(stop_price), "status": str(order.status)}
+    except Exception as e:
+        log_error(source="alpaca.place_stop_order", message=str(e))
         raise
 
 

@@ -27,6 +27,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Restore bot.db
+        uses: actions/cache/restore@v4
+        with:
+          path: data/bot.db
+          key: bot-db-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            bot-db-
+
       - name: Run pre-market scan
         env:
           ALPACA_KEY: ${{ secrets.ALPACA_KEY }}
@@ -34,3 +42,10 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
         run: python -m routines.premarket
+
+      - name: Save bot.db
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/bot.db
+          key: bot-db-${{ github.run_id }}-${{ github.run_attempt }}

@@ -29,9 +29,24 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Restore bot.db
+        uses: actions/cache/restore@v4
+        with:
+          path: data/bot.db
+          key: bot-db-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            bot-db-
+
       - name: Run intraday routine
         env:
           ALPACA_KEY: ${{ secrets.ALPACA_KEY }}
           ALPACA_SECRET: ${{ secrets.ALPACA_SECRET }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: python -m routines.intraday
+
+      - name: Save bot.db
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/bot.db
+          key: bot-db-${{ github.run_id }}-${{ github.run_attempt }}

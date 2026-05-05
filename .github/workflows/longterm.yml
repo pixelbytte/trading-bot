@@ -23,6 +23,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Restore bot.db
+        uses: actions/cache/restore@v4
+        with:
+          path: data/bot.db
+          key: bot-db-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            bot-db-
+
       - name: Run long-term scan
         env:
           ALPACA_KEY: ${{ secrets.ALPACA_KEY }}
@@ -31,3 +39,10 @@ jobs:
           ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
           FMP_KEY: ${{ secrets.FMP_KEY }}
         run: python -m routines.longterm
+
+      - name: Save bot.db
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/bot.db
+          key: bot-db-${{ github.run_id }}-${{ github.run_attempt }}
