@@ -29,6 +29,7 @@ from risk.limits import RISK_PER_TRADE_USD, MAX_DAILY_LOSS_USD
 from data.fundamentals import get_fundamentals, has_earnings_soon
 from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far, get_pyramid_state
 from routines.llm_filter import analyse_signal
+from routines.premarket import check_breaking_news
 from utils.logger import info, warning, error
 from utils.discord import send_trade_alert, send_error, send_info
 
@@ -348,6 +349,23 @@ def run_intraday():
                     continue
             except Exception:
                 pass  # fail open
+
+            # Breaking news gate: re-check for headlines in the last 60 min.
+            # Pre-market scan is stale by mid-session; this catches negative
+            # news that breaks after the opening scan.
+            try:
+                is_bearish_now, news_reason = check_breaking_news(ticker, minutes_back=60)
+                if is_bearish_now:
+                    log_signal(
+                        ticker=ticker, strategy=strat_name, action="buy",
+                        confidence=s.confidence, acted=False,
+                        skip_reason=f"breaking bearish news: {news_reason[:100]}",
+                    )
+                    info(f"{ticker}: skipped — breaking bearish news in last 60min", source="intraday")
+                    signals_skipped += 1
+                    continue
+            except Exception:
+                pass  # fail open — never block trading on news API outage
 
             atr = compute_atr(bars)
             if atr is None:

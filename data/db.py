@@ -495,3 +495,27 @@ def daily_pnl_so_far():
         return float(result[0]) if result else 0.0
     finally:
         con.close()
+
+
+def get_deep_research_picks(min_conviction=0.70):
+    """
+    Return (ticker, conviction) pairs from Sunday deep research within the last 7 days.
+    Only returns picks with conviction >= min_conviction.
+    Used by longterm.py to extend its scan universe beyond the static watchlist.
+    """
+    con = _connect()
+    try:
+        rows = con.execute("""
+            SELECT ticker, MAX(conviction) AS conv
+            FROM llm_outputs
+            WHERE source = 'deep_research'
+              AND output_type = 'long_term_pick'
+              AND conviction >= ?
+              AND ticker IS NOT NULL
+              AND ts >= NOW() - INTERVAL '7 days'
+            GROUP BY ticker
+            ORDER BY conv DESC
+        """, [min_conviction]).fetchall()
+        return [(r[0], float(r[1])) for r in rows]
+    finally:
+        con.close()

@@ -11,7 +11,6 @@ when multiple Stage 2 signals fire on the same day.
 """
 
 from data.db import get_fundamentals, get_latest_thesis
-from config.settings import LONG_TERM_WATCHLIST
 from utils.logger import info, warning
 
 MOMENTUM_WEIGHT = 0.40
@@ -88,14 +87,15 @@ def score_ticker(ticker, bars):
 
 def rank_longterm_watchlist(all_bars):
     """
-    Score and rank all LONG_TERM_WATCHLIST tickers.
+    Score and rank all tickers present in all_bars (not just the static watchlist).
+    longterm.py merges deep research picks into all_bars before calling this,
+    so those picks are ranked on the same composite score as the regular list.
     Returns list of (ticker, score) sorted descending by score.
-    Tickers with no bars are omitted.
+    Tickers with no bars are omitted. SPY is excluded (regime proxy, not a candidate).
     """
     scores = []
-    for ticker in LONG_TERM_WATCHLIST:
-        bars = all_bars.get(ticker)
-        if not bars:
+    for ticker, bars in all_bars.items():
+        if ticker == "SPY" or not bars:
             continue
         try:
             s = score_ticker(ticker, bars)

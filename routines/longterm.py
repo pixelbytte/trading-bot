@@ -29,7 +29,7 @@ from risk.limits import (
 )
 from data.db import (
     init_schema, log_signal, is_trading_halted, log_llm_output,
-    get_longterm_open_positions,
+    get_longterm_open_positions, get_deep_research_picks,
 )
 from routines.llm_filter import analyse_signal
 from utils.logger import info, warning, error
@@ -205,6 +205,25 @@ def run_longterm():
                 all_bars[ticker] = bars
         except Exception as e:
             error(f"{ticker}: bar fetch failed: {e}", source="longterm", exc=e)
+
+    # Extend the scan with Sunday Opus deep research picks (last 7 days, conviction >= 0.7).
+    # These tickers are identified by Claude as 150%+ ROI candidates but may not be in
+    # the permanent watchlist — this makes the research actually drive entries.
+    try:
+        research_picks = get_deep_research_picks(min_conviction=0.70)
+        new_tickers = [t for t, _ in research_picks if t not in set(LONG_TERM_WATCHLIST)]
+        if new_tickers:
+            info(f"Deep research adds {len(new_tickers)} picks to scan: {new_tickers}", source="longterm")
+            for ticker in new_tickers:
+                if ticker not in all_bars:
+                    try:
+                        bars = get_bars(ticker, days=400)
+                        if len(bars) >= 220:
+                            all_bars[ticker] = bars
+                    except Exception as e:
+                        warning(f"{ticker} (research pick): bar fetch failed: {e}", source="longterm")
+    except Exception as e:
+        warning(f"Could not load deep research picks: {e}", source="longterm")
 
     # Long-term only enters in confirmed uptrends
     regime = _spy_regime(all_bars.get("SPY", []))

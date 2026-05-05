@@ -89,6 +89,26 @@ def score_sentiment(ticker, headlines):
         return 0.0, 0.0, "api error"
 
 
+def check_breaking_news(ticker: str, minutes_back: int = 60):
+    """
+    On-demand breaking news check for a single ticker.
+    Fetches the last `minutes_back` minutes of headlines and scores sentiment.
+    Returns (is_bearish: bool, reason: str).
+    Called by intraday.py just before placing a bracket order.
+    Fails open on any error — never blocks trading on API outage.
+    """
+    try:
+        headlines = fetch_news(ticker, hours_back=minutes_back / 60)
+        if not headlines:
+            return False, ""
+        sentiment, conviction, reason = score_sentiment(ticker, headlines)
+        is_bearish = sentiment < -0.4 and conviction >= 0.5
+        return is_bearish, reason
+    except Exception as e:
+        warning(f"{ticker}: breaking news check failed: {e}", source="premarket")
+        return False, ""
+
+
 def run_premarket():
     """Score sentiment for every watchlist ticker and persist to DB."""
     info("Pre-market news scan starting", source="premarket")
