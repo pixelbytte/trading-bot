@@ -8,6 +8,11 @@ Flow:
   3. Store each result in llm_outputs table.
   4. Intraday routine reads these scores and skips buys on bearish tickers.
 
+  Also runs a deal signal scan over a wider "picks and shovels" universe:
+  optical fiber, networking, power, and cooling suppliers that benefit from
+  AI infrastructure deals (the Corning-NVIDIA pattern). Discord alert fires
+  when a new partnership, supply agreement, or major investment is detected.
+
 New secret required: ANTHROPIC_KEY — add it to GitHub Secrets and your .env.
 """
 
@@ -23,6 +28,22 @@ from utils.discord import send_info, send_error
 
 ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
 BEARISH_THRESHOLD = -0.3
+
+# Picks-and-shovels tickers: AI infrastructure suppliers not in the main
+# trading watchlist but useful as early-signal canaries.
+# Pattern: Corning (GLW) signed a Meta fiber deal in Q1 earnings (Apr 28),
+# then the NVIDIA $3.2B deal hit mainstream May 6 — 8 days later.
+# Watching these for new partnership/investment announcements early.
+DEAL_SIGNAL_UNIVERSE = {
+    "GLW",   # Corning — optical fiber for data centers
+    "COHR",  # Coherent — lasers/photonics (NVIDIA invested $4B Mar 2026)
+    "LITE",  # Lumentum — optical components (NVIDIA invested $4B Mar 2026)
+    "MRVL",  # Marvell — custom ASICs + networking, NVIDIA-endorsed
+    "ANET",  # Arista Networks — hyperscaler network switches
+    "VRT",   # Vertiv — data center power + cooling
+    "GEV",   # GE Vernova — grid power for AI data centers
+    "ONTO",  # Onto Innovation — semiconductor inspection equipment
+}
 
 
 def fetch_news(ticker, hours_back=20):
@@ -109,6 +130,110 @@ def check_breaking_news(ticker: str, minutes_back: int = 60):
         return False, ""
 
 
+def detect_deal_signal(ticker: str, headlines: list) -> dict | None:
+    """
+    Scan headlines for partnership/investment/supply deal announcements.
+    Returns a dict if a high-confidence deal signal is found, else None.
+
+    What to look for (the Corning-NVIDIA pattern):
+      - New multi-year supply or manufacturing agreement
+      - Strategic investment / equity warrant from a hyperscaler or chip co
+      - New factory / capacity expansion tied to a named customer
+      - "Long-term partnership" with a named tech company
+
+    Fails open — returns None on any error so the main scan never breaks.
+    """
+    if not ANTHROPIC_KEY or not headlines:
+        return None
+
+    bullets = "\n".join(f"- {h}" for h in headlines)
+    prompt = (
+        f"You are scanning news headlines for {ticker} stock looking for "
+        f"early-signal deal announcements that haven't yet gone mainstream.\n\n"
+        f"Headlines:\n{bullets}\n\n"
+        f"Does any headline suggest a NEW: partnership, supply agreement, "
+        f"manufacturing investment, multi-year contract, equity warrant, or "
+        f"strategic relationship with a major tech company (hyperscaler, chip co)?\n\n"
+        f"Return ONLY this JSON, no extra text:\n"
+        f'{{"deal_detected": <bool>, "deal_type": "<partnership|supply|investment|capacity|none>", '
+        f'"partner": "<company name or unknown>", "significance": <float 0.0-1.0>, '
+        f'"summary": "<one sentence max>"}}\n\n'
+        f"significance: 0.0 = minor/vague, 1.0 = major named deal with dollar figures. "
+        f"Only set deal_detected=true if you are confident this is a real new deal announcement."
+    )
+
+    try:
+        import anthropic
+        client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
+        msg = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = msg.content[0].text.strip()
+        data = json.loads(raw)
+        if data.get("deal_detected") and float(data.get("significance", 0)) >= 0.5:
+            return {
+                "ticker": ticker,
+                "deal_type": data.get("deal_type", "unknown"),
+                "partner": data.get("partner", "unknown"),
+                "significance": float(data.get("significance", 0)),
+                "summary": str(data.get("summary", ""))[:300],
+            }
+        return None
+    except Exception as e:
+        warning(f"{ticker}: deal scan error: {e}", source="premarket")
+        return None
+
+
+def scan_deal_signals():
+    """
+    Scan the picks-and-shovels universe for early deal signals.
+    Sends a Discord alert for any high-confidence finding.
+    Does not affect trading — purely informational.
+    """
+    info("Deal signal scan starting", source="premarket")
+    found = []
+
+    for ticker in DEAL_SIGNAL_UNIVERSE:
+        try:
+            headlines = fetch_news(ticker, hours_back=20)
+            result = detect_deal_signal(ticker, headlines)
+            if result:
+                found.append(result)
+                info(
+                    f"DEAL SIGNAL [{ticker}]: {result['deal_type']} with "
+                    f"{result['partner']} (sig={result['significance']:.2f}) — "
+                    f"{result['summary']}",
+                    source="premarket",
+                )
+                log_llm_output(
+                    source="deal_scan",
+                    ticker=ticker,
+                    output_type="deal_signal",
+                    content=result["summary"],
+                    conviction=result["significance"],
+                    sentiment=0.8,
+                )
+        except Exception as e:
+            warning(f"{ticker}: deal scan failed: {e}", source="premarket")
+
+    if found:
+        lines = ["**DEAL SIGNAL ALERT** (picks-and-shovels scan):"]
+        for r in found:
+            lines.append(
+                f"  {r['ticker']} — {r['deal_type']} with {r['partner']} "
+                f"(confidence {r['significance']:.0%}): {r['summary']}"
+            )
+        lines.append(
+            "These are early signals, not trade recommendations. "
+            "Check SEC 8-K filings and earnings transcripts to confirm."
+        )
+        send_info("\n".join(lines))
+    else:
+        info("Deal scan: no new signals detected", source="premarket")
+
+
 def run_premarket():
     """Score sentiment for every watchlist ticker and persist to DB."""
     info("Pre-market news scan starting", source="premarket")
@@ -154,6 +279,12 @@ def run_premarket():
         f"Scan complete. {len(bullish)} bullish, {len(bearish)} bearish, {len(neutral)} neutral.",
         source="premarket",
     )
+
+    # Deal signal scan runs after sentiment — separate concern, fail-safe
+    try:
+        scan_deal_signals()
+    except Exception as e:
+        error(f"Deal signal scan failed: {e}", source="premarket", exc=e)
 
 
 if __name__ == "__main__":

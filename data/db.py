@@ -497,6 +497,25 @@ def daily_pnl_so_far():
         con.close()
 
 
+def get_open_scalp_tickers() -> list:
+    """
+    Return tickers where a scalp buy was placed today with no realized P&L yet.
+    Used by intraday.py to identify positions to force-close at 3:45pm ET.
+    """
+    con = _connect()
+    try:
+        rows = con.execute("""
+            SELECT DISTINCT ticker FROM trades
+            WHERE side = 'buy'
+              AND strategy = 'scalp'
+              AND pnl IS NULL
+              AND DATE(ts) = CURRENT_DATE
+        """).fetchall()
+        return [r[0] for r in rows]
+    finally:
+        con.close()
+
+
 def get_deep_research_picks(min_conviction=0.70):
     """
     Return (ticker, conviction) pairs from Sunday deep research within the last 7 days.

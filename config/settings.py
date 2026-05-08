@@ -20,6 +20,11 @@ WATCHLIST = [
     "V", "MA", "GS", "BAC",
     # Healthcare / consumer / energy
     "LLY", "UNH", "COST", "HD", "XOM", "AVGO",
+    # High-growth cheap stocks: liquid, volatile, AI/tech catalysts
+    "SOUN",  # SoundHound AI — 27M avg vol, 99% revenue growth, AI voice
+    "MRVL",  # Marvell — custom chips for hyperscalers, NVIDIA-endorsed
+    "IONQ",  # IonQ — quantum computing, high volatility
+    "HIMS",  # Hims & Hers — telehealth/GLP-1, fast growth
 ]
 
 # Long-term portfolio: quality companies held for weeks-months.
@@ -64,6 +69,11 @@ LONG_TERM_WATCHLIST = [
     "CAT",    # Caterpillar: mining + construction, Stage 2 returned +87.9% last cycle
     "DE",     # Deere: precision ag + autonomous machinery, high switching cost moat
 ]
+
+# Tickers where VWAP scalp has validated edge (Sharpe > 1.0, 90-day backtest).
+# Running on the full WATCHLIST dilutes returns — restrict to this curated list.
+# Re-validate if market regime changes significantly.
+SCALP_UNIVERSE = ["SOUN", "NFLX", "UNH", "CRWD", "GOOGL", "V", "MA"]
 
 DAY_TRADING_BUDGET_USD = ACCOUNT_SIZE_USD * 0.40
 LONG_TERM_BUDGET_USD = ACCOUNT_SIZE_USD * 0.60

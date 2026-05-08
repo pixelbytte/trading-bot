@@ -14,7 +14,10 @@ Portfolio manager prevents doubling up on the same ticker.
 """
 
 import sys
+from datetime import datetime
+from zoneinfo import ZoneInfo
 import pandas as pd
+from strategies.intraday_scalp import VWAPScalpStrategy
 from brokers.alpaca import (
     get_bars, get_positions, get_quote,
     place_bracket_order, place_market_order, close_position, update_stop_order,
@@ -23,11 +26,11 @@ from strategies.ma_rsi import MARSIStrategy
 from strategies.momentum import MomentumStrategy
 from routines.portfolio import filter_buy_signals
 from routines.reconcile import reconcile_exits
-from config.settings import WATCHLIST, LONG_TERM_WATCHLIST, ACCOUNT_SIZE_USD
+from config.settings import WATCHLIST, LONG_TERM_WATCHLIST, ACCOUNT_SIZE_USD, SCALP_UNIVERSE
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size, dynamic_risk_usd
-from risk.limits import RISK_PER_TRADE_USD, MAX_DAILY_LOSS_USD
+from risk.limits import RISK_PER_TRADE_USD, MAX_DAILY_LOSS_USD, MAX_OPEN_POSITIONS, MAX_POSITION_USD
 from data.fundamentals import get_fundamentals, has_earnings_soon
-from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far, get_pyramid_state
+from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far, get_pyramid_state, get_open_scalp_tickers
 from routines.llm_filter import analyse_signal
 from routines.premarket import check_breaking_news
 from utils.logger import info, warning, error
@@ -41,6 +44,9 @@ STRATEGIES = [
 
 # Both are trend-following — disable all in correction (SPY < SMA50)
 TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum"}
+
+SCALP_STRATEGY = VWAPScalpStrategy()
+_ET = ZoneInfo("America/New_York")
 
 
 def get_market_regime(spy_bars):
@@ -178,6 +184,48 @@ def check_trailing_stops():
                 error(f"{ticker}: emergency close failed: {e}", source="intraday", exc=e)
 
 
+def close_scalp_positions():
+    """
+    Force-close all scalp positions opened today.
+    Called at 3:45pm ET so no intraday scalp survives overnight.
+    Fetches current position prices from Alpaca before closing.
+    """
+    tickers = get_open_scalp_tickers()
+    if not tickers:
+        info("EOD scalp close: no open scalp positions", source="intraday")
+        return
+
+    info(
+        f"3:45pm EOD: force-closing {len(tickers)} scalp position(s): {tickers}",
+        source="intraday",
+    )
+
+    try:
+        positions = get_positions()
+        pos_map = {p["ticker"]: p for p in positions}
+    except Exception:
+        pos_map = {}
+
+    for ticker in tickers:
+        try:
+            pos = pos_map.get(ticker)
+            if not pos:
+                info(f"{ticker}: not found in open positions (may already be closed)", source="intraday")
+                continue
+            result = close_position(ticker)
+            log_trade(
+                ticker=ticker, side="sell", qty=float(pos["qty"]),
+                price=pos["current_price"], strategy="scalp",
+                order_id=result.get("closed_order_id", ""),
+                status="submitted", notes="eod_close",
+            )
+            send_trade_alert(ticker, "sell", int(pos["qty"]), pos["current_price"],
+                             strategy="scalp_eod_close")
+            info(f"{ticker}: scalp EOD close submitted @ ${pos['current_price']:.2f}", source="intraday")
+        except Exception as e:
+            error(f"{ticker}: EOD scalp close failed: {e}", source="intraday", exc=e)
+
+
 def run_intraday():
     """Main intraday entry point."""
     info("Intraday routine starting", source="intraday")
@@ -214,6 +262,15 @@ def run_intraday():
     except Exception as e:
         error(f"Trailing stop check failed: {e}", source="intraday", exc=e)
 
+    # ET time: used by both scalp entry gate and 3:45pm EOD close
+    et_now = datetime.now(_ET)
+    scalp_ok = 10 <= et_now.hour < 15   # entries allowed 10am–3pm only
+    if et_now.hour > 15 or (et_now.hour == 15 and et_now.minute >= 45):
+        try:
+            close_scalp_positions()
+        except Exception as e:
+            error(f"EOD scalp close failed: {e}", source="intraday", exc=e)
+
     # Fetch 300 calendar days per ticker — needed for 200-day MA computation
     all_bars = {}
     for ticker in WATCHLIST:
@@ -246,6 +303,20 @@ def run_intraday():
         error(f"Failed to fetch positions: {e}", source="intraday", exc=e)
         open_positions = []
         open_tickers = set()
+
+    # Fetch 15-min bars and generate scalp signals (only during 10am–3pm window)
+    # SCALP_UNIVERSE is a curated subset of WATCHLIST with Sharpe > 1.0 on backtest.
+    scalp_signals = []
+    if scalp_ok:
+        for ticker in SCALP_UNIVERSE:
+            if ticker in open_tickers:
+                continue
+            try:
+                sbars = get_bars(ticker, days=1, timeframe="15min")
+                for sig in SCALP_STRATEGY.generate_signals(ticker, sbars):
+                    scalp_signals.append((ticker, sig))
+            except Exception as e:
+                error(f"{ticker}/scalp: bar/signal error: {e}", source="intraday", exc=e)
 
     # Collect signals from all active strategies across all tickers
     buy_candidates = {}   # {ticker: [(strategy_name, Signal), ...]}
@@ -451,6 +522,83 @@ def run_intraday():
 
         except Exception as e:
             error(f"{ticker}: buy execution error: {e}", source="intraday", exc=e)
+
+    # --- Execute scalp buys ---
+    # Simplified pipeline vs swing: no LLM filter, no fundamentals gate,
+    # but sentiment + earnings + breaking-news gates still apply.
+    # Stop = 0.5% below entry, target = 0.5% above entry (1:1 R/R, backtest validated).
+    scalp_acted = 0
+    for ticker, sig in scalp_signals:
+        if len(open_tickers) >= MAX_OPEN_POSITIONS:
+            info("Scalp: no available slots (MAX_OPEN_POSITIONS reached)", source="intraday")
+            break
+        try:
+            ticker_sentiment = sentiments.get(ticker, {}).get("sentiment", 0.0)
+            if ticker_sentiment < -0.3:
+                log_signal(
+                    ticker=ticker, strategy="scalp", action="buy",
+                    confidence=sig.confidence, acted=False,
+                    skip_reason=f"bearish sentiment ({ticker_sentiment:.2f})",
+                )
+                continue
+
+            try:
+                if has_earnings_soon(ticker, days=3):
+                    log_signal(
+                        ticker=ticker, strategy="scalp", action="buy",
+                        confidence=sig.confidence, acted=False,
+                        skip_reason="earnings within 3 days",
+                    )
+                    continue
+            except Exception:
+                pass
+
+            try:
+                is_bearish_now, news_reason = check_breaking_news(ticker, minutes_back=30)
+                if is_bearish_now:
+                    log_signal(
+                        ticker=ticker, strategy="scalp", action="buy",
+                        confidence=sig.confidence, acted=False,
+                        skip_reason=f"breaking bearish news: {news_reason[:80]}",
+                    )
+                    continue
+            except Exception:
+                pass
+
+            quote = get_quote(ticker)
+            entry_price = quote["ask"]
+            stop_price   = round(entry_price * 0.995, 2)   # 0.5% stop
+            target_price = round(entry_price * 1.005, 2)  # 0.5% target (1:1 R/R — backtest validated)
+            scalp_qty = min(
+                max(1, int(RISK_PER_TRADE_USD / (entry_price * 0.005))),
+                max(1, int(MAX_POSITION_USD / entry_price)),
+            )
+
+            result = place_bracket_order(
+                ticker=ticker, qty=scalp_qty, side="buy",
+                entry_price=entry_price, stop_price=stop_price,
+                target_price=target_price, strategy="scalp",
+            )
+            log_signal(
+                ticker=ticker, strategy="scalp", action="buy",
+                confidence=sig.confidence,
+                acted=(result.get("status") != "blocked"),
+                skip_reason=result.get("blocked_reason", ""),
+            )
+            if result.get("status") == "blocked":
+                info(f"SCALP BLOCKED {ticker}: {result['blocked_reason']}", source="intraday")
+            else:
+                scalp_acted += 1
+                open_tickers.add(ticker)
+                send_trade_alert(ticker, "buy", scalp_qty, entry_price, strategy="scalp")
+        except Exception as e:
+            error(f"{ticker}: scalp execution error: {e}", source="intraday", exc=e)
+
+    if scalp_signals:
+        info(
+            f"Scalp cycle: {scalp_acted} acted, {len(scalp_signals) - scalp_acted} skipped",
+            source="intraday",
+        )
 
     # --- Execute sells ---
     seen_sell_tickers = set()

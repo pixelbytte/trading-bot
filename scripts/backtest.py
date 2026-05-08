@@ -25,6 +25,7 @@ from strategies.mean_reversion import MeanReversionStrategy
 from strategies.momentum import MomentumStrategy
 from strategies.breakout_52w import Breakout52WStrategy
 from strategies.rs_pullback import RSPullbackStrategy
+from strategies.macd_200 import MACD200Strategy
 
 BACKTEST_DAYS = 500
 
@@ -187,6 +188,7 @@ def run_backtest():
         MomentumStrategy(),
         Breakout52WStrategy(),
         RSPullbackStrategy(),
+        MACD200Strategy(),
     ]
 
     summary_rows = []

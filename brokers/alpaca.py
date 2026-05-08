@@ -15,7 +15,7 @@ from alpaca.trading.requests import (
 from alpaca.trading.enums import OrderSide, TimeInForce, OrderStatus, OrderClass, QueryOrderStatus
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestQuoteRequest, StockBarsRequest
-from alpaca.data.timeframe import TimeFrame
+from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 from data.db import log_trade, log_error
 from risk.check import check_order
 from utils.logger import info as log_info, error as log_error_msg
@@ -73,7 +73,7 @@ def get_bars(ticker, days=90, timeframe="day"):
         tf_map = {
             "day": TimeFrame.Day,
             "hour": TimeFrame.Hour,
-            "15min": TimeFrame(15, "Min"),
+            "15min": TimeFrame(15, TimeFrameUnit.Minute),
         }
 
         req = StockBarsRequest(
