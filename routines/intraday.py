@@ -49,18 +49,61 @@ SCALP_STRATEGY = VWAPScalpStrategy()
 _ET = ZoneInfo("America/New_York")
 
 
-def get_market_regime(spy_bars):
+def get_market_regime(all_bars):
     """
-    Return 'uptrend' if SPY is above its 50-day SMA, 'correction' otherwise.
-    Falls back to 'uptrend' (permissive) when SPY data is unavailable.
-    O'Neil's 'M' principle: only trend-follow in confirmed uptrends.
+    3-axis composite regime score (Simons: find hidden market state from observable data).
+
+    Axis 1: SPY vs SMA50  — short-term trend gate (O'Neil 'M' principle)
+    Axis 2: SPY vs SMA200 — long-term secular trend confirmation
+    Axis 3: Breadth       — ≥60% of watchlist tickers above their own SMA50
+
+    Returns (regime_label, score_0_to_3, position_size_multiplier).
+    regime_label is 'uptrend'/'correction' (backward-compat for TREND_ONLY_STRATEGIES gate).
+    pos_mult scales risk down gradually: 3→1.0x, 2→0.75x, 1→0.5x, 0→0.25x.
+    Fails open to ('uptrend', 3, 1.0) when data is unavailable.
     """
-    if len(spy_bars) < 55:
-        return "uptrend"
-    closes = pd.Series([float(b["close"]) for b in spy_bars])
-    sma50 = float(closes.rolling(50).mean().iloc[-1])
-    regime = "uptrend" if float(closes.iloc[-1]) >= sma50 else "correction"
-    return regime
+    spy_bars = all_bars.get("SPY", [])
+    score = 0
+    spy50_ok = True  # default: fail open
+
+    if spy_bars:
+        closes = pd.Series([float(b["close"]) for b in spy_bars])
+        spy_price = float(closes.iloc[-1])
+
+        # Axis 1: SPY vs SMA50 (short-term trend — controls strategy gating)
+        if len(spy_bars) >= 55:
+            sma50 = float(closes.rolling(50).mean().iloc[-1])
+            spy50_ok = spy_price >= sma50
+            score += 1 if spy50_ok else 0
+        else:
+            score += 1  # fail open
+
+        # Axis 2: SPY vs SMA200 (long-term secular trend confirmation)
+        if len(spy_bars) >= 210:
+            sma200 = float(closes.rolling(200).mean().iloc[-1])
+            score += 1 if spy_price >= sma200 else 0
+        else:
+            score += 1  # fail open — not enough history
+    else:
+        score += 2  # fail open (both SPY axes)
+
+    # Axis 3: Breadth — ≥60% of non-SPY tickers above their SMA50
+    above, checked = 0, 0
+    for ticker, bars in all_bars.items():
+        if ticker == "SPY" or len(bars) < 55:
+            continue
+        closes_t = pd.Series([float(b["close"]) for b in bars])
+        sma50_t = float(closes_t.rolling(50).mean().iloc[-1])
+        if float(closes_t.iloc[-1]) >= sma50_t:
+            above += 1
+        checked += 1
+
+    if checked == 0 or (above / checked) >= 0.60:
+        score += 1  # healthy breadth (or no data — fail open)
+
+    regime = "uptrend" if spy50_ok else "correction"
+    pos_mult = {3: 1.0, 2: 0.75, 1: 0.50, 0: 0.25}.get(score, 1.0)
+    return regime, score, pos_mult
 
 
 def _maybe_pyramid(ticker: str, n_r: int, unrealized_pl: float):
@@ -281,8 +324,12 @@ def run_intraday():
         except Exception as e:
             error(f"{ticker}: bar fetch failed: {e}", source="intraday", exc=e)
 
-    # SPY regime gate
-    regime = get_market_regime(all_bars.get("SPY", []))
+    # 3-axis regime score: SPY/SMA50, SPY/SMA200, breadth
+    regime, regime_score, regime_mult = get_market_regime(all_bars)
+    info(
+        f"Market regime: {regime} (score {regime_score}/3, position sizing at {regime_mult:.0%})",
+        source="intraday",
+    )
     if regime == "correction":
         info(
             "SPY below SMA50 — correction mode: trend strategies disabled",
@@ -488,7 +535,8 @@ def run_intraday():
             except Exception:
                 realized = 0.0
             current_equity = ACCOUNT_SIZE_USD + realized
-            risk = dynamic_risk_usd(current_equity) * kelly_mult
+            # regime_mult scales down risk in weaker markets (1.0x/0.75x/0.5x/0.25x)
+            risk = dynamic_risk_usd(current_equity) * kelly_mult * regime_mult
             qty = compute_position_size(entry_price, stop_price, risk_override=risk)
 
             if qty == 0:
