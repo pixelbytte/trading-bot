@@ -520,15 +520,17 @@ def run_intraday():
                 signals_skipped += 1
                 continue
 
-            # Kelly sizing: scale risk by LLM conviction.
-            # High conviction (>=0.8) -> 1.5x, medium -> 1.0x, low (<0.5) -> 0.5x.
-            # Concentrates capital into the highest-quality setups.
-            if llm_conviction >= 0.80:
-                kelly_mult = 1.5
-            elif llm_conviction >= 0.50:
-                kelly_mult = 1.0
-            else:
-                kelly_mult = 0.5
+            # Continuous Kelly sizing (Thorpe: bet in proportion to your edge).
+            # Combines strategy signal confidence (s.confidence) + LLM conviction
+            # into a composite score, then scales risk linearly from 0.5x to 1.5x.
+            # Both signals must agree strongly to get max size; either being weak pulls back.
+            composite_confidence = (s.confidence + llm_conviction) / 2.0
+            kelly_mult = 0.5 + composite_confidence  # [0.5x, 1.5x]
+            info(
+                f"{ticker}: composite {composite_confidence:.2f} "
+                f"(signal {s.confidence:.2f} × LLM {llm_conviction:.2f}) → kelly {kelly_mult:.2f}x",
+                source="intraday",
+            )
 
             try:
                 realized = daily_pnl_so_far()
