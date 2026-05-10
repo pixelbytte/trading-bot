@@ -312,33 +312,37 @@ def run_weekly_review():
         )
 
     if review_text:
-        message = (
-            f"**Weekly Trading Review — {now}**\n\n"
-            f"{review_text}\n\n"
-            f"---\n"
-            f"Raw stats: ${stats['total_pnl']:+.2f} P&L | "
-            f"{stats['closed_trades']} closed trades | "
+        # Split into two messages — Discord enforces a 2000 char limit per post
+        msg1 = f"**Weekly Trading Review — {now}**\n\n{review_text}"
+        msg2 = (
+            f"**Raw stats:** ${stats['total_pnl']:+.2f} P&L | "
+            f"{stats['closed_trades']} closed | "
             f"Win rate {stats['win_rate']} | "
             f"{stats['signals_acted']}/{stats['signals_generated']} signals acted\n"
             f"**Rolling edge scores:**\n{stats['rolling_edge_scores']}"
         )
+        send_info(msg1)
+        send_info(msg2)
     else:
-        # Fallback: send raw stats without Claude analysis
-        message = (
+        # Fallback: send raw stats without Claude analysis (two messages)
+        msg1 = (
             f"**Weekly Trading Review — {now}** _(Claude analysis unavailable)_\n\n"
             f"**Net P&L:** ${stats['total_pnl']:+.2f}\n"
             f"**Trades:** {stats['closed_trades']} closed, win rate {stats['win_rate']}\n"
             f"**Signals:** {stats['signals_acted']} acted / {stats['signals_generated']} generated\n"
             f"**Sentiment blocks:** {stats['sentiment_blocks']} | "
             f"**LLM rejected:** {stats['llm_rejected']}\n\n"
-            f"**Daily breakdown:**\n{stats['daily_breakdown']}\n\n"
+            f"**Daily breakdown:**\n{stats['daily_breakdown']}"
+        )
+        msg2 = (
             f"**Best trades:**\n{stats['best_trades']}\n\n"
             f"**Worst trades:**\n{stats['worst_trades']}\n\n"
             f"**By strategy:**\n{stats['strategy_breakdown']}\n\n"
             f"**Rolling edge scores:**\n{stats['rolling_edge_scores']}"
         )
+        send_info(msg1)
+        send_info(msg2)
 
-    send_info(message)
     info("Weekly review sent to Discord", source="weekly_review")
 
 
