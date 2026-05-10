@@ -74,21 +74,21 @@ def run_eod():
                 wins = excluded.wins,
                 losses = excluded.losses
         """, [total_pnl, trades_today, wins, losses])
+
+        # Portfolio split queries must stay inside the try block — con closes in finally
+        dt_pnl = con.execute("""
+            SELECT COALESCE(SUM(pnl), 0) FROM trades
+            WHERE DATE(ts) = CURRENT_DATE AND pnl IS NOT NULL
+              AND (portfolio_type = 'day_trading' OR portfolio_type IS NULL)
+        """).fetchone()[0]
+
+        lt_pnl = con.execute("""
+            SELECT COALESCE(SUM(pnl), 0) FROM trades
+            WHERE DATE(ts) = CURRENT_DATE AND pnl IS NOT NULL
+              AND portfolio_type = 'long_term'
+        """).fetchone()[0]
     finally:
         con.close()
-
-    # Portfolio split: day-trading vs long-term P&L
-    dt_pnl = con.execute("""
-        SELECT COALESCE(SUM(pnl), 0) FROM trades
-        WHERE DATE(ts) = CURRENT_DATE AND pnl IS NOT NULL
-          AND (portfolio_type = 'day_trading' OR portfolio_type IS NULL)
-    """).fetchone()[0]
-
-    lt_pnl = con.execute("""
-        SELECT COALESCE(SUM(pnl), 0) FROM trades
-        WHERE DATE(ts) = CURRENT_DATE AND pnl IS NOT NULL
-          AND portfolio_type = 'long_term'
-    """).fetchone()[0]
 
     # Build Discord summary
     info(f"Account equity: ${account['equity']:,.2f}", source="eod")
