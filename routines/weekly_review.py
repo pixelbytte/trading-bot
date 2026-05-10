@@ -13,6 +13,9 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from data.db import init_schema, _connect
 from risk.limits import RISK_PER_TRADE_USD
 from utils.logger import info, warning, error
