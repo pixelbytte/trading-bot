@@ -1,238 +1,52 @@
 {
-  "generated_at": "2026-05-04T15:58:37.833272",
-  "today": "2026-05-04",
+  "generated_at": "2026-05-12T00:13:47.123436",
+  "today": "2026-05-12",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
+    "dt_pnl": 0.0,
+    "lt_pnl": 0.0,
     "wins": 0,
     "losses": 0,
     "win_rate": 0.0
   },
+  "open_positions": [],
+  "strategy_stats": [],
   "recent_trades": [
     {
-      "ts": "2026-05-03 20:59:02.420719",
-      "ticker": "SPY",
+      "ts": "2026-05-05 18:56:22.374244",
+      "ticker": "GS",
       "side": "buy",
-      "qty": 1.0,
-      "price": 720.5550000000001,
-      "strategy": "test",
-      "status": "OrderStatus.ACCEPTED",
-      "pnl": null
-    },
-    {
-      "ts": "2026-05-03 15:50:10.952914",
-      "ticker": "SPY",
-      "side": "buy",
-      "qty": 1.0,
-      "price": 720.5550000000001,
-      "strategy": "day3-final",
-      "status": "OrderStatus.ACCEPTED",
-      "pnl": null
-    },
-    {
-      "ts": "2026-05-03 15:44:01.614674",
-      "ticker": "SPY",
-      "side": "buy",
-      "qty": 1.0,
-      "price": 720.5550000000001,
-      "strategy": "day3-test",
-      "status": "OrderStatus.ACCEPTED",
-      "pnl": null
-    },
-    {
-      "ts": "2026-05-03 15:43:01.438958",
-      "ticker": "SPY",
-      "side": "buy",
-      "qty": 1.0,
-      "price": 720.5550000000001,
-      "strategy": "test",
-      "status": "",
-      "pnl": null
+      "qty": 8.0,
+      "price": 922.22,
+      "strategy": "momentum",
+      "status": "OrderStatus.PENDING_NEW",
+      "pnl": null,
+      "portfolio_type": "day_trading"
     }
   ],
   "recent_signals": [
     {
-      "ts": "2026-05-04 15:33:05.015305",
-      "ticker": "SPY",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:33:04.987522",
-      "ticker": "AMD",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:33:04.961825",
-      "ticker": "AMZN",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:33:04.935032",
-      "ticker": "GOOGL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:33:04.906101",
-      "ticker": "AAPL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:31:17.619026",
-      "ticker": "SPY",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:31:17.592424",
-      "ticker": "AMD",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:31:17.566960",
-      "ticker": "AMZN",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:31:17.541129",
-      "ticker": "GOOGL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:31:17.512121",
-      "ticker": "AAPL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:30:19.816387",
-      "ticker": "SPY",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:30:19.788817",
-      "ticker": "AMD",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:30:19.760770",
-      "ticker": "AMZN",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:30:19.733010",
-      "ticker": "GOOGL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:30:19.703369",
-      "ticker": "AAPL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:09:45.814737",
-      "ticker": "SPY",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:09:45.786885",
-      "ticker": "AMD",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:09:45.760013",
-      "ticker": "AMZN",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:09:45.732663",
-      "ticker": "GOOGL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-04 15:09:45.698127",
-      "ticker": "AAPL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
+      "ts": "2026-05-05 18:56:22.392255",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "buy",
+      "confidence": 0.72,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-05-12",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-04",
       "pnl": 0.0,
