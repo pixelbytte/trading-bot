@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-12T00:13:47.123436",
-  "today": "2026-05-12",
+  "generated_at": "2026-05-13T00:16:13.559211",
+  "today": "2026-05-13",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -37,6 +37,16 @@
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-05-13",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-12",
       "pnl": 0.0,
