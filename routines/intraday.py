@@ -24,6 +24,8 @@ from brokers.alpaca import (
 )
 from strategies.ma_rsi import MARSIStrategy
 from strategies.momentum import MomentumStrategy
+from strategies.breakout_52w import Breakout52WStrategy
+from strategies.rs_pullback import RSPullbackStrategy
 from routines.portfolio import filter_buy_signals
 from routines.reconcile import reconcile_exits
 from config.settings import WATCHLIST, LONG_TERM_WATCHLIST, ACCOUNT_SIZE_USD, SCALP_UNIVERSE
@@ -36,14 +38,19 @@ from routines.premarket import check_breaking_news
 from utils.logger import info, warning, error
 from utils.discord import send_trade_alert, send_error, send_info
 
-# Strategies cleared for live deployment (Profit Factor > 2.4 on 5.5-year backtest)
+# Strategies cleared for live deployment
+# ma_rsi + momentum: MA crossover signals (quiet in sustained uptrends)
+# breakout_52w: fires on new 52-week highs — active in trending markets (Sharpe 1.66)
+# rs_pullback: fires on pullbacks within uptrends — complements breakout (Sharpe 0.98)
 STRATEGIES = [
     MARSIStrategy(),
     MomentumStrategy(),
+    Breakout52WStrategy(),
+    RSPullbackStrategy(),
 ]
 
-# Both are trend-following — disable all in correction (SPY < SMA50)
-TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum"}
+# All four are trend-following — disable in corrections (SPY < SMA50)
+TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum", "breakout_52w", "rs_pullback"}
 
 SCALP_STRATEGY = VWAPScalpStrategy()
 _ET = ZoneInfo("America/New_York")
