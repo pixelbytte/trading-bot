@@ -274,17 +274,19 @@ Write a concise weekly review with these sections:
 4. SIGNAL PIPELINE HEALTH — is the filter chain working? Too many skips? Too many blocks?
 5. ONE FOCUS FOR NEXT WEEK — the single most important thing to improve
 
-Keep it under 400 words. Be direct. Use numbers from the data. No fluff."""
+Keep it under 250 words total. Be direct and terse. Use numbers from the data. No fluff."""
 
     try:
         import anthropic
         client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
         msg = client.messages.create(
             model="claude-haiku-4-5-20251001",
-            max_tokens=600,
+            max_tokens=400,
             messages=[{"role": "user", "content": prompt}],
         )
-        return msg.content[0].text.strip()
+        text = msg.content[0].text.strip()
+        # Hard cap so msg1 stays under Discord's 2000 char limit
+        return text[:1900] if len(text) > 1900 else text
     except Exception as e:
         warning(f"Claude weekly review failed: {e}", source="weekly_review")
         return None
