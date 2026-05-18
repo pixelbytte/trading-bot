@@ -321,11 +321,12 @@ def run_intraday():
         except Exception as e:
             error(f"EOD scalp close failed: {e}", source="intraday", exc=e)
 
-    # Fetch 300 calendar days per ticker — needed for 200-day MA computation
+    # Fetch 400 calendar days per ticker — breakout_52w needs 220+ bars (SMA200 + buffer).
+    # 300 days only yields ~207 trading days, failing the min_bars check silently.
     all_bars = {}
     for ticker in WATCHLIST:
         try:
-            bars = get_bars(ticker, days=300)
+            bars = get_bars(ticker, days=400)
             if len(bars) >= 35:
                 all_bars[ticker] = bars
         except Exception as e:

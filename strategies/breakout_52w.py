@@ -32,9 +32,9 @@ from typing import List
 from strategies.base import BaseStrategy, Signal
 
 LOOKBACK_52W = 200   # ~10 months; stays within what 300-day bar fetch can provide
-VOLUME_RATIO_MIN = 1.5
+VOLUME_RATIO_MIN = 1.2  # lowered from 1.5 — IEX feed captures ~2% of real volume
 RSI_MIN = 50.0
-RSI_MAX = 80.0
+RSI_MAX = 85.0  # raised from 80 — strong breakouts often run hot (CRWD was 82.7)
 SMA200_WINDOW = 200
 
 
