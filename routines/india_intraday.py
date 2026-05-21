@@ -6,8 +6,12 @@ Scheduled via .github/workflows/india_intraday.yml.
 Uses the same strategy stack as the US bot (MA+RSI, Momentum,
 Breakout 52W, RS Pullback) — all strategies are price-action based
 and work on any market without modification.
+
+Paper mode: set INDIA_PAPER=true (default) to simulate trades with real
+NSE data via yfinance. Set INDIA_PAPER=false to go live with Upstox.
 """
 
+import os
 import sys
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -16,10 +20,18 @@ from data.db import init_schema, _connect, log_signal
 from utils.logger import info, warning, error
 from utils.discord import send_info, send_error, send_trade_alert, send_halt
 
-from brokers.upstox import (
-    get_bars, get_quote, get_account, get_positions,
-    place_bracket_order, close_position, cancel_all_orders,
-)
+_PAPER = os.getenv("INDIA_PAPER", "true").lower() != "false"
+
+if _PAPER:
+    from brokers.upstox_paper import (
+        get_bars, get_quote, get_account, get_positions,
+        place_bracket_order, close_position, cancel_all_orders,
+    )
+else:
+    from brokers.upstox import (
+        get_bars, get_quote, get_account, get_positions,
+        place_bracket_order, close_position, cancel_all_orders,
+    )
 from config.india_settings import (
     NSE_WATCHLIST, REGIME_PROXY,
     ACCOUNT_SIZE_INR, MAX_DAILY_LOSS_INR,
@@ -106,7 +118,8 @@ def _get_regime(all_bars: dict) -> tuple[str, float]:
 # ---------------------------------------------------------------------------
 
 def run_india_intraday():
-    info("India intraday starting", source="india_intraday")
+    mode = "PAPER" if _PAPER else "LIVE"
+    info(f"India intraday starting [{mode}]", source="india_intraday")
     init_schema()
     con = _connect()
 
