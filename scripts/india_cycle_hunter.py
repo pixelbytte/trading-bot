@@ -42,7 +42,6 @@ UNIVERSE = {
     "COCHINSHIP.NS":   ("Defence",    "Naval shipyard, aircraft carrier refit"),
     "BEL.NS":          ("Defence",    "Radar, electronic warfare systems"),
     "HAL.NS":          ("Defence",    "Fighter jets, helicopters"),
-
     # Power / Clean Energy -- possible next supercycle
     "NTPC.NS":         ("Power",      "India's largest power utility, 50GW RE plan"),
     "TATAPOWER.NS":    ("Power",      "Rooftop solar, EV charging network"),
@@ -93,36 +92,41 @@ UNIVERSE = {
 }
 
 
-def _require_yfinance():
-    try:
-        import yfinance as yf
-        return yf
-    except ImportError:
-        print("\n  ERROR: yfinance not installed. Run: pip install yfinance\n")
-        sys.exit(1)
-
-
 def fetch_bars(ticker, days=520):
-    yf = _require_yfinance()
-    for period in ("3y", "2y", "18mo"):
-        try:
-            df = yf.Ticker(ticker).history(period=period, auto_adjust=True)
-            if not df.empty and len(df) >= 120:
-                df = df.tail(days)
-                bars = []
-                for date, row in df.iterrows():
-                    ts = date.strftime("%Y-%m-%d") if hasattr(date, "strftime") else str(date)[:10]
-                    bars.append({
-                        "ts":     ts,
-                        "close":  float(row["Close"]),
-                        "high":   float(row["High"]),
-                        "low":    float(row["Low"]),
-                        "volume": int(row.get("Volume", 0) or 0),
-                    })
-                return bars
-        except Exception:
-            continue
-    return []
+    """Fetch bars using yf.download (more reliable than .history for NSE)."""
+    import yfinance as yf
+    import pandas as pd
+    from datetime import datetime, timedelta
+    try:
+        start = (datetime.now() - timedelta(days=days + 30)).strftime("%Y-%m-%d")
+        df = yf.download(ticker, start=start, progress=False, auto_adjust=True)
+        if df is None or df.empty or len(df) < 120:
+            return []
+        # Flatten multi-level columns (yfinance returns ('Close', 'TICK.NS') tuples)
+        if isinstance(df.columns, pd.MultiIndex):
+            df.columns = df.columns.get_level_values(0)
+        df = df.tail(days).reset_index()
+        date_col = "Date" if "Date" in df.columns else "Datetime"
+        bars = []
+        for _, row in df.iterrows():
+            try:
+                close = row["Close"].iloc[0] if hasattr(row["Close"], "iloc") else row["Close"]
+                high  = row["High"].iloc[0]  if hasattr(row["High"],  "iloc") else row["High"]
+                low   = row["Low"].iloc[0]   if hasattr(row["Low"],   "iloc") else row["Low"]
+                vol   = row["Volume"].iloc[0] if hasattr(row["Volume"],"iloc") else row["Volume"]
+                if pd.isna(close):
+                    continue
+                ts = str(row[date_col])[:10]
+                bars.append({
+                    "ts": ts, "close": float(close),
+                    "high": float(high), "low": float(low),
+                    "volume": int(vol or 0),
+                })
+            except Exception:
+                continue
+        return bars
+    except Exception:
+        return []
 
 
 def _sma(closes, n):

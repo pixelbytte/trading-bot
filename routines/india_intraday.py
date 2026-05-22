@@ -59,7 +59,7 @@ STRATEGIES = [
     MomentumStrategy(),
     NSEOversoldBounceStrategy(),
 ]
-TREND_ONLY = {"ma_rsi", "momentum", "nse_oversold_bounce"}
+TREND_ONLY = {"ma_rsi", "momentum"}  # nse_oversold_bounce runs in all regimes
 
 
 # ---------------------------------------------------------------------------
