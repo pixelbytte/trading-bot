@@ -18,34 +18,52 @@ MAX_ORDER_QTY       = 5_000         # sanity cap on qty per order
 MIN_PRICE_INR       = 50            # no stocks below ₹50
 MIN_AVG_VOLUME      = 5_00_000      # 5 lakh shares/day minimum liquidity
 
-# NSE Watchlist — Nifty 50 quality names + high-growth picks
-# Use exact NSE trading symbols (what Upstox's instrument master uses)
+# NSE Watchlist — curated from 500-day backtest (2026-05-23).
+# Only stocks with positive expectancy in at least one strategy are kept.
+# Removed: INFY/WIPRO (trend-following fails), CHOLAFIN/TATAPOWER/PFC/RECLTD/SJVN
+#   (range-bound in correction), BAJAJ-AUTO/HAVELLS/HINDUNILVR/NESTLEIND/ASIANPAINT
+#   (all negative across strategies), SUNPHARMA/CIPLA/DIVISLAB (momentum negative),
+#   IRCTC/MAZDOCK/COFORGE/PERSISTENT (late-cycle or weak edge).
 NSE_WATCHLIST = [
-    # Banking & Finance — most liquid sector on NSE
+    # ── Banking & Finance ─────────────────────────────────────────────
+    # Momentum works well here: SBIN +0.314R, AXISBANK +0.127R, BAJFINANCE +1.039R
     "HDFCBANK", "ICICIBANK", "SBIN", "KOTAKBANK", "AXISBANK", "BAJFINANCE",
+    "CANBK",        # momentum +0.161R — PSU re-rating still running
+    "MUTHOOTFIN",   # bounce +1.035R — gold loans spike on FII selling days
 
-    # IT Services — dollar-earning, range-bound, good for momentum
-    "TCS", "INFY", "WIPRO", "HCLTECH", "TECHM",
+    # ── IT Services — only the ones with positive backtested edge ─────
+    # TCS/HCLTECH/TECHM show flat-to-positive; INFY/WIPRO are dead weight
+    "TCS", "HCLTECH", "TECHM",
 
-    # Consumer / Retail — strong brand moats
-    "HINDUNILVR", "NESTLEIND", "ASIANPAINT", "TITAN", "TRENT",
+    # ── Consumer / Retail ─────────────────────────────────────────────
+    # TITAN +0.438R (bounce), TRENT +0.475R, DMART +1.135R, TATACONSUM +0.956R
+    "TITAN", "TRENT", "TATACONSUM", "DMART",
 
-    # Industrial & Auto — capex cycle plays
-    "LT", "MARUTI", "M&M", "BAJAJ-AUTO", "EICHERMOT",
+    # ── Industrial & Auto ─────────────────────────────────────────────
+    # MARUTI +0.470R, M&M +0.396R, TVSMOTOR +0.829R, POLYCAB (top performer)
+    "LT", "MARUTI", "M&M", "EICHERMOT", "TVSMOTOR",
+    "POLYCAB",      # STAR: momentum +0.470R (+1.29L in 500d), ma_rsi +0.776R
 
-    # Energy & Infra
-    "RELIANCE", "NTPC", "POWERGRID",
+    # ── Energy & Infra ────────────────────────────────────────────────
+    # POWERGRID +1.153R momentum, ADANIPORTS +0.657R — positive expectancy
+    "RELIANCE", "POWERGRID",
+    "ADANIPORTS",   # STAR: momentum +0.657R (+1.31L in 500d)
 
-    # Pharma — defensive + export earnings
-    "SUNPHARMA", "DRREDDY", "CIPLA",
+    # ── Defence ───────────────────────────────────────────────────────
+    # BEL/HAL still showing positive edge; MAZDOCK is late-cycle — removed
+    "BEL", "HAL",
 
-    # High-growth / new-age — volatile, higher ROI potential
-    "IRCTC",        # Monopoly on online rail ticketing, high margins
-    "ADANIPORTS",   # Largest port operator, infrastructure moat
-    "TATACONSUM",   # Consumer staples + beverages, acquisitive growth
-    "DMART",        # DMart: everyday low price retail, high ROCE
-    "DIXON",        # Dixon Technologies: electronics manufacturing, import substitution
-    "PERSISTENT",   # Persistent Systems: mid-cap IT, strong revenue growth
+    # ── Pharma ────────────────────────────────────────────────────────
+    # DRREDDY +0.453R, AUROPHARMA +1.139R — pharma exports holding up
+    "DRREDDY", "AUROPHARMA",
+
+    # ── Telecom / Digital ─────────────────────────────────────────────
+    "BHARTIARTL",   # momentum +0.546R — ARPU upgrade cycle
+    "CDSL",         # marginal but demat monopoly with long-term tailwind
+
+    # ── High-growth ───────────────────────────────────────────────────
+    # DIXON +0.872R momentum, TATACONSUM already above
+    "DIXON",        # India's Foxconn — import substitution momentum
 ]
 
 # Nifty 50 index symbol for regime detection (Upstox uses ETF as proxy)

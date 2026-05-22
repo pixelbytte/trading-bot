@@ -31,16 +31,14 @@ from config.india_settings import NSE_WATCHLIST, REGIME_PROXY
 
 from strategies.ma_rsi import MARSIStrategy
 from strategies.momentum import MomentumStrategy
-from strategies.breakout_52w import Breakout52WStrategy
-from strategies.rs_pullback import RSPullbackStrategy
+from strategies.nse_oversold_bounce import NSEOversoldBounceStrategy
 
 BACKTEST_DAYS = 500
 
 STRATEGIES = [
     MARSIStrategy(),
     MomentumStrategy(),
-    Breakout52WStrategy(),
-    RSPullbackStrategy(),
+    NSEOversoldBounceStrategy(),
 ]
 
 
