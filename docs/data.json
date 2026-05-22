@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-21T08:48:05.827286",
-  "today": "2026-05-21",
+  "generated_at": "2026-05-22T08:37:54.885785",
+  "today": "2026-05-22",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -13,6 +13,28 @@
   "open_positions": [],
   "strategy_stats": [],
   "recent_trades": [
+    {
+      "ts": "2026-05-21 23:45:21.816466",
+      "ticker": "IONQ",
+      "side": "buy",
+      "qty": 128.0,
+      "price": 67.24,
+      "strategy": "breakout_52w",
+      "status": "OrderStatus.ACCEPTED",
+      "pnl": null,
+      "portfolio_type": "day_trading"
+    },
+    {
+      "ts": "2026-05-21 20:26:19.633334",
+      "ticker": "IONQ",
+      "side": "buy",
+      "qty": 128.0,
+      "price": 67.24,
+      "strategy": "breakout_52w",
+      "status": "OrderStatus.ACCEPTED",
+      "pnl": null,
+      "portfolio_type": "day_trading"
+    },
     {
       "ts": "2026-05-05 18:56:22.374244",
       "ticker": "GS",
@@ -27,6 +49,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-05-21 23:45:22.321458",
+      "ticker": "XOM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-05-21 23:45:21.837636",
+      "ticker": "IONQ",
+      "strategy": "breakout_52w",
+      "action": "buy",
+      "confidence": 0.78,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-05-21 20:26:19.832176",
+      "ticker": "XOM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-05-21 20:26:19.652798",
+      "ticker": "IONQ",
+      "strategy": "breakout_52w",
+      "action": "buy",
+      "confidence": 0.78,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
       "ts": "2026-05-05 18:56:22.392255",
       "ticker": "GS",
       "strategy": "momentum",
@@ -37,6 +95,16 @@
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-05-22",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-21",
       "pnl": 0.0,
