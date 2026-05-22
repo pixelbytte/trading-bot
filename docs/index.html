@@ -105,6 +105,24 @@
     .tag-skip   { background: #1c1c1c; color: #8b949e; }
     .tag-lt     { background: #1c1435; color: #bc8cff; }
     .tag-dt     { background: #0d2149; color: #58a6ff; }
+    .tag-india  { background: #2d1f00; color: #f0a000; }
+
+    .india-divider {
+      margin: 32px 0 20px;
+      border-top: 1px solid #30363d;
+      padding-top: 20px;
+    }
+    .india-divider h2 {
+      font-size: 1rem;
+      color: #f0a000;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .india-divider .sub {
+      font-size: 0.76rem;
+      color: #8b949e;
+      margin-top: 2px;
+    }
 
     .pos { color: #3fb950; }
     .neg { color: #f85149; }
@@ -169,7 +187,8 @@ async function load() {
       renderOpenPositions(d.open_positions) +
       renderStrategyStats(d.strategy_stats) +
       renderTrades(d.recent_trades) +
-      renderSignals(d.recent_signals);
+      renderSignals(d.recent_signals) +
+      renderIndia(d.india, d.india_daily_history);
 
   } catch (e) {
     root.innerHTML = `<p id="error-msg">Could not load data.json &mdash; run the EOD workflow first.<br><small>${e.message}</small></p>`;
@@ -180,6 +199,18 @@ function fmt(val, prefix='$') {
   if (val == null) return '-';
   const sign = val >= 0 ? '+' : '';
   return `${sign}${prefix}${Math.abs(val).toFixed(2)}`;
+}
+
+function fmtINR(val) {
+  if (val == null) return '-';
+  const sign = val >= 0 ? '+' : '-';
+  const abs = Math.abs(val);
+  const formatted = abs >= 100000
+    ? (abs / 100000).toFixed(2) + 'L'
+    : abs >= 1000
+      ? (abs / 1000).toFixed(1) + 'K'
+      : abs.toFixed(0);
+  return `${sign}₹${formatted}`;
 }
 
 function renderMetricCards(s) {
@@ -354,6 +385,144 @@ function renderSignals(signals) {
         <tbody>${rows}</tbody>
       </table>
     </section>`;
+}
+
+function renderIndia(india, indiaHistory) {
+  if (!india) return '';
+
+  const s = india.summary || {};
+  const indiaClosedToday = (s.wins || 0) + (s.losses || 0);
+  const totalPnlClass = (s.total_pnl || 0) >= 0 ? 'pos' : 'neg';
+  const todayPnlClass = (s.pnl_today || 0) >= 0 ? 'pos' : 'neg';
+
+  const metricCards = `
+    <div class="cards">
+      <div class="card">
+        <div class="label">Today's P&L (INR)</div>
+        <div class="value ${todayPnlClass}">${fmtINR(s.pnl_today || 0)}</div>
+        <div class="sub">realized today</div>
+      </div>
+      <div class="card">
+        <div class="label">Total Paper P&L</div>
+        <div class="value ${totalPnlClass}">${fmtINR(s.total_pnl || 0)}</div>
+        <div class="sub">${s.total_trades || 0} trades all-time</div>
+      </div>
+      <div class="card">
+        <div class="label">Trades Today</div>
+        <div class="value">${s.trades_today || 0}</div>
+      </div>
+      <div class="card">
+        <div class="label">Win Rate Today</div>
+        <div class="value">${indiaClosedToday > 0 ? ((s.win_rate || 0) * 100).toFixed(0) : '-'}%</div>
+        <div class="sub">${s.wins || 0}W / ${s.losses || 0}L</div>
+      </div>
+    </div>`;
+
+  // Bar chart
+  let barChart = '';
+  if (indiaHistory && indiaHistory.length > 0) {
+    const days = [...indiaHistory].reverse().slice(-20);
+    const max = Math.max(...days.map(d => Math.abs(d.pnl)), 1);
+    const bars = days.map(d => {
+      const pct = Math.abs(d.pnl) / max * 100;
+      const cls = d.pnl > 0 ? 'pos-bar' : d.pnl < 0 ? 'neg-bar' : 'zero-bar';
+      return `<div class="bar-wrap">
+        <div class="bar ${cls}" style="height:${Math.max(pct,2)}%"></div>
+        <div class="bar-label">${d.date.slice(5)}</div>
+      </div>`;
+    }).join('');
+    barChart = `
+      <section>
+        <h2>India Daily P&L (last ${days.length} sessions)</h2>
+        <div class="bar-chart">${bars}</div>
+      </section>`;
+  }
+
+  // Open positions
+  let posTable = '';
+  if (india.open_positions && india.open_positions.length > 0) {
+    const rows = india.open_positions.map(p => `
+      <tr>
+        <td><strong>${p.ticker}</strong></td>
+        <td class="dim">₹${p.avg_entry.toFixed(2)}</td>
+        <td class="dim">${p.qty}</td>
+        <td class="dim">₹${(p.avg_entry * p.qty).toLocaleString('en-IN', {maximumFractionDigits:0})}</td>
+        <td><span class="tag tag-india">NSE PAPER</span></td>
+      </tr>`).join('');
+    posTable = `
+      <section>
+        <h2>India Open Positions (${india.open_positions.length})</h2>
+        <table>
+          <thead><tr><th>Ticker</th><th>Avg Entry</th><th>Qty</th><th>Exposure</th><th>Type</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </section>`;
+  }
+
+  // Strategy stats
+  let stratTable = '';
+  if (india.strategy_stats && india.strategy_stats.length > 0) {
+    const rows = india.strategy_stats.map(s => {
+      const pc = s.total_pnl >= 0 ? 'pos' : 'neg';
+      return `<tr>
+        <td><strong>${s.strategy}</strong></td>
+        <td class="dim">${s.trades}</td>
+        <td><span class="pos">${s.wins}</span>/<span class="neg">${s.losses}</span></td>
+        <td class="dim">${s.win_rate.toFixed(0)}%</td>
+        <td class="${pc}">${fmtINR(s.total_pnl)}</td>
+      </tr>`;
+    }).join('');
+    stratTable = `
+      <section>
+        <h2>India Strategy Performance (30 days)</h2>
+        <table>
+          <thead><tr><th>Strategy</th><th>Trades</th><th>W/L</th><th>Win%</th><th>Total P&L</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </section>`;
+  }
+
+  // Recent trades
+  let tradesTable = '';
+  if (india.recent_trades && india.recent_trades.length > 0) {
+    const rows = india.recent_trades.map(t => {
+      const pnl = t.pnl != null
+        ? `<span class="${t.pnl >= 0 ? 'pos' : 'neg'}">${fmtINR(t.pnl)}</span>`
+        : '<span class="dim">open</span>';
+      const side = `<span class="tag tag-${t.side}">${t.side.toUpperCase()}</span>`;
+      const ts = new Date(t.ts).toLocaleString('en-IN', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+      return `<tr>
+        <td class="dim">${ts}</td>
+        <td><strong>${t.ticker}</strong></td>
+        <td>${side}</td>
+        <td class="dim">${t.qty}</td>
+        <td class="dim">₹${t.price.toFixed(2)}</td>
+        <td class="dim" style="font-size:0.74rem">${t.strategy}</td>
+        <td>${pnl}</td>
+      </tr>`;
+    }).join('');
+    tradesTable = `
+      <section>
+        <h2>India Recent Trades</h2>
+        <table>
+          <thead><tr><th>Time</th><th>Ticker</th><th>Side</th><th>Qty</th><th>Price</th><th>Strategy</th><th>P&L</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </section>`;
+  } else {
+    tradesTable = `<section><h2>India Recent Trades</h2><p class="dim" style="padding:10px">No paper trades yet — bot runs at NSE hours (9:30 AM–3:15 PM IST).</p></section>`;
+  }
+
+  return `
+    <div class="india-divider">
+      <h2>India Bot &mdash; NSE Paper Trading</h2>
+      <div class="sub">₹25 lakh paper account &nbsp;|&nbsp; Upstox / yfinance &nbsp;|&nbsp; paper mode</div>
+    </div>
+    ${metricCards}
+    ${barChart}
+    ${posTable}
+    ${stratTable}
+    ${tradesTable}`;
 }
 
 load();
