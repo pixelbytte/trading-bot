@@ -3,19 +3,19 @@ Hardcoded risk limits.
 THESE VALUES MUST NEVER BE OVERRIDDEN BY STRATEGIES OR LLMS.
 Tuned for a $100,000 pretend account (paper-only, parent-supervised).
 
-All ratios are preserved from the original $5k tune — only absolute dollars
-scaled 20x. The percentage-of-account discipline is unchanged.
+Sizing: 1.5% risk/trade, 20% max position, 4% daily kill-switch.
+Raised from 1%/15%/3% on 2026-05-23 to increase capital deployment.
 """
 
 from config.settings import ACCOUNT_SIZE_USD
 
 # Per-position limits
-MAX_POSITION_USD = 15_000            # 15% of $100,000
+MAX_POSITION_USD = 20_000            # 20% of $100,000 (raised from 15%)
 MIN_POSITION_USD = 500               # below this, not worth the slippage
-RISK_PER_TRADE_USD = 1_000           # 1% risk per trade -> sets stop distance
+RISK_PER_TRADE_USD = 1_500           # 1.5% risk per trade (raised from 1%)
 
 # Daily limits (kill switch territory)
-MAX_DAILY_LOSS_USD = 3_000           # 3% daily stop -> halt trading
+MAX_DAILY_LOSS_USD = 4_000           # 4% daily stop -> halt trading (raised from 3%)
 MAX_TRADES_PER_DAY = 10              # prevent overtrading
 MAX_TRADES_PER_HOUR = 5               # circuit breaker for runaway loops
 

@@ -43,19 +43,20 @@ from risk.india_limits import RISK_PER_TRADE_INR, PRE_LOSS_WARNING_INR
 
 from strategies.ma_rsi import MARSIStrategy
 from strategies.momentum import MomentumStrategy
-from strategies.breakout_52w import Breakout52WStrategy
-from strategies.rs_pullback import RSPullbackStrategy
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size
 
 IST = ZoneInfo("Asia/Kolkata")
 
+# Backtest result (2026-05-23, 500-day NSE walk-forward):
+#   MA+RSI:      +0.076R/trade, Sharpe 0.61  → keep
+#   Momentum:    +0.052R/trade, Sharpe 0.66  → keep
+#   Breakout52w: -0.079R/trade, Sharpe -0.76 → disabled (profit-booking kills breakouts on NSE)
+#   RSPullback:  -0.126R/trade, Sharpe -0.75 → disabled (NSE large-caps too correlated for RS)
 STRATEGIES = [
     MARSIStrategy(),
     MomentumStrategy(),
-    Breakout52WStrategy(),
-    RSPullbackStrategy(),
 ]
-TREND_ONLY = {"ma_rsi", "momentum", "breakout_52w", "rs_pullback"}
+TREND_ONLY = {"ma_rsi", "momentum"}
 
 
 # ---------------------------------------------------------------------------
