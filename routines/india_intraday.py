@@ -45,7 +45,7 @@ from strategies.ma_rsi import MARSIStrategy
 from strategies.momentum import MomentumStrategy
 from strategies.breakout_52w import Breakout52WStrategy
 from strategies.rs_pullback import RSPullbackStrategy
-from risk.sizing import compute_stop_target, compute_position_size
+from risk.sizing import compute_atr, compute_stop_target, compute_position_size
 
 IST = ZoneInfo("Asia/Kolkata")
 
@@ -91,7 +91,7 @@ def _trades_today(con) -> int:
 
 def _is_halted(con) -> bool:
     row = con.execute("""
-        SELECT halted FROM kill_switch
+        SELECT value FROM kill_switch
         WHERE date = CURRENT_DATE
     """).fetchone()
     return bool(row and row[0])
@@ -135,9 +135,9 @@ def run_india_intraday():
         # Daily loss kill switch
         if daily_pnl <= -MAX_DAILY_LOSS_INR:
             con.execute("""
-                INSERT INTO kill_switch (date, halted, reason)
-                VALUES (CURRENT_DATE, TRUE, 'daily loss limit')
-                ON CONFLICT (date) DO UPDATE SET halted = TRUE
+                INSERT INTO kill_switch (date, value, reason)
+                VALUES (CURRENT_DATE, TRUE, 'india daily loss limit')
+                ON CONFLICT (date) DO UPDATE SET value = TRUE
             """)
             send_halt(f"India: Daily loss ₹{abs(daily_pnl):,.0f} hit ₹{MAX_DAILY_LOSS_INR:,.0f} limit")
             return
@@ -226,27 +226,32 @@ def run_india_intraday():
                     if sig.action != "buy":
                         continue
 
-                    # Risk sizing
-                    stop, target = compute_stop_target(bars, price)
-                    if stop is None or stop >= price:
+                    # Risk sizing — compute ATR first, then stop/target
+                    atr = compute_atr(bars)
+                    if atr is None or atr <= 0:
+                        continue
+                    stop, target = compute_stop_target(price, atr)
+                    if stop >= price:
                         continue
 
                     risk_inr = RISK_PER_TRADE_INR * regime_mult
-                    qty = compute_position_size(price, stop, risk_inr)
+                    # pass risk_override so position size scales to INR amounts
+                    qty = compute_position_size(price, stop, risk_override=risk_inr)
                     if qty <= 0:
-                        continue
+                        # compute_position_size caps at MAX_ORDER_QTY=100; re-size manually
+                        stop_dist = abs(price - stop)
+                        qty = max(1, int(risk_inr / stop_dist))
 
-                    position_value = qty * price
                     from config.india_settings import MAX_POSITION_INR
-                    if position_value > MAX_POSITION_INR:
+                    if qty * price > MAX_POSITION_INR:
                         qty = int(MAX_POSITION_INR / price)
 
                     if qty <= 0:
                         continue
 
-                    # Log signal
+                    # Log signal (skip_reason is empty — signal was acted on)
                     log_signal(ticker, strat.name, "buy", acted=True,
-                               confidence=sig.confidence, reason=sig.reason)
+                               confidence=sig.confidence)
 
                     info(f"Signal: {strat.name} {ticker} @ ₹{price:.2f} "
                          f"qty={qty} SL=₹{stop:.2f} TGT=₹{target:.2f}",

@@ -7,6 +7,7 @@ Switch to live: set INDIA_PAPER=false in .env / GitHub Secrets.
 """
 
 import uuid
+import pandas as pd
 import yfinance as yf
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -19,9 +20,9 @@ IST = ZoneInfo("Asia/Kolkata")
 from config.india_settings import ACCOUNT_SIZE_INR
 
 
-# NSE symbol -> yfinance symbol mapping (handles special characters)
+# Symbols that need special yfinance handling
 _YF_OVERRIDES = {
-    "M&M":      "MM.NS",
+    "M&M": "M&M.NS",           # ampersand is literal in yfinance
     "BAJAJ-AUTO": "BAJAJ-AUTO.NS",
 }
 
@@ -35,26 +36,38 @@ def _yf(symbol: str) -> str:
 # ---------------------------------------------------------------------------
 
 def get_bars(symbol: str, days: int = 400, timeframe: str = "day") -> list:
-    """Fetch NSE daily bars via yfinance. Returns list of dicts (ascending)."""
+    """Fetch NSE daily bars via yfinance.download. Returns list of dicts (ascending)."""
+    from datetime import timedelta
     try:
-        period = "2y" if days > 365 else f"{days}d"
+        start = (datetime.now(IST) - timedelta(days=days)).strftime("%Y-%m-%d")
+        end = datetime.now(IST).strftime("%Y-%m-%d")
         interval = "1d" if timeframe == "day" else "30m"
-        df = yf.Ticker(_yf(symbol)).history(period=period, interval=interval)
-        if df.empty:
+        df = yf.download(_yf(symbol), start=start, end=end,
+                         interval=interval, progress=False, auto_adjust=True)
+        if df is None or df.empty:
             return []
+        # yfinance may return multi-level columns: ('Close', 'SYM.NS') — flatten
+        if isinstance(df.columns, pd.MultiIndex):
+            df.columns = df.columns.get_level_values(0)
         df = df.reset_index()
         date_col = "Date" if "Date" in df.columns else "Datetime"
-        return [
-            {
-                "ts": str(row[date_col]),
-                "open":   float(row["Open"]),
-                "high":   float(row["High"]),
-                "low":    float(row["Low"]),
-                "close":  float(row["Close"]),
-                "volume": float(row["Volume"]),
-            }
-            for _, row in df.iterrows()
-        ]
+        bars = []
+        for _, row in df.iterrows():
+            try:
+                close_val = row["Close"].iloc[0] if hasattr(row["Close"], "iloc") else row["Close"]
+                if pd.isna(close_val):
+                    continue  # skip partial/empty bars (e.g. today before close)
+                bars.append({
+                    "ts":     str(row[date_col]),
+                    "open":   float(row["Open"].iloc[0] if hasattr(row["Open"], "iloc") else row["Open"]),
+                    "high":   float(row["High"].iloc[0] if hasattr(row["High"], "iloc") else row["High"]),
+                    "low":    float(row["Low"].iloc[0] if hasattr(row["Low"], "iloc") else row["Low"]),
+                    "close":  float(close_val),
+                    "volume": float(row["Volume"].iloc[0] if hasattr(row["Volume"], "iloc") else row["Volume"]),
+                })
+            except (KeyError, TypeError, ValueError):
+                continue
+        return bars
     except Exception as e:
         error(f"Paper get_bars failed for {symbol}: {e}", source="upstox_paper")
         return []

@@ -31,7 +31,7 @@ NSE_WATCHLIST = [
     "HINDUNILVR", "NESTLEIND", "ASIANPAINT", "TITAN", "TRENT",
 
     # Industrial & Auto — capex cycle plays
-    "LT", "MARUTI", "TATAMOTORS", "M&M", "BAJAJ-AUTO",
+    "LT", "MARUTI", "M&M", "BAJAJ-AUTO", "EICHERMOT",
 
     # Energy & Infra
     "RELIANCE", "NTPC", "POWERGRID",
@@ -40,11 +40,12 @@ NSE_WATCHLIST = [
     "SUNPHARMA", "DRREDDY", "CIPLA",
 
     # High-growth / new-age — volatile, higher ROI potential
-    "ZOMATO",       # Quick commerce + food delivery, strong revenue growth
     "IRCTC",        # Monopoly on online rail ticketing, high margins
     "ADANIPORTS",   # Largest port operator, infrastructure moat
     "TATACONSUM",   # Consumer staples + beverages, acquisitive growth
     "DMART",        # DMart: everyday low price retail, high ROCE
+    "DIXON",        # Dixon Technologies: electronics manufacturing, import substitution
+    "PERSISTENT",   # Persistent Systems: mid-cap IT, strong revenue growth
 ]
 
 # Nifty 50 index symbol for regime detection (Upstox uses ETF as proxy)
