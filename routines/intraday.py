@@ -25,7 +25,6 @@ from brokers.alpaca import (
 from strategies.ma_rsi import MARSIStrategy
 from strategies.momentum import MomentumStrategy
 from strategies.breakout_52w import Breakout52WStrategy
-from strategies.rs_pullback import RSPullbackStrategy
 from routines.portfolio import filter_buy_signals
 from routines.reconcile import reconcile_exits
 from config.settings import WATCHLIST, LONG_TERM_WATCHLIST, ACCOUNT_SIZE_USD, SCALP_UNIVERSE
@@ -41,16 +40,15 @@ from utils.discord import send_trade_alert, send_error, send_info
 # Strategies cleared for live deployment
 # ma_rsi + momentum: MA crossover signals (quiet in sustained uptrends)
 # breakout_52w: fires on new 52-week highs — active in trending markets (Sharpe 1.66)
-# rs_pullback: fires on pullbacks within uptrends — complements breakout (Sharpe 0.98)
+# rs_pullback disabled: PF 1.24 on 5.5Y data, 31% win rate — no real edge
 STRATEGIES = [
     MARSIStrategy(),
     MomentumStrategy(),
     Breakout52WStrategy(),
-    RSPullbackStrategy(),
 ]
 
-# All four are trend-following — disable in corrections (SPY < SMA50)
-TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum", "breakout_52w", "rs_pullback"}
+# All three are trend-following — disable only at regime_score 0 (all axes bad)
+TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum", "breakout_52w"}
 
 SCALP_STRATEGY = VWAPScalpStrategy()
 _ET = ZoneInfo("America/New_York")
@@ -344,10 +342,13 @@ def run_intraday():
             source="intraday",
         )
 
-    # Active strategies for this cycle
+    # Active strategies for this cycle.
+    # Hard-disable trend strategies only at score 0 (all three regime axes bad).
+    # At score 1-2, regime_mult already cuts position size to 50-75% — no need to
+    # also kill signals entirely. SPY dipping 1% below SMA50 shouldn't halt trading.
     active_strategies = [
         s for s in STRATEGIES
-        if regime == "uptrend" or s.name not in TREND_ONLY_STRATEGIES
+        if regime_score >= 1 or s.name not in TREND_ONLY_STRATEGIES
     ]
 
     # Current open positions
@@ -419,6 +420,8 @@ def run_intraday():
 
     signals_acted = 0
     signals_skipped = 0
+    llm_rejected = 0
+    llm_checked = 0
 
     # Load today's pre-market sentiment scores (empty dict = no scores, fail open)
     try:
@@ -508,6 +511,7 @@ def run_intraday():
             )
             # LLM signal filter: Claude reviews setup against entry_signals knowledge base
             # Run BEFORE sizing so Kelly multiplier uses the conviction score
+            llm_checked += 1
             approved, llm_reason, llm_conviction = analyse_signal(
                 ticker, bars, strat_name, s.confidence or 0.5
             )
@@ -519,6 +523,7 @@ def run_intraday():
                 sentiment=1.0 if approved else -1.0,
             )
             if not approved:
+                llm_rejected += 1
                 log_signal(
                     ticker=ticker, strategy=strat_name, action="buy",
                     confidence=s.confidence, acted=False,
@@ -626,7 +631,7 @@ def run_intraday():
             quote = get_quote(ticker)
             entry_price = quote["ask"]
             stop_price   = round(entry_price * 0.995, 2)   # 0.5% stop
-            target_price = round(entry_price * 1.005, 2)  # 0.5% target (1:1 R/R — backtest validated)
+            target_price = round(entry_price * 1.010, 2)  # 1.0% target (2:1 R/R)
             scalp_qty = min(
                 max(1, int(RISK_PER_TRADE_USD / (entry_price * 0.005))),
                 max(1, int(MAX_POSITION_USD / entry_price)),
@@ -696,10 +701,12 @@ def run_intraday():
         except Exception as e:
             error(f"{ticker}: sell execution error: {e}", source="intraday", exc=e)
 
+    llm_pass_rate = f"{llm_checked - llm_rejected}/{llm_checked}" if llm_checked else "0/0"
     info(
-        f"Intraday cycle complete [{regime}]. "
+        f"Intraday cycle complete [{regime} score={regime_score}]. "
         f"Strategies: {[s.name for s in active_strategies]}. "
-        f"Acted: {signals_acted}, Skipped: {signals_skipped}",
+        f"Acted: {signals_acted}, Skipped: {signals_skipped}, "
+        f"LLM approved: {llm_pass_rate}",
         source="intraday",
     )
 
