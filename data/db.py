@@ -537,6 +537,28 @@ def get_open_scalp_tickers() -> list:
         con.close()
 
 
+def get_open_intraday_tickers(strategies: list[str] | None = None) -> list:
+    """
+    Return tickers where a buy was placed today by any 'intraday-only' strategy
+    with no realized P&L yet. Defaults to scalp + gap_momentum. Used to force-close
+    intraday positions before close to avoid overnight gap-down risk.
+    """
+    strategies = strategies or ["scalp", "gap_momentum"]
+    placeholders = ",".join("?" for _ in strategies)
+    con = _connect()
+    try:
+        rows = con.execute(f"""
+            SELECT DISTINCT ticker FROM trades
+            WHERE side = 'buy'
+              AND strategy IN ({placeholders})
+              AND pnl IS NULL
+              AND DATE(ts) = CURRENT_DATE
+        """, strategies).fetchall()
+        return [r[0] for r in rows]
+    finally:
+        con.close()
+
+
 def get_deep_research_picks(min_conviction=0.70):
     """
     Return (ticker, conviction) pairs from Sunday deep research within the last 7 days.

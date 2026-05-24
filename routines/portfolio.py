@@ -14,11 +14,12 @@ from risk.limits import MAX_OPEN_POSITIONS
 #   ma_rsi       Sharpe 1.33, +0.187R
 #   breakout_52w Sharpe 1.25, +0.267R
 STRATEGY_PRIORITY = {
-    "momentum":      1,   # dominant edge — always wins when it fires
-    "ma_rsi":        2,
-    "breakout_52w":  3,
-    "scalp":         4,
-    "mean_reversion": 99, # disabled — kept here so old log rows don't crash
+    "momentum":       1,   # dominant edge — always wins when it fires
+    "ma_rsi":         2,
+    "breakout_52w":   3,
+    "mean_reversion": 4,   # conditional (only fires when regime_score < 3)
+    "scalp":          5,
+    "gap_momentum":   6,
 }
 
 

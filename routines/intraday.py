@@ -26,30 +26,37 @@ from brokers.alpaca import (
 from strategies.ma_rsi import MARSIStrategy
 from strategies.momentum import MomentumStrategy
 from strategies.breakout_52w import Breakout52WStrategy
+from strategies.mean_reversion import MeanReversionStrategy
 from routines.portfolio import filter_buy_signals
 from routines.reconcile import reconcile_exits
 from config.settings import WATCHLIST, LONG_TERM_WATCHLIST, ACCOUNT_SIZE_USD, SCALP_UNIVERSE
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size, dynamic_risk_usd
 from risk.limits import RISK_PER_TRADE_USD, MAX_DAILY_LOSS_USD, MAX_OPEN_POSITIONS, MAX_POSITION_USD
 from data.fundamentals import get_fundamentals, has_earnings_soon
-from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far, get_pyramid_state, get_open_scalp_tickers, has_taken_partial_exit
+from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far, get_pyramid_state, get_open_intraday_tickers, has_taken_partial_exit
 from routines.llm_filter import analyse_signal
 from routines.premarket import check_breaking_news
 from utils.logger import info, warning, error
 from utils.discord import send_trade_alert, send_error, send_info
 
 # Strategies cleared for live deployment
-# ma_rsi + momentum: MA crossover signals (quiet in sustained uptrends)
-# breakout_52w: fires on new 52-week highs — active in trending markets (Sharpe 1.66)
-# rs_pullback disabled: PF 1.24 on 5.5Y data, 31% win rate — no real edge
+# ma_rsi + momentum + breakout_52w: trend-following stack
+# mean_reversion: counter-trend dip buyer — only fires when regime isn't a clean
+#   full-strength uptrend (score < 3), where momentum has the edge anyway.
+#   Re-added 2026-05-23 to cover choppy/mild-correction regimes.
 STRATEGIES = [
     MARSIStrategy(),
     MomentumStrategy(),
     Breakout52WStrategy(),
+    MeanReversionStrategy(),
 ]
 
-# All three are trend-following — disable only at regime_score 0 (all axes bad)
+# Trend-only set: disabled when all 3 regime axes bad (score 0)
 TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum", "breakout_52w"}
+# Mean-reversion only fires when SPY is NOT in a clean full-strength uptrend.
+# In score==3 (SPY above SMA50 & SMA200, breadth healthy), let the trend stack
+# do its job. In score 0-2 (any axis broken), dips are buyable on quality names.
+MEAN_REVERT_STRATEGIES = {"mean_reversion"}
 
 SCALP_STRATEGY = VWAPScalpStrategy()
 GAP_STRATEGY = GapMomentumStrategy()
@@ -244,19 +251,23 @@ def check_trailing_stops():
                 error(f"{ticker}: emergency close failed: {e}", source="intraday", exc=e)
 
 
-def close_scalp_positions():
+def close_intraday_positions():
     """
-    Force-close all scalp positions opened today.
-    Called at 3:45pm ET so no intraday scalp survives overnight.
-    Fetches current position prices from Alpaca before closing.
+    Force-close all intraday-only positions opened today (scalp + gap_momentum).
+    Called at 3:55pm ET so no intraday position survives overnight — eliminates
+    gap-down risk past the bracket stop, which is the dominant tail loss source
+    in backtests of daily-bar strategies.
+
+    Swing/position trades (ma_rsi, momentum, breakout_52w, mean_reversion) are
+    NOT closed here — those are designed to be held multi-day.
     """
-    tickers = get_open_scalp_tickers()
+    tickers = get_open_intraday_tickers(["scalp", "gap_momentum"])
     if not tickers:
-        info("EOD scalp close: no open scalp positions", source="intraday")
+        info("EOD intraday close: no open scalp/gap positions", source="intraday")
         return
 
     info(
-        f"3:45pm EOD: force-closing {len(tickers)} scalp position(s): {tickers}",
+        f"3:55pm EOD: force-closing {len(tickers)} intraday position(s): {tickers}",
         source="intraday",
     )
 
@@ -275,15 +286,15 @@ def close_scalp_positions():
             result = close_position(ticker)
             log_trade(
                 ticker=ticker, side="sell", qty=float(pos["qty"]),
-                price=pos["current_price"], strategy="scalp",
+                price=pos["current_price"], strategy="intraday_eod",
                 order_id=result.get("closed_order_id", ""),
                 status="submitted", notes="eod_close",
             )
             send_trade_alert(ticker, "sell", int(pos["qty"]), pos["current_price"],
-                             strategy="scalp_eod_close")
-            info(f"{ticker}: scalp EOD close submitted @ ${pos['current_price']:.2f}", source="intraday")
+                             strategy="intraday_eod_close")
+            info(f"{ticker}: intraday EOD close submitted @ ${pos['current_price']:.2f}", source="intraday")
         except Exception as e:
-            error(f"{ticker}: EOD scalp close failed: {e}", source="intraday", exc=e)
+            error(f"{ticker}: EOD intraday close failed: {e}", source="intraday", exc=e)
 
 
 def run_intraday():
@@ -322,14 +333,14 @@ def run_intraday():
     except Exception as e:
         error(f"Trailing stop check failed: {e}", source="intraday", exc=e)
 
-    # ET time: used by both scalp entry gate and 3:45pm EOD close
+    # ET time: used by entry gates and the 3:55pm EOD intraday close.
     et_now = datetime.now(_ET)
-    scalp_ok = 10 <= et_now.hour < 15   # entries allowed 10am–3pm only
-    if et_now.hour > 15 or (et_now.hour == 15 and et_now.minute >= 45):
+    scalp_ok = 10 <= et_now.hour < 15   # scalp entries allowed 10am-3pm only
+    if et_now.hour > 15 or (et_now.hour == 15 and et_now.minute >= 55):
         try:
-            close_scalp_positions()
+            close_intraday_positions()
         except Exception as e:
-            error(f"EOD scalp close failed: {e}", source="intraday", exc=e)
+            error(f"EOD intraday close failed: {e}", source="intraday", exc=e)
 
     # Fetch 400 calendar days per ticker — breakout_52w needs 220+ bars (SMA200 + buffer).
     # 300 days only yields ~207 trading days, failing the min_bars check silently.
@@ -354,14 +365,21 @@ def run_intraday():
             source="intraday",
         )
 
-    # Active strategies for this cycle.
-    # Hard-disable trend strategies only at score 0 (all three regime axes bad).
-    # At score 1-2, regime_mult already cuts position size to 50-75% — no need to
-    # also kill signals entirely. SPY dipping 1% below SMA50 shouldn't halt trading.
-    active_strategies = [
-        s for s in STRATEGIES
-        if regime_score >= 1 or s.name not in TREND_ONLY_STRATEGIES
-    ]
+    # Active strategies for this cycle. Two regime gates:
+    #   - Trend strategies: disabled only at score 0 (all 3 axes bad).
+    #     At score 1-2, regime_mult already cuts size to 50-75%.
+    #   - Mean reversion: only active when score < 3 (not a clean uptrend) —
+    #     in full uptrends, momentum/breakout own the field; dips are too shallow.
+    active_strategies = []
+    for s in STRATEGIES:
+        if s.name in MEAN_REVERT_STRATEGIES:
+            if regime_score < 3:
+                active_strategies.append(s)
+        elif s.name in TREND_ONLY_STRATEGIES:
+            if regime_score >= 1:
+                active_strategies.append(s)
+        else:
+            active_strategies.append(s)
 
     # Current open positions
     try:

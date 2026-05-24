@@ -24,8 +24,10 @@ MAX_OPEN_POSITIONS = 4
 MAX_CONCENTRATION_PCT = 0.30         # one ticker can't be > 30% of portfolio
 
 # Portfolio limits — long-term holds
-MAX_LONGTERM_POSITIONS = 3           # max simultaneous long-term positions
-MAX_LONGTERM_POSITION_USD = 16_000   # ~16% of account per long-term position
+# Raised 2026-05-23: 5 positions @ $12k = $60k total (60% LT allocation) vs old
+# 3 @ $16k = $48k. Same overall exposure but better single-name risk diversification.
+MAX_LONGTERM_POSITIONS = 5           # max simultaneous long-term positions
+MAX_LONGTERM_POSITION_USD = 12_000   # 12% of account per long-term position
 
 # Asset filters
 MIN_PRICE_USD = 5                    # no penny stocks
