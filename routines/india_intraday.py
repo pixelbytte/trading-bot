@@ -44,6 +44,7 @@ from risk.india_limits import RISK_PER_TRADE_INR, PRE_LOSS_WARNING_INR
 from strategies.ma_rsi import MARSIStrategy
 from strategies.momentum import MomentumStrategy
 from strategies.nse_oversold_bounce import NSEOversoldBounceStrategy
+from strategies.india_orb import IndiaORBStrategy
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size
 
 IST = ZoneInfo("Asia/Kolkata")
@@ -60,6 +61,13 @@ STRATEGIES = [
     NSEOversoldBounceStrategy(),
 ]
 TREND_ONLY = {"ma_rsi", "momentum"}  # nse_oversold_bounce runs in all regimes
+
+# Opening Range Breakout — runs only on liquid NSE banks/finance, after 9:45 IST.
+# Separate from daily-bar strategies above because it needs 15-min intraday data.
+ORB_STRATEGY = IndiaORBStrategy()
+ORB_UNIVERSE = ["HDFCBANK", "ICICIBANK", "SBIN", "AXISBANK", "KOTAKBANK", "BAJFINANCE"]
+ORB_OPEN_HOUR = 9
+ORB_OPEN_MIN = 45  # opening range completes at 9:45 IST (2 × 15-min bars)
 
 
 # ---------------------------------------------------------------------------
@@ -191,6 +199,67 @@ def run_india_intraday():
         info(f"Regime: {regime} (mult={regime_mult})", source="india_intraday")
 
         held_tickers = {p["ticker"] for p in positions}
+
+        # ── Opening Range Breakout (banking subset, intraday 15-min bars) ──
+        # Fires only after the OR has completed (9:45 IST). Uses tighter stops
+        # (1.0xATR) because it's an intraday scalp with same-day MIS exits.
+        now_ist = _ist_now()
+        orb_window_open = (
+            now_ist.hour > ORB_OPEN_HOUR
+            or (now_ist.hour == ORB_OPEN_HOUR and now_ist.minute >= ORB_OPEN_MIN)
+        )
+        if orb_window_open and open_count < MAX_OPEN_POSITIONS:
+            today_str = now_ist.strftime("%Y-%m-%d")
+            for ticker in ORB_UNIVERSE:
+                if ticker in held_tickers or open_count >= MAX_OPEN_POSITIONS:
+                    continue
+                try:
+                    bars_15m = get_bars(ticker, days=2, timeframe="15min")
+                    today_bars = [b for b in bars_15m if today_str in str(b.get("ts", ""))]
+                    if len(today_bars) < 3:
+                        continue
+                    signals = ORB_STRATEGY.generate_signals(ticker, today_bars)
+                    if not signals:
+                        continue
+                    sig = signals[0]
+                    price = float(today_bars[-1]["close"])
+                    if price < MIN_PRICE_INR:
+                        continue
+
+                    # Use opening range low as the stop (tighter than ATR for scalp)
+                    or_low = min(float(b["low"]) for b in today_bars[:2])
+                    stop = or_low
+                    if stop >= price:
+                        continue
+                    target = price + (price - stop) * 2.0  # 2:1 R/R
+
+                    risk_inr = RISK_PER_TRADE_INR * regime_mult * 0.5  # half-size scalp
+                    qty = compute_position_size(price, stop, risk_override=risk_inr)
+                    if qty <= 0:
+                        stop_dist = abs(price - stop)
+                        qty = max(1, int(risk_inr / stop_dist)) if stop_dist > 0 else 0
+
+                    from config.india_settings import MAX_POSITION_INR
+                    if qty * price > MAX_POSITION_INR:
+                        qty = int(MAX_POSITION_INR / price)
+                    if qty <= 0:
+                        continue
+
+                    log_signal(ticker, ORB_STRATEGY.name, "buy",
+                               acted=True, confidence=sig.confidence)
+                    info(
+                        f"ORB Signal: {ticker} @ ₹{price:.2f} qty={qty} "
+                        f"SL=₹{stop:.2f} TGT=₹{target:.2f} ({sig.reason})",
+                        source="india_intraday",
+                    )
+                    result = place_bracket_order(ticker, qty, price, stop, target)
+                    if result:
+                        send_trade_alert(ticker, "buy", qty, price, ORB_STRATEGY.name)
+                        open_count += 1
+                        trades_done += 1
+                        held_tickers.add(ticker)
+                except Exception as e:
+                    warning(f"ORB scan failed for {ticker}: {e}", source="india_intraday")
 
         # Scan watchlist for signals
         for ticker in NSE_WATCHLIST:

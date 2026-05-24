@@ -41,7 +41,7 @@ def get_bars(symbol: str, days: int = 400, timeframe: str = "day") -> list:
     try:
         start = (datetime.now(IST) - timedelta(days=days)).strftime("%Y-%m-%d")
         end = datetime.now(IST).strftime("%Y-%m-%d")
-        interval = "1d" if timeframe == "day" else "30m"
+        interval = {"day": "1d", "15min": "15m", "30min": "30m", "hour": "60m"}.get(timeframe, "1d")
         df = yf.download(_yf(symbol), start=start, end=end,
                          interval=interval, progress=False, auto_adjust=True)
         if df is None or df.empty:

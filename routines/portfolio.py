@@ -8,11 +8,17 @@ ticker in the same cycle, the higher-priority strategy wins.
 
 from risk.limits import MAX_OPEN_POSITIONS
 
-# Lower number = higher priority when two strategies conflict on the same ticker
+# Lower number = higher priority when two strategies conflict on the same ticker.
+# Ordered by backtest Sharpe (validated 2026-05-23 on 500-day window):
+#   momentum     Sharpe 3.03, +0.278R   <- dominant
+#   ma_rsi       Sharpe 1.33, +0.187R
+#   breakout_52w Sharpe 1.25, +0.267R
 STRATEGY_PRIORITY = {
-    "ma_rsi": 1,         # trend-following, highest conviction
-    "mean_reversion": 2, # counter-trend, works in any regime
-    "momentum": 3,       # requires strictest conditions, lowest priority
+    "momentum":      1,   # dominant edge — always wins when it fires
+    "ma_rsi":        2,
+    "breakout_52w":  3,
+    "scalp":         4,
+    "mean_reversion": 99, # disabled — kept here so old log rows don't crash
 }
 
 

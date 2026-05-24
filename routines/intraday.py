@@ -18,6 +18,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import pandas as pd
 from strategies.intraday_scalp import VWAPScalpStrategy
+from strategies.gap_momentum import GapMomentumStrategy
 from brokers.alpaca import (
     get_bars, get_positions, get_quote,
     place_bracket_order, place_market_order, close_position, update_stop_order,
@@ -31,7 +32,7 @@ from config.settings import WATCHLIST, LONG_TERM_WATCHLIST, ACCOUNT_SIZE_USD, SC
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size, dynamic_risk_usd
 from risk.limits import RISK_PER_TRADE_USD, MAX_DAILY_LOSS_USD, MAX_OPEN_POSITIONS, MAX_POSITION_USD
 from data.fundamentals import get_fundamentals, has_earnings_soon
-from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far, get_pyramid_state, get_open_scalp_tickers
+from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far, get_pyramid_state, get_open_scalp_tickers, has_taken_partial_exit
 from routines.llm_filter import analyse_signal
 from routines.premarket import check_breaking_news
 from utils.logger import info, warning, error
@@ -51,6 +52,12 @@ STRATEGIES = [
 TREND_ONLY_STRATEGIES = {"ma_rsi", "momentum", "breakout_52w"}
 
 SCALP_STRATEGY = VWAPScalpStrategy()
+GAP_STRATEGY = GapMomentumStrategy()
+# Gap-momentum fires only between 9:45-10:00 ET, using the first 15-min bar
+# as the open-print and looking for follow-through. Same universe as scalp.
+GAP_WINDOW_START_HOUR = 9
+GAP_WINDOW_START_MIN = 45
+GAP_WINDOW_END_HOUR = 10
 _ET = ZoneInfo("America/New_York")
 
 
@@ -111,29 +118,32 @@ def get_market_regime(all_bars):
     return regime, score, pos_mult
 
 
-def _maybe_pyramid(ticker: str, n_r: int, unrealized_pl: float):
+def _maybe_pyramid_and_partial(ticker: str, n_r: int, qty: float, unrealized_pl: float):
     """
-    Pyramid into a winner (Livermore / Minervini SEPA).
+    Position management for day-trading winners:
+      +1R: PYRAMID — add 0.5x of base qty (Livermore: average up into winners)
+      +2R: PARTIAL EXIT — sell 50% of current qty (lock in half the win)
+            Replaces the old +2R pyramid add; backtests showed adding more at
+            +2R increases risk-of-ruin on reversals more than it adds expectancy.
 
-    +1R: add 0.5x of the BASE qty (the original bracket entry size).
-    +2R: add 0.25x of the BASE qty.
+    Idempotent:
+      - pyramid_1 tracked via notes='pyramid_1' on the buy trade row
+      - partial_exit tracked via notes='partial_exit_2R' on the sell trade row
 
-    Idempotent: reads `pyramid_level` from the DB. Skips if already added at
-    this level. Tagged with notes='pyramid_1' / 'pyramid_2' for state tracking.
-
-    Skipped for long-term positions (those run on weekly holds, not R-units).
+    Skipped for long-term positions (those use the DCA logic in routines/longterm).
     """
     if ticker in LONG_TERM_WATCHLIST:
-        return  # LT bucket uses different exit logic
+        return
 
     state = get_pyramid_state(ticker)
     if not state:
         return  # no base bracket entry on record
 
     base_qty = state["base_qty"]
+    base_ts = state["base_ts"]
     level = state["pyramid_level"]
 
-    # +1R add (only if not already added)
+    # +1R: pyramid add (only if not already added)
     if n_r >= 1 and level < 1:
         add_qty = max(1, int(round(base_qty * 0.5)))
         info(
@@ -153,43 +163,41 @@ def _maybe_pyramid(ticker: str, n_r: int, unrealized_pl: float):
         except Exception as e:
             error(f"{ticker}: pyramid_1 failed: {e}", source="intraday", exc=e)
 
-    # +2R add (only if not already added; counts both base and any pyramid_1)
-    if n_r >= 2 and level < 2:
-        add_qty = max(1, int(round(base_qty * 0.25)))
+    # +2R: partial exit (sell 50% of current qty) — one-time, idempotent
+    if n_r >= 2 and not has_taken_partial_exit(ticker, base_ts):
+        exit_qty = max(1, int(round(qty * 0.5)))
         info(
-            f"{ticker} PYRAMID +2R: adding {add_qty} shares "
-            f"(base={int(base_qty)}, unrealized=${unrealized_pl:.2f})",
+            f"{ticker} PARTIAL EXIT +2R: selling {exit_qty} of {int(qty)} shares "
+            f"(locking in 50%, letting runner ride; unrealized=${unrealized_pl:.2f})",
             source="intraday",
         )
         try:
             result = place_market_order(
-                ticker=ticker, qty=add_qty, side="buy",
-                strategy="pyramid", notes="pyramid_2",
+                ticker=ticker, qty=exit_qty, side="sell",
+                strategy="partial_exit", notes="partial_exit_2R",
             )
             if result.get("status") != "blocked":
-                send_trade_alert(ticker, "buy", add_qty,
+                send_trade_alert(ticker, "sell", exit_qty,
                                  result.get("filled_avg_price") or 0.0,
-                                 strategy="pyramid_2")
+                                 strategy="partial_exit_2R")
         except Exception as e:
-            error(f"{ticker}: pyramid_2 failed: {e}", source="intraday", exc=e)
+            error(f"{ticker}: partial_exit failed: {e}", source="intraday", exc=e)
 
 
 def check_trailing_stops():
     """
     Inspect all open positions: trail stops on winners, emergency-close losers,
-    and pyramid into confirmed winners (+1R / +2R adds).
+    pyramid into confirmed winners (+1R), and bank profits on big winners (+2R).
 
-    Trailing rule: for every full R gained, ratchet stop up by 1R.
+    Trailing-stop ladder (give back less profit at higher R levels):
       +1R -> stop at breakeven (0R)
-      +2R -> stop at +1R
-      +3R -> stop at +2R
-      +4R -> stop at +3R  ...and so on
+      +2R -> stop at +1R          (give back 1R, but partial exit has banked 50%)
+      +3R -> stop at +2R          (give back 1R)
+      +4R+ -> stop at +(n - 0.5)R (give back only 0.5R — tighter trail on runners)
 
-    Pyramid rule (Livermore/Minervini, day-trading only):
-      +1R -> add 0.5x base qty
-      +2R -> add 0.25x base qty
-    Pyramid orders are tagged 'pyramid_N' in the DB so they're idempotent
-    across the 15-min cycles.
+    Position management (day-trading only, see _maybe_pyramid_and_partial):
+      +1R -> add 0.5x base qty (pyramid)
+      +2R -> sell 50% of position (partial exit, lock in half the win)
 
     Emergency stop (day-trading only):
       -2R: close immediately if bracket stop didn't fill (gap-down protection).
@@ -208,11 +216,15 @@ def check_trailing_stops():
         n_r = int(unrealized_pl / RISK_PER_TRADE_USD)  # full R's in profit
 
         if n_r >= 1:
-            # First: pyramid (only adds at clean +1R / +2R thresholds, idempotent)
-            _maybe_pyramid(ticker, n_r, unrealized_pl)
+            # 1) Pyramid (+1R) and partial-exit (+2R) — both idempotent
+            _maybe_pyramid_and_partial(ticker, n_r, qty, unrealized_pl)
 
-            # Then: ratchet trailing stop at (n_r - 1) R above entry
-            new_stop = round(entry + max(0, n_r - 1) * r_per_share, 2)
+            # 2) Ratchet trailing stop. At +4R+ give back only 0.5R instead of 1R.
+            if n_r <= 3:
+                stop_offset_r = max(0, n_r - 1)            # 0, 1, 2
+            else:
+                stop_offset_r = n_r - 0.5                  # 3.5, 4.5, 5.5, ...
+            new_stop = round(entry + stop_offset_r * r_per_share, 2)
             info(
                 f"{ticker} at +{n_r}R (${unrealized_pl:.2f}): trailing stop -> {new_stop:.2f}",
                 source="intraday",
@@ -359,6 +371,69 @@ def run_intraday():
         error(f"Failed to fetch positions: {e}", source="intraday", exc=e)
         open_positions = []
         open_tickers = set()
+
+    # ── Gap-momentum scan (9:45-10:00 ET only) ──
+    # Captures gap-and-go continuation on SCALP_UNIVERSE. Uses ATR sizing from
+    # the daily-bar series so we don't double-define risk math.
+    gap_window_open = (
+        et_now.hour == GAP_WINDOW_START_HOUR and et_now.minute >= GAP_WINDOW_START_MIN
+    ) or (et_now.hour == GAP_WINDOW_END_HOUR and et_now.minute == 0)
+
+    if gap_window_open:
+        for ticker in SCALP_UNIVERSE:
+            if ticker in open_tickers or len(open_tickers) >= MAX_OPEN_POSITIONS:
+                continue
+            daily = all_bars.get(ticker)
+            if not daily or len(daily) < 2:
+                continue
+            try:
+                bars_15m = get_bars(ticker, days=1, timeframe="15min")
+                if not bars_15m:
+                    continue
+                prev_close = float(daily[-2]["close"])
+                # 20-bar 15-min average volume from yesterday's session for reference
+                # (approximate — Alpaca returns recent intraday data so we use what we have)
+                vols = [float(b.get("volume", 0) or 0) for b in bars_15m[:-1]] or [0]
+                avg_vol = sum(vols) / max(1, len(vols))
+                sigs = GAP_STRATEGY.generate_signals(
+                    ticker, bars_15m, prev_close, avg_vol
+                )
+                if not sigs:
+                    continue
+                sig = sigs[0]
+                quote = get_quote(ticker)
+                entry_price = quote["ask"]
+                atr = compute_atr(daily)
+                if atr is None or atr <= 0:
+                    continue
+                # Tighter intraday risk: 1.0x ATR stop, 2.0x ATR target (2:1 R/R)
+                stop_price = round(entry_price - atr * 1.0, 2)
+                target_price = round(entry_price + atr * 2.0, 2)
+                if stop_price >= entry_price:
+                    continue
+                qty = compute_position_size(entry_price, stop_price)
+                if qty == 0:
+                    continue
+                result = place_bracket_order(
+                    ticker=ticker, qty=qty, side="buy",
+                    entry_price=entry_price, stop_price=stop_price,
+                    target_price=target_price, strategy="gap_momentum",
+                )
+                log_signal(
+                    ticker=ticker, strategy="gap_momentum", action="buy",
+                    confidence=sig.confidence,
+                    acted=(result.get("status") != "blocked"),
+                    skip_reason=result.get("blocked_reason", ""),
+                )
+                if result.get("status") != "blocked":
+                    send_trade_alert(ticker, "buy", qty, entry_price, strategy="gap_momentum")
+                    open_tickers.add(ticker)
+                    info(f"{ticker}: gap_momentum entry @ ${entry_price:.2f} ({sig.reason})",
+                         source="intraday")
+                else:
+                    info(f"GAP BLOCKED {ticker}: {result['blocked_reason']}", source="intraday")
+            except Exception as e:
+                error(f"{ticker}: gap_momentum error: {e}", source="intraday", exc=e)
 
     # Fetch 15-min bars and generate scalp signals (only during 10am–3pm window)
     # SCALP_UNIVERSE is a curated subset of WATCHLIST with Sharpe > 1.0 on backtest.

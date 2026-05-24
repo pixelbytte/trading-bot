@@ -317,6 +317,27 @@ def get_pyramid_state(ticker: str):
         con.close()
 
 
+def has_taken_partial_exit(ticker: str, since_ts) -> bool:
+    """
+    Return True if a partial-exit sell has already been logged for this ticker
+    since the given base-entry timestamp. Used to make the +2R partial-exit
+    idempotent across the 15-min intraday cycles.
+    """
+    con = _connect()
+    try:
+        row = con.execute("""
+            SELECT 1 FROM trades
+            WHERE ticker = ?
+              AND side = 'sell'
+              AND notes LIKE 'partial_exit%'
+              AND ts >= ?
+            LIMIT 1
+        """, [ticker, since_ts]).fetchone()
+        return bool(row)
+    finally:
+        con.close()
+
+
 def get_open_trade_entries():
     """
     Return buy-side trades that have not yet been reconciled (pnl IS NULL).

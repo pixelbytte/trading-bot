@@ -103,12 +103,23 @@ def analyse_signal(ticker, bars, strategy_name, confidence=0.5):
     )
 
     prompt = (
-        f"You are a systematic trading signal analyst reviewing a buy setup.\n\n"
+        f"You are a VETO filter for a quantitative trading system. The underlying\n"
+        f"strategy is already backtested and statistically positive — your ONLY job\n"
+        f"is to block trades that show a SPECIFIC red flag.\n\n"
         f"TICKER: {ticker}\n"
         f"STRATEGY: {strategy_name} (confidence {confidence:.0%})\n\n"
         f"TECHNICAL SNAPSHOT:\n{technicals_text}\n\n"
-        f"ENTRY CRITERIA (from knowledge base):\n{entry_criteria}\n\n"
-        f"Based on the technical snapshot and entry criteria above, should this trade be approved?\n"
+        f"VETO ONLY IF you see one of these specific red flags:\n"
+        f"  - RSI(14) > 80 (parabolic / blow-off top — exhausted)\n"
+        f"  - Price > 40% above SMA200 (extremely extended, unsustainable)\n"
+        f"  - Price < SMA200 AND distance from 52w high > 30% (broken structure)\n"
+        f"  - Volume ratio < 0.3 (illiquid / no participation)\n\n"
+        f"DEFAULT IS APPROVE. Do not block for mildly negative readings, weak\n"
+        f"momentum, or 'could be better' setups. The strategy already filtered\n"
+        f"those. Approve unless one of the red flags above is clearly present.\n\n"
+        f"Set conviction to your confidence in the setup quality (0.5 = neutral,\n"
+        f"0.7+ = strong setup, used for Kelly position sizing).\n\n"
+        f"Reference entry criteria (for conviction grading only, not approval):\n{entry_criteria}\n\n"
         f"Return ONLY this JSON, no other text:\n"
         f'{{ "approved": true or false, "conviction": <0.0-1.0>, "reason": "<one concise sentence>" }}'
     )
