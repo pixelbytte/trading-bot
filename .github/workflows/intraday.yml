@@ -10,6 +10,9 @@ on:
   # Allow manual triggering for testing
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   trade:
     runs-on: ubuntu-latest
@@ -43,6 +46,20 @@ jobs:
           ALPACA_SECRET: ${{ secrets.ALPACA_SECRET }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: python -m routines.intraday
+
+      - name: Refresh dashboard data
+        if: always()
+        run: python -m scripts.export_dashboard
+
+      - name: Commit dashboard data
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main || true
+          git add docs/data.json
+          git diff --staged --quiet || git commit -m "chore: live dashboard refresh [skip ci]"
+          git push || true
 
       - name: Save bot.db
         if: always()
