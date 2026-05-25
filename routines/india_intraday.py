@@ -101,6 +101,53 @@ def _trades_today(con) -> int:
     return int(row[0]) if row else 0
 
 
+def _hydrate_from_dashboard(con) -> int:
+    """
+    Reload India trades from docs/data.json into the DB. Makes the paper bot
+    stateful across GitHub Actions runs even though bot.db is wiped on cache
+    misses. Idempotent: skips trades that already exist in the DB.
+    Returns the number of trades inserted.
+    """
+    import json
+    from pathlib import Path
+    data_path = Path(__file__).parent.parent / "docs" / "data.json"
+    if not data_path.exists():
+        return 0
+    try:
+        data = json.loads(data_path.read_text(encoding="utf-8"))
+    except Exception:
+        return 0
+
+    trades = data.get("india", {}).get("recent_trades", [])
+    if not trades:
+        return 0
+
+    inserted = 0
+    for t in trades:
+        try:
+            existing = con.execute("""
+                SELECT 1 FROM trades
+                WHERE ts = ? AND ticker = ? AND side = ? AND qty = ?
+                  AND portfolio_type IN ('india_paper', 'india')
+                LIMIT 1
+            """, [t["ts"], t["ticker"], t["side"], float(t["qty"])]).fetchone()
+            if existing:
+                continue
+            con.execute("""
+                INSERT INTO trades (ts, ticker, side, qty, price, strategy,
+                                    status, pnl, portfolio_type, notes)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'india_paper', ?)
+            """, [
+                t["ts"], t["ticker"], t["side"], float(t["qty"]), float(t["price"]),
+                t.get("strategy") or "", t.get("status") or "submitted",
+                t.get("pnl"), t.get("notes") or "restored",
+            ])
+            inserted += 1
+        except Exception:
+            continue
+    return inserted
+
+
 def _is_halted(con) -> bool:
     row = con.execute("""
         SELECT value FROM kill_switch
@@ -136,6 +183,15 @@ def run_india_intraday():
     con = _connect()
 
     try:
+        # Rebuild paper state from the committed dashboard JSON. Necessary because
+        # GitHub Actions wipes bot.db on cache miss, which would otherwise cause
+        # the bot to re-enter positions it already holds.
+        if _PAPER:
+            restored = _hydrate_from_dashboard(con)
+            if restored:
+                info(f"Hydrated {restored} India trade(s) from dashboard JSON",
+                     source="india_intraday")
+
         # Kill switch check
         if _is_halted(con):
             info("Kill switch active — skipping", source="india_intraday")

@@ -197,13 +197,14 @@ def export():
             for r in india_pos_rows
         ]
 
-        # India recent trades
+        # India recent trades — pull ALL (500 cap) so we can persist across
+        # ephemeral Actions runs by merging with previously-committed trades.
         india_trade_rows = con.execute("""
-            SELECT ts, ticker, side, qty, price, strategy, status, pnl
-            FROM trades WHERE portfolio_type = 'india_paper'
-            ORDER BY ts DESC LIMIT 30
+            SELECT ts, ticker, side, qty, price, strategy, status, pnl, notes
+            FROM trades WHERE portfolio_type IN ('india_paper', 'india')
+            ORDER BY ts DESC LIMIT 500
         """).fetchall()
-        india_recent_trades = [
+        india_db_trades = [
             {
                 "ts": str(r[0]),
                 "ticker": r[1],
@@ -213,12 +214,71 @@ def export():
                 "strategy": r[5] or "",
                 "status": r[6] or "",
                 "pnl": float(r[7]) if r[7] is not None else None,
+                "notes": r[8] or "",
             }
             for r in india_trade_rows
         ]
 
     finally:
         con.close()
+
+    # ── Merge India trades with existing committed snapshot ───────────
+    # GitHub Actions wipes bot.db between runs, so the DB might only see
+    # this cycle's trades. We persist the full history in data.json and
+    # merge on each export so trades never disappear from the dashboard.
+    existing_pre = _load_existing()
+    existing_india_trades = existing_pre.get("india", {}).get("recent_trades", [])
+
+    def _key(t):
+        return (t.get("ts", ""), t.get("ticker", ""), t.get("side", ""),
+                round(float(t.get("qty", 0)), 4), round(float(t.get("price", 0)), 4))
+
+    seen = {_key(t) for t in india_db_trades}
+    merged = list(india_db_trades)
+    for t in existing_india_trades:
+        if _key(t) not in seen:
+            merged.append(t)
+            seen.add(_key(t))
+    merged.sort(key=lambda t: t.get("ts", ""), reverse=True)
+    india_recent_trades = merged[:500]
+
+    # Recompute India stats from the merged set so the dashboard reflects
+    # the full picture, not just whatever happened to be in the DB this cycle.
+    india_total_trades = len(india_recent_trades)
+    india_total_pnl = sum(t["pnl"] for t in india_recent_trades if t.get("pnl") is not None)
+    india_wins = sum(1 for t in india_recent_trades if (t.get("pnl") or 0) > 0)
+    india_losses = sum(1 for t in india_recent_trades if (t.get("pnl") or 0) < 0)
+
+    today_iso = date.today().isoformat()
+    todays_trades = [t for t in india_recent_trades if str(t.get("ts", ""))[:10] == today_iso]
+    india_trades_today = len(todays_trades)
+    india_pnl_today = sum(t["pnl"] for t in todays_trades if t.get("pnl") is not None)
+
+    # Rebuild open positions from the merged trade log (buys with no matching sell)
+    # Simple FIFO match: for each buy, see if a later sell of same ticker closes it
+    open_qty_by_ticker = {}
+    open_cost_by_ticker = {}
+    # Process oldest first so we can net out
+    for t in sorted(india_recent_trades, key=lambda x: x.get("ts", "")):
+        tk = t["ticker"]
+        if t["side"] == "buy" and t.get("pnl") is None:
+            open_qty_by_ticker[tk] = open_qty_by_ticker.get(tk, 0) + t["qty"]
+            open_cost_by_ticker[tk] = open_cost_by_ticker.get(tk, 0) + t["qty"] * t["price"]
+        elif t["side"] == "sell":
+            # Reconciled sells reduce the open qty
+            if tk in open_qty_by_ticker:
+                open_qty_by_ticker[tk] = max(0, open_qty_by_ticker[tk] - t["qty"])
+                if open_qty_by_ticker[tk] == 0:
+                    open_cost_by_ticker.pop(tk, None)
+                    open_qty_by_ticker.pop(tk, None)
+    india_open_positions = [
+        {
+            "ticker": tk,
+            "qty": int(qty),
+            "avg_entry": round(open_cost_by_ticker[tk] / qty, 2) if qty > 0 else 0,
+        }
+        for tk, qty in open_qty_by_ticker.items() if qty > 0
+    ]
 
     # ── Open long-term positions ──────────────────────────────────────
     try:
