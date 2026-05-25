@@ -26,12 +26,15 @@ if _PAPER:
     from brokers.upstox_paper import (
         get_bars, get_quote, get_account, get_positions,
         place_bracket_order, close_position, cancel_all_orders,
+        simulate_bracket_exits,
     )
 else:
     from brokers.upstox import (
         get_bars, get_quote, get_account, get_positions,
         place_bracket_order, close_position, cancel_all_orders,
     )
+    def simulate_bracket_exits():  # no-op in live mode (broker handles exits)
+        return 0
 from config.india_settings import (
     NSE_WATCHLIST, REGIME_PROXY,
     ACCOUNT_SIZE_INR, MAX_DAILY_LOSS_INR,
@@ -192,6 +195,17 @@ def run_india_intraday():
                 info(f"Hydrated {restored} India trade(s) from dashboard JSON",
                      source="india_intraday")
 
+        # Simulate bracket exits — checks today's intraday H/L against the SL/TGT
+        # of every open paper position and closes any that were touched. In live
+        # mode this is a no-op (the broker fills brackets server-side).
+        try:
+            closed = simulate_bracket_exits()
+            if closed:
+                info(f"Bracket simulator closed {closed} position(s)",
+                     source="india_intraday")
+        except Exception as e:
+            warning(f"Bracket simulator failed: {e}", source="india_intraday")
+
         # Kill switch check
         if _is_halted(con):
             info("Kill switch active — skipping", source="india_intraday")
@@ -215,15 +229,20 @@ def run_india_intraday():
             send_info(f"India WARNING: Down ₹{abs(daily_pnl):,.0f} today "
                       f"(₹{MAX_DAILY_LOSS_INR - abs(daily_pnl):,.0f} left before halt)")
 
-        # Squareoff check — close all MIS positions before 3:15 PM IST
+        # Squareoff check — close all intraday positions before 3:15 PM IST.
+        # In live mode we only close MIS (product='I'). In paper mode we close
+        # everything since paper positions don't carry a real product type.
         if _is_near_squareoff():
             positions = get_positions()
-            mis_positions = [p for p in positions if p.get("product") == "I"]
-            for pos in mis_positions:
-                info(f"Squareoff: closing {pos['ticker']} MIS position", source="india_intraday")
+            if _PAPER:
+                to_close = positions  # close all paper positions at EOD
+            else:
+                to_close = [p for p in positions if p.get("product") == "I"]
+            for pos in to_close:
+                info(f"Squareoff: closing {pos['ticker']} position", source="india_intraday")
                 close_position(pos["ticker"])
-            if mis_positions:
-                send_info(f"India: Squared off {len(mis_positions)} MIS positions before close")
+            if to_close:
+                send_info(f"India: Squared off {len(to_close)} position(s) before close")
             return
 
         # Trade limit

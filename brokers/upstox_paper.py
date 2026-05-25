@@ -178,6 +178,85 @@ def place_market_order(symbol: str, qty: int, side: str, product: str = "D") -> 
     return {"order_id": fake_id, "status": "paper_fill", "ticker": symbol}
 
 
+def simulate_bracket_exits() -> int:
+    """
+    For each open paper position, check today's intraday high/low against the
+    SL/TGT levels stored in the trade's notes. If either was touched, close
+    the position at that level and write the realized P&L.
+
+    Returns the number of positions closed this cycle. Call this once per
+    intraday cycle before the bot looks for new entries.
+    """
+    con = _connect()
+    try:
+        rows = con.execute("""
+            SELECT id, ticker, qty, price, notes FROM trades
+            WHERE pnl IS NULL AND side = 'buy' AND portfolio_type = 'india_paper'
+        """).fetchall()
+    finally:
+        con.close()
+
+    if not rows:
+        return 0
+
+    closed = 0
+    for row_id, ticker, qty, entry, notes in rows:
+        if not notes or "SL=" not in notes or "TGT=" not in notes:
+            continue
+        try:
+            sl = float(notes.split("SL=")[1].split()[0])
+            tgt = float(notes.split("TGT=")[1].split()[0].rstrip(","))
+        except (ValueError, IndexError):
+            continue
+
+        # Pull today's intraday bars to see if SL/TGT was touched
+        bars = get_bars(ticker, days=2, timeframe="15min")
+        if not bars:
+            continue
+        # Filter to bars at/after the entry timestamp (only count today's session)
+        today_str = datetime.now(IST).strftime("%Y-%m-%d")
+        today_bars = [b for b in bars if today_str in str(b.get("ts", ""))]
+        if not today_bars:
+            continue
+
+        exit_price = None
+        exit_reason = None
+        for bar in today_bars:
+            lo = float(bar.get("low", 0) or 0)
+            hi = float(bar.get("high", 0) or 0)
+            if lo <= sl:
+                exit_price = sl
+                exit_reason = "STOP"
+                break
+            if hi >= tgt:
+                exit_price = tgt
+                exit_reason = "TARGET"
+                break
+
+        if exit_price is None:
+            continue
+
+        realised = (exit_price - float(entry)) * int(qty)
+        con = _connect()
+        try:
+            con.execute("""
+                UPDATE trades
+                SET pnl = ?,
+                    notes = COALESCE(notes, '') || ' | ' || ? || ' @' || CAST(? AS VARCHAR)
+                WHERE id = ?
+            """, [realised, exit_reason, round(exit_price, 2), row_id])
+        finally:
+            con.close()
+        info(
+            f"[PAPER] {ticker} hit {exit_reason} @ ₹{exit_price:.2f} — closed "
+            f"{int(qty)} shares, P&L ₹{realised:+.0f}",
+            source="upstox_paper",
+        )
+        closed += 1
+
+    return closed
+
+
 def close_position(symbol: str) -> bool:
     """Simulate closing at current price; writes realized P&L back to the trade row."""
     positions = get_positions()
