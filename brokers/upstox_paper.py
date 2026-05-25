@@ -36,14 +36,27 @@ def _yf(symbol: str) -> str:
 # ---------------------------------------------------------------------------
 
 def get_bars(symbol: str, days: int = 400, timeframe: str = "day") -> list:
-    """Fetch NSE daily bars via yfinance.download. Returns list of dicts (ascending)."""
+    """Fetch NSE bars via yfinance.download. Returns list of dicts (ascending).
+
+    For intraday intervals (15m/30m/60m), yfinance's start/end mode is buggy and
+    often returns 'possibly delisted' for NSE tickers. Use period= shorthand
+    instead — yfinance handles the date math correctly that way.
+    """
     from datetime import timedelta
     try:
-        start = (datetime.now(IST) - timedelta(days=days)).strftime("%Y-%m-%d")
-        end = datetime.now(IST).strftime("%Y-%m-%d")
         interval = {"day": "1d", "15min": "15m", "30min": "30m", "hour": "60m"}.get(timeframe, "1d")
-        df = yf.download(_yf(symbol), start=start, end=end,
-                         interval=interval, progress=False, auto_adjust=True)
+        is_intraday = interval in ("15m", "30m", "60m", "1h", "5m", "1m")
+
+        if is_intraday:
+            # yfinance only allows up to 60d for intraday — clamp accordingly
+            period_days = max(min(days, 60), 5)
+            df = yf.download(_yf(symbol), period=f"{period_days}d",
+                             interval=interval, progress=False, auto_adjust=True)
+        else:
+            start = (datetime.now(IST) - timedelta(days=days)).strftime("%Y-%m-%d")
+            end = datetime.now(IST).strftime("%Y-%m-%d")
+            df = yf.download(_yf(symbol), start=start, end=end,
+                             interval=interval, progress=False, auto_adjust=True)
         if df is None or df.empty:
             return []
         # yfinance may return multi-level columns: ('Close', 'SYM.NS') — flatten
