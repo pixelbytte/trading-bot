@@ -1,0 +1,36 @@
+name: India Discord EOD Report
+
+on:
+  # NSE closes at 3:30 PM IST = 10:00 UTC. Send report at 10:20 UTC (3:50 PM IST)
+  # — after the last intraday cycle has reconciled today's trades to data.json.
+  schedule:
+    - cron: '20 10 * * 1-5'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Send India EOD Discord report
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: python -X utf8 -m scripts.india_discord_report

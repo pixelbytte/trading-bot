@@ -57,3 +57,35 @@ def send_daily_pnl(pnl, num_trades, win_rate):
 def send_halt(reason):
     """Trading halted by circuit breaker."""
     return _post(f"⛔ **TRADING HALTED:** {reason}")
+
+
+def send_image_message(text: str, image_path: str) -> bool:
+    """Post a text message with an image attachment (PNG/JPEG)."""
+    if not _WEBHOOK:
+        return False
+    try:
+        with open(image_path, "rb") as f:
+            files = {"file": (os.path.basename(image_path), f, "image/png")}
+            data = {"payload_json": '{"content": ' + _json_quote(text) + '}'}
+            r = requests.post(_WEBHOOK, data=data, files=files, timeout=15)
+            return r.status_code in (200, 204)
+    except Exception as e:
+        print(f"Discord image post failed: {e}", file=sys.stderr)
+        return False
+
+
+def _json_quote(s: str) -> str:
+    import json as _json
+    return _json.dumps(s)
+
+
+def send_india_close_alert(ticker: str, qty: int, exit_price: float,
+                           reason: str, pnl: float) -> bool:
+    """Realtime alert when an India paper position closes (SL/TGT/squareoff)."""
+    arrow = "🟢" if pnl >= 0 else "🔴"
+    sign = "+" if pnl >= 0 else ""
+    msg = (
+        f"{arrow} **CLOSE {ticker}** × {qty} @ ₹{exit_price:.2f} "
+        f"[{reason}]  P&L: ₹{sign}{pnl:,.0f}"
+    )
+    return _post(msg)

@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo
 
 from data.db import _connect, log_trade
 from utils.logger import info, warning, error
+from utils.discord import send_india_close_alert
 
 IST = ZoneInfo("Asia/Kolkata")
 
@@ -252,6 +253,10 @@ def simulate_bracket_exits() -> int:
             f"{int(qty)} shares, P&L ₹{realised:+.0f}",
             source="upstox_paper",
         )
+        try:
+            send_india_close_alert(ticker, int(qty), exit_price, exit_reason, realised)
+        except Exception:
+            pass  # Discord failures must never block trading
         closed += 1
 
     return closed
