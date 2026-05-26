@@ -33,7 +33,7 @@ from config.settings import WATCHLIST, LONG_TERM_WATCHLIST, ACCOUNT_SIZE_USD, SC
 from risk.sizing import compute_atr, compute_stop_target, compute_position_size, dynamic_risk_usd
 from risk.limits import RISK_PER_TRADE_USD, MAX_DAILY_LOSS_USD, MAX_OPEN_POSITIONS, MAX_POSITION_USD
 from data.fundamentals import get_fundamentals, has_earnings_soon
-from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far, get_pyramid_state, get_open_intraday_tickers, has_taken_partial_exit
+from data.db import init_schema, log_signal, log_trade, is_trading_halted, get_ticker_sentiments, log_llm_output, daily_pnl_so_far, get_pyramid_state, get_open_intraday_tickers, has_taken_partial_exit, days_since_last_us_trade
 from routines.llm_filter import analyse_signal
 from routines.premarket import check_breaking_news
 from utils.logger import info, warning, error
@@ -359,6 +359,23 @@ def run_intraday():
         f"Market regime: {regime} (score {regime_score}/3, position sizing at {regime_mult:.0%})",
         source="intraday",
     )
+
+    # Silence override: if the bot hasn't placed a US trade in 3+ days, bypass
+    # the secondary filters (RS / LLM / sentiment) for this cycle. The strategy
+    # criteria, fundamentals gate, earnings gate, and risk limits still apply
+    # — we're just dropping the soft filters that compound to "never trade".
+    SILENCE_THRESHOLD_DAYS = 3
+    try:
+        silence_days = days_since_last_us_trade()
+    except Exception:
+        silence_days = 0
+    silence_override = silence_days >= SILENCE_THRESHOLD_DAYS
+    if silence_override:
+        info(
+            f"SILENCE OVERRIDE active — no US trade in {silence_days}d. "
+            f"Bypassing RS/LLM/sentiment filters this cycle.",
+            source="intraday",
+        )
     if regime == "correction":
         info(
             "SPY below SMA50 — correction mode: trend strategies disabled",
@@ -486,11 +503,13 @@ def run_intraday():
                     source="intraday", exc=e,
                 )
 
-    # Relative Strength filter: only buy tickers outperforming SPY over 6 months.
-    # 6-month window avoids false negatives from short-term corrections.
-    # Leaders beat the market before you buy them, not after.
+    # Relative Strength filter: avoid genuinely broken stocks, NOT early-stage
+    # leaders. Loosened 2026-05-26: when SPY rips 14%, demanding candidates also
+    # match killed every signal. New rule: only block tickers in a clear
+    # 6-month downtrend (more than 15% behind SPY). Sector rotators and recent
+    # turnaround stories can still get bought. Skip entirely if silence override.
     spy_bars_rs = all_bars.get("SPY", [])
-    if len(spy_bars_rs) >= 126:
+    if not silence_override and len(spy_bars_rs) >= 126:
         try:
             spy_6m = float(spy_bars_rs[-1]["close"]) / float(spy_bars_rs[-126]["close"]) - 1
             rs_passed = {}
@@ -498,7 +517,8 @@ def run_intraday():
                 tbars = all_bars.get(ticker, [])
                 if len(tbars) >= 126:
                     tick_6m = float(tbars[-1]["close"]) / float(tbars[-126]["close"]) - 1
-                    if tick_6m >= spy_6m - 0.05:  # 5% tolerance for early-stage leaders
+                    # Only block stocks far behind SPY AND in absolute downtrend.
+                    if tick_6m >= spy_6m - 0.15 or tick_6m >= 0:
                         rs_passed[ticker] = candidates
                     else:
                         info(f"{ticker}: RS filter skipped (6M {tick_6m*100:+.1f}% vs SPY {spy_6m*100:+.1f}%)", source="intraday")
@@ -528,9 +548,10 @@ def run_intraday():
         ticker = s.ticker
         bars = all_bars[ticker]
         try:
-            # Sentiment gate: skip bearish tickers (threshold -0.3)
+            # Sentiment gate: skip bearish tickers (threshold -0.3).
+            # Bypassed when silence override is active.
             ticker_sentiment = sentiments.get(ticker, {}).get("sentiment", 0.0)
-            if ticker_sentiment < -0.3:
+            if not silence_override and ticker_sentiment < -0.3:
                 log_signal(
                     ticker=ticker, strategy=strat_name, action="buy",
                     confidence=s.confidence, acted=False,
@@ -602,29 +623,34 @@ def run_intraday():
             stop_price, target_price = compute_stop_target(
                 entry_price, atr, side="buy", target_mult=10.0
             )
-            # LLM signal filter: Claude reviews setup against entry_signals knowledge base
-            # Run BEFORE sizing so Kelly multiplier uses the conviction score
-            llm_checked += 1
-            approved, llm_reason, llm_conviction = analyse_signal(
-                ticker, bars, strat_name, s.confidence or 0.5
-            )
-            log_llm_output(
-                source="signal_filter", ticker=ticker,
-                output_type="trade_approval",
-                content=llm_reason,
-                conviction=llm_conviction,
-                sentiment=1.0 if approved else -1.0,
-            )
-            if not approved:
-                llm_rejected += 1
-                log_signal(
-                    ticker=ticker, strategy=strat_name, action="buy",
-                    confidence=s.confidence, acted=False,
-                    skip_reason=f"LLM rejected: {llm_reason}",
+            # LLM signal filter: Claude reviews setup against entry_signals knowledge base.
+            # Bypassed when silence override is active (we want this trade to fire).
+            if silence_override:
+                llm_conviction = 0.6   # neutral-positive for Kelly sizing
+                approved = True
+                llm_reason = "silence override — LLM bypassed"
+            else:
+                llm_checked += 1
+                approved, llm_reason, llm_conviction = analyse_signal(
+                    ticker, bars, strat_name, s.confidence or 0.5
                 )
-                info(f"{ticker}: buy rejected by LLM — {llm_reason}", source="intraday")
-                signals_skipped += 1
-                continue
+                log_llm_output(
+                    source="signal_filter", ticker=ticker,
+                    output_type="trade_approval",
+                    content=llm_reason,
+                    conviction=llm_conviction,
+                    sentiment=1.0 if approved else -1.0,
+                )
+                if not approved:
+                    llm_rejected += 1
+                    log_signal(
+                        ticker=ticker, strategy=strat_name, action="buy",
+                        confidence=s.confidence, acted=False,
+                        skip_reason=f"LLM rejected: {llm_reason}",
+                    )
+                    info(f"{ticker}: buy rejected by LLM — {llm_reason}", source="intraday")
+                    signals_skipped += 1
+                    continue
 
             # Continuous Kelly sizing (Thorpe: bet in proportion to your edge).
             # Combines strategy signal confidence (s.confidence) + LLM conviction

@@ -537,6 +537,33 @@ def get_open_scalp_tickers() -> list:
         con.close()
 
 
+def days_since_last_us_trade() -> int:
+    """
+    Return whole calendar days since the last US-portfolio bot trade. Used by
+    the silence-override gate: if the bot has been idle too long, the filter
+    stack is partially bypassed for one cycle to give signals a chance.
+    Returns 999 if never traded.
+    """
+    con = _connect()
+    try:
+        row = con.execute("""
+            SELECT MAX(ts) FROM trades
+            WHERE (portfolio_type IS NULL OR portfolio_type IN ('day_trading', 'long_term'))
+        """).fetchone()
+    finally:
+        con.close()
+    if not row or not row[0]:
+        return 999
+    last = row[0]
+    if not isinstance(last, datetime):
+        try:
+            last = datetime.fromisoformat(str(last))
+        except Exception:
+            return 999
+    delta = datetime.now() - last.replace(tzinfo=None)
+    return max(0, delta.days)
+
+
 def get_open_intraday_tickers(strategies: list[str] | None = None) -> list:
     """
     Return tickers where a buy was placed today by any 'intraday-only' strategy

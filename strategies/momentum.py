@@ -29,7 +29,7 @@ class MomentumStrategy(BaseStrategy):
     def __init__(
         self,
         roc_window: int = 20,
-        roc_threshold: float = 5.0,   # raised from 3% — reduces noise signals
+        roc_threshold: float = 3.0,   # restored from 5% (2026-05-26 — bot too quiet)
         sma_window: int = 50,
         rsi_period: int = 14,
         rsi_min: float = 50.0,
