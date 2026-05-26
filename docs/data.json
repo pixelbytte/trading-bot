@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-26T22:17:50.743314",
+  "generated_at": "2026-05-26T22:50:35.637412",
   "today": "2026-05-26",
   "summary": {
     "trades_today": 0,
@@ -14,6 +14,24 @@
   "strategy_stats": [],
   "recent_trades": [],
   "recent_signals": [
+    {
+      "ts": "2026-05-26 22:50:35.372654",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-05-26 22:50:35.346620",
+      "ticker": "JPM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-05-26 21:20:37.710066",
       "ticker": "COST",
