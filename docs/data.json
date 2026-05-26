@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-25T21:56:34.754930",
-  "today": "2026-05-25",
+  "generated_at": "2026-05-26T07:41:29.657377",
+  "today": "2026-05-26",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -13,45 +13,18 @@
   "open_positions": [],
   "strategy_stats": [],
   "recent_trades": [],
-  "recent_signals": [
-    {
-      "ts": "2026-05-25 19:06:41.052517",
-      "ticker": "COST",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "position size 0"
-    },
-    {
-      "ts": "2026-05-25 19:06:40.996243",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "position size 0"
-    },
-    {
-      "ts": "2026-05-25 19:06:40.958768",
-      "ticker": "GOOGL",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-05-25 19:06:38.995398",
-      "ticker": "AMZN",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    }
-  ],
+  "recent_signals": [],
   "daily_history": [
+    {
+      "date": "2026-05-26",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-25",
       "pnl": 0.0,
@@ -173,8 +146,8 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 2,
-      "pnl_today": -4393.248632812482,
+      "trades_today": 0,
+      "pnl_today": 0.0,
       "total_pnl": -4393.248632812482,
       "total_trades": 2,
       "wins": 0,
@@ -209,6 +182,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-05-26",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 2,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-25",
       "pnl": -4393.248632812482,
