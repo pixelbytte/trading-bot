@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T17:24:43.175050",
+  "generated_at": "2026-05-27T19:37:47.876382",
   "today": "2026-05-27",
   "summary": {
     "trades_today": 0,
@@ -14,6 +14,15 @@
   "strategy_stats": [],
   "recent_trades": [],
   "recent_signals": [
+    {
+      "ts": "2026-05-27 19:37:47.570467",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-05-27 17:24:42.909016",
       "ticker": "COST",
