@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T13:49:52.593188",
+  "generated_at": "2026-05-27T17:24:43.175050",
   "today": "2026-05-27",
   "summary": {
     "trades_today": 0,
@@ -13,7 +13,53 @@
   "open_positions": [],
   "strategy_stats": [],
   "recent_trades": [],
-  "recent_signals": [],
+  "recent_signals": [
+    {
+      "ts": "2026-05-27 17:24:42.909016",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-05-27 16:50:07.747041",
+      "ticker": "CAT",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-05-27 16:50:05.899728",
+      "ticker": "GOOGL",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-05-27 16:50:03.814733",
+      "ticker": "AMZN",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-05-27 16:50:01.973215",
+      "ticker": "ARM",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    }
+  ],
   "daily_history": [
     {
       "date": "2026-05-27",
