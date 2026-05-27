@@ -40,6 +40,12 @@ def _headers() -> dict:
 
 
 def _load_instrument_master() -> None:
+    """Load NSE_EQ spot equities only (skip F&O, currency, commodity rows).
+
+    Upstox CSV schema (verified 2026-05-27):
+      instrument_type='EQUITY' AND exchange='NSE_EQ' selects spot stocks.
+      Earlier code used 'instrumenttype'='EQ' which matched zero rows.
+    """
     global _instrument_cache
     if _instrument_cache:
         return
@@ -48,9 +54,10 @@ def _load_instrument_master() -> None:
         r.raise_for_status()
         with gzip.open(io.BytesIO(r.content), "rt") as f:
             for row in csv.DictReader(f):
-                if row.get("instrumenttype") == "EQ":
+                if row.get("instrument_type") == "EQUITY" and row.get("exchange") == "NSE_EQ":
                     _instrument_cache[row["tradingsymbol"]] = row["instrument_key"]
-        info(f"Upstox instrument master loaded: {len(_instrument_cache)} equities", source="upstox")
+        info(f"Upstox instrument master loaded: {len(_instrument_cache)} NSE equities",
+             source="upstox")
     except Exception as e:
         error(f"Failed to load instrument master: {e}", source="upstox", exc=e)
 
