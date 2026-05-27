@@ -1,11 +1,14 @@
 """
 Paper trading wrapper for the India bot.
-Uses yfinance for real NSE market data — no Upstox credentials needed.
-Simulates order fills at current price and tracks positions in DuckDB.
+Default data source: yfinance (free, no credentials).
+Optional upgrade: set UPSTOX_DATA_ONLY=true in .env / GitHub Secrets to route
+daily bars + live quotes through Upstox PRODUCTION (real-time, more reliable).
+Orders ALWAYS stay simulated — Upstox production is used READ-ONLY.
 
-Switch to live: set INDIA_PAPER=false in .env / GitHub Secrets.
+Switch to live trading (real money): set INDIA_PAPER=false in .env / GitHub Secrets.
 """
 
+import os
 import uuid
 import pandas as pd
 import yfinance as yf
@@ -19,6 +22,24 @@ from utils.discord import send_india_close_alert
 IST = ZoneInfo("Asia/Kolkata")
 
 from config.india_settings import ACCOUNT_SIZE_INR
+
+# Hybrid mode: Upstox production for READS (data, quotes), paper sim for WRITES.
+# Requires UPSTOX_ACCESS_TOKEN. Falls back to yfinance per-call on any failure.
+_USE_UPSTOX_DATA = os.getenv("UPSTOX_DATA_ONLY", "false").lower() == "true"
+_upstox_get_bars = None
+_upstox_get_quote = None
+if _USE_UPSTOX_DATA:
+    try:
+        from brokers.upstox import (
+            get_bars as _upstox_get_bars,
+            get_quote as _upstox_get_quote,
+        )
+        info("Upstox data layer ENABLED — daily bars + quotes from Upstox production",
+             source="upstox_paper")
+    except Exception as _e:
+        warning(f"UPSTOX_DATA_ONLY set but Upstox import failed: {_e}. "
+                f"Using yfinance only.", source="upstox_paper")
+        _USE_UPSTOX_DATA = False
 
 
 # Symbols that need special yfinance handling
@@ -37,12 +58,28 @@ def _yf(symbol: str) -> str:
 # ---------------------------------------------------------------------------
 
 def get_bars(symbol: str, days: int = 400, timeframe: str = "day") -> list:
-    """Fetch NSE bars via yfinance.download. Returns list of dicts (ascending).
+    """Fetch NSE bars. Returns list of dicts (ascending).
+
+    Source priority (when UPSTOX_DATA_ONLY=true):
+      1. Upstox production API (for daily timeframe only — v2 doesn't expose 15m)
+      2. yfinance fallback
 
     For intraday intervals (15m/30m/60m), yfinance's start/end mode is buggy and
     often returns 'possibly delisted' for NSE tickers. Use period= shorthand
     instead — yfinance handles the date math correctly that way.
     """
+    # Try Upstox for daily bars when enabled (v2 only supports day/30min/1min)
+    if _USE_UPSTOX_DATA and _upstox_get_bars and timeframe == "day":
+        try:
+            bars = _upstox_get_bars(symbol, days=days, timeframe=timeframe)
+            if bars and len(bars) >= 30:
+                return bars
+            warning(f"Upstox returned {len(bars) if bars else 0} bars for {symbol}/{timeframe} — "
+                    f"falling back to yfinance", source="upstox_paper")
+        except Exception as e:
+            warning(f"Upstox get_bars failed for {symbol}: {e} — falling back to yfinance",
+                    source="upstox_paper")
+
     from datetime import timedelta
     try:
         interval = {"day": "1d", "15min": "15m", "30min": "30m", "hour": "60m"}.get(timeframe, "1d")
@@ -88,7 +125,21 @@ def get_bars(symbol: str, days: int = 400, timeframe: str = "day") -> list:
 
 
 def get_quote(symbol: str) -> dict | None:
-    """Return current price using yfinance fast_info."""
+    """Return current price.
+
+    Source priority:
+      1. Upstox production live LTP (real-time, when UPSTOX_DATA_ONLY=true)
+      2. yfinance fast_info fallback (delayed but free)
+    """
+    if _USE_UPSTOX_DATA and _upstox_get_quote:
+        try:
+            q = _upstox_get_quote(symbol)
+            if q and q.get("price"):
+                return q
+        except Exception as e:
+            warning(f"Upstox get_quote failed for {symbol}: {e} — falling back to yfinance",
+                    source="upstox_paper")
+
     try:
         fi = yf.Ticker(_yf(symbol)).fast_info
         price = float(fi.last_price or fi.regular_market_previous_close)

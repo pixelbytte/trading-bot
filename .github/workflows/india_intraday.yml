@@ -40,8 +40,11 @@ jobs:
 
       - name: Run India intraday
         env:
-          # Set INDIA_PAPER=false in GitHub Secrets when ready to go live
+          # INDIA_PAPER=true keeps orders simulated (the safe default).
+          # UPSTOX_DATA_ONLY=true uses Upstox production read-only for bars/quotes
+          # while keeping orders simulated — best of both worlds.
           INDIA_PAPER:         ${{ secrets.INDIA_PAPER || 'true' }}
+          UPSTOX_DATA_ONLY:    ${{ secrets.UPSTOX_DATA_ONLY || 'false' }}
           UPSTOX_ACCESS_TOKEN: ${{ secrets.UPSTOX_ACCESS_TOKEN }}
           UPSTOX_CLIENT_ID:    ${{ secrets.UPSTOX_CLIENT_ID }}
           DISCORD_WEBHOOK:     ${{ secrets.DISCORD_WEBHOOK }}
