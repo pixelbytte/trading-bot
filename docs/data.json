@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-27T23:03:09.369861",
-  "today": "2026-05-27",
+  "generated_at": "2026-05-28T07:53:30.677974",
+  "today": "2026-05-28",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -13,81 +13,18 @@
   "open_positions": [],
   "strategy_stats": [],
   "recent_trades": [],
-  "recent_signals": [
-    {
-      "ts": "2026-05-27 23:03:09.096558",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-27 21:29:02.200094",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-27 19:37:47.570467",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-27 17:24:42.909016",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-27 16:50:07.747041",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-05-27 16:50:05.899728",
-      "ticker": "GOOGL",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-05-27 16:50:03.814733",
-      "ticker": "AMZN",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-05-27 16:50:01.973215",
-      "ticker": "ARM",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    }
-  ],
+  "recent_signals": [],
   "daily_history": [
+    {
+      "date": "2026-05-28",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-27",
       "pnl": 0.0,
@@ -265,6 +202,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-05-28",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 2,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-27",
       "pnl": 0.0,
