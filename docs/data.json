@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T19:57:58.808977",
+  "generated_at": "2026-05-29T22:00:55.949174",
   "today": "2026-05-29",
   "summary": {
     "trades_today": 0,
@@ -14,6 +14,15 @@
   "strategy_stats": [],
   "recent_trades": [],
   "recent_signals": [
+    {
+      "ts": "2026-05-29 22:00:55.684748",
+      "ticker": "GOOGL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-05-29 16:59:48.689960",
       "ticker": "CAT",
