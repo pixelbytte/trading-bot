@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-28T22:39:38.023049",
-  "today": "2026-05-28",
+  "generated_at": "2026-05-29T07:52:07.608167",
+  "today": "2026-05-29",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -13,63 +13,18 @@
   "open_positions": [],
   "strategy_stats": [],
   "recent_trades": [],
-  "recent_signals": [
-    {
-      "ts": "2026-05-28 22:02:15.506897",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-28 19:56:50.279319",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-28 17:36:44.519415",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-28 17:09:45.240394",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-05-28 17:09:43.351292",
-      "ticker": "GOOGL",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-05-28 17:09:41.332667",
-      "ticker": "AMZN",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    }
-  ],
+  "recent_signals": [],
   "daily_history": [
+    {
+      "date": "2026-05-29",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-28",
       "pnl": 0.0,
@@ -257,6 +212,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-05-29",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 2,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-28",
       "pnl": 0.0,
