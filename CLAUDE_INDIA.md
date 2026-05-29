@@ -421,6 +421,204 @@ git add -A && git commit -m "describe your change" && git push
 
 ---
 
+## BUILD YOUR OWN BOT (forking + customizing)
+
+Your son's bot is the starting point. If you want your **own version** —
+different stocks, different strategy, different risk profile — fork it.
+Your changes won't affect his bot.
+
+### Step 1 — Fork the repo
+
+1. Go to https://github.com/pixelbytte/trading-bot
+2. Click **Fork** (top-right)
+3. Pick your own GitHub username as the owner
+4. Name it whatever you want (e.g. `dads-india-bot`)
+5. Click **Create fork**
+
+You now have your own copy at `https://github.com/<yourusername>/dads-india-bot`.
+
+### Step 2 — Clone YOUR fork to the Mac
+
+```zsh
+cd ~/Documents
+git clone https://github.com/<yourusername>/dads-india-bot.git
+cd dads-india-bot
+```
+
+Then repeat the venv + dependencies setup from the "ONE-TIME SETUP" section
+above, but in this new folder.
+
+### Step 3 — Set up YOUR GitHub Secrets
+
+In **your** forked repo (not your son's), go to Settings → Secrets and
+variables → Actions, and add:
+- `UPSTOX_CLIENT_ID`, `UPSTOX_CLIENT_SECRET`, `UPSTOX_ACCESS_TOKEN` — your
+  own Upstox credentials
+- `UPSTOX_DATA_ONLY` = `true`
+- `INDIA_PAPER` = `true` (stay paper while you experiment)
+- `DISCORD_WEBHOOK` — your own webhook (create a new Discord channel and
+  webhook so alerts don't clash with your son's)
+
+### Step 4 — Understand what each file does
+
+If you want to change behavior, here's the map of which file controls what:
+
+| File | What it controls |
+|------|------------------|
+| `config/india_settings.py` | The watchlist (which stocks to trade), account size, max position size, market hours |
+| `risk/india_limits.py` | Risk per trade, daily loss limit, warning thresholds |
+| `routines/india_intraday.py` | The main loop — when to scan, what filters to apply, when to squareoff |
+| `strategies/india_orb.py` | Opening Range Breakout strategy logic |
+| `strategies/nse_oversold_bounce.py` | RSI-bounce strategy for oversold blue chips |
+| `strategies/ma_rsi.py` | Moving-average crossover with RSI filter |
+| `strategies/momentum.py` | Rate-of-change + SMA trend momentum |
+| `brokers/upstox.py` | Live Upstox API wrapper |
+| `brokers/upstox_paper.py` | Paper-trade simulator (uses Upstox data for prices) |
+| `scripts/backtest_india.py` | Historical strategy testing |
+| `.github/workflows/india_intraday.yml` | When the bot runs (cron schedule) |
+
+### Step 5 — Make your first change (the watchlist)
+
+Open `config/india_settings.py` in VS Code. Find this block:
+```python
+NSE_WATCHLIST = [
+    # ── Banking & Finance ──
+    "HDFCBANK", "ICICIBANK", "SBIN", "KOTAKBANK", "AXISBANK", "BAJFINANCE",
+    ...
+]
+```
+
+To add a stock you want to trade (e.g. **TATAMOTORS**):
+1. Add `"TATAMOTORS",` to the list
+2. Save the file
+3. Commit and push:
+   ```zsh
+   git add config/india_settings.py
+   git commit -m "Add TATAMOTORS to watchlist"
+   git push
+   ```
+4. The next scheduled run picks it up
+
+To remove a stock you don't want: delete its line, save, commit, push.
+
+**Rule of thumb:** stick to liquid large-caps (Nifty 100 / Nifty Next 50).
+Mid-caps and small-caps have wider spreads and the strategies aren't tuned
+for them. Always at least ₹50 share price.
+
+### Step 6 — Adjust risk for your own account
+
+Open `risk/india_limits.py`. The key values are:
+
+```python
+RISK_PER_TRADE_INR  = ACCOUNT_SIZE_INR * 0.01   # 1% per trade
+MAX_DAILY_LOSS_INR  = ACCOUNT_SIZE_INR * 0.03   # 3% daily kill
+MAX_OPEN_POSITIONS  = 6
+MAX_TRADES_PER_DAY  = 15
+```
+
+To be more aggressive: change `* 0.01` → `* 0.015` (1.5% risk per trade).
+To be more conservative: change `* 0.01` → `* 0.005` (0.5% risk per trade).
+
+**Never go above 2% risk per trade.** That's the maximum sensible level
+even for confident traders.
+
+### Step 7 — Add your own strategy (the fun part)
+
+If you've learned to recognize a chart pattern that has edge, you can codify
+it as a strategy. Easiest path: ask Claude to write it for you.
+
+Example prompt for Claude:
+> "I want a new India strategy: buy when RSI(2) is below 10 AND price is
+> above the 200-day moving average. Sell when RSI(2) crosses back above 70.
+> Create a new file `strategies/india_rsi2_dip.py` following the pattern of
+> the other India strategies. Then wire it into `routines/india_intraday.py`."
+
+Claude will:
+1. Create the strategy file
+2. Add it to the STRATEGIES list in `india_intraday.py`
+3. Walk you through testing it
+
+**Before going live with a new strategy, ALWAYS backtest it:**
+```zsh
+python3 -m scripts.backtest_india
+```
+
+The backtest replays the last ~1.5 years of NSE data and shows you:
+- Total trades
+- Win rate
+- Expectancy per trade (in R units — multiples of risk)
+- Sharpe ratio (risk-adjusted return — anything above 1.0 is decent,
+  above 2.0 is good, above 3.0 is excellent)
+- Maximum drawdown
+
+**Rule of thumb for adopting a strategy:**
+- Sharpe < 0.5: throw it away
+- Sharpe 0.5–1.5: marginal, only run with very small position size
+- Sharpe > 1.5: tradeable in paper, watch for 4+ weeks before live
+- Sharpe > 2.5: solid edge — backtest is reliable
+
+### Step 8 — Change the cron schedule (when the bot runs)
+
+Open `.github/workflows/india_intraday.yml`. Find:
+```yaml
+schedule:
+  - cron: '*/15 4-9 * * 1-5'
+```
+
+Translation: every 15 minutes, from 4 AM to 9 AM UTC, Monday–Friday.
+That's 9:30 AM – 3:15 PM IST.
+
+To run less frequently (every 30 min): `'*/30 4-9 * * 1-5'`
+To run only during the first hour: `'*/15 4 * * 1-5'`
+To run hourly: `'0 4-9 * * 1-5'`
+
+**Why this matters:** more frequent cycles = more chances to catch signals,
+but also more GitHub Actions runtime (you have 2000 free minutes/month —
+plenty for our use case, but worth knowing).
+
+### Step 9 — Test your changes safely
+
+Before pushing changes to git:
+1. **Run the bot once locally** to make sure it doesn't crash:
+   ```zsh
+   python3 -m routines.india_intraday
+   ```
+2. **Run the backtest** to confirm the strategy logic works:
+   ```zsh
+   python3 -m scripts.backtest_india
+   ```
+3. **Check the syntax** before committing:
+   ```zsh
+   python3 -c "import ast; ast.parse(open('strategies/your_new_strategy.py').read()); print('OK')"
+   ```
+
+Only after all three pass, commit and push.
+
+### Step 10 — Different broker entirely (advanced)
+
+If you want to use **Zerodha**, **Fyers**, **Angel One**, or another broker
+instead of Upstox, you'd create a new file like `brokers/zerodha.py` that
+mimics the same interface (`get_bars`, `get_quote`, `get_positions`,
+`place_bracket_order`, `close_position`, `cancel_all_orders`).
+
+Then in `routines/india_intraday.py`, change the import line from
+`from brokers.upstox_paper import ...` to `from brokers.zerodha import ...`.
+
+This is a meaningful project — ask Claude to walk you through it. Plan to
+spend a weekend.
+
+### What you should NOT change
+
+| File / area | Why not |
+|-------------|---------|
+| `data/db.py` | Database schema — touching this breaks the trade log |
+| `utils/logger.py` | Logging plumbing — works fine as is |
+| `utils/discord.py` | Discord webhook helpers — works fine as is |
+| `risk/sizing.py` | Position-sizing math — well-tested, don't second-guess |
+| Anything starting with `routines/intraday.py` / `routines/longterm.py` | That's the US bot — leave it alone |
+
+---
+
 ## ONE LAST RULE
 
 **Never push code changes you don't fully understand.** This bot manages real
