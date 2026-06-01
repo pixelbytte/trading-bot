@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-29T22:26:13.867359",
-  "today": "2026-05-29",
+  "generated_at": "2026-06-01T09:22:21.274404",
+  "today": "2026-06-01",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -13,45 +13,18 @@
   "open_positions": [],
   "strategy_stats": [],
   "recent_trades": [],
-  "recent_signals": [
-    {
-      "ts": "2026-05-29 22:00:55.684748",
-      "ticker": "GOOGL",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-05-29 16:59:48.689960",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-05-29 16:59:46.378878",
-      "ticker": "GOOGL",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-05-29 16:59:44.122213",
-      "ticker": "AMZN",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    }
-  ],
+  "recent_signals": [],
   "daily_history": [
+    {
+      "date": "2026-06-01",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-29",
       "pnl": 0.0,
@@ -249,6 +222,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-01",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 2,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-05-29",
       "pnl": 0.0,
