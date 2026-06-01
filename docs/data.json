@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T16:20:14.670791",
+  "generated_at": "2026-06-01T19:22:45.568250",
   "today": "2026-06-01",
   "summary": {
     "trades_today": 0,
@@ -13,7 +13,35 @@
   "open_positions": [],
   "strategy_stats": [],
   "recent_trades": [],
-  "recent_signals": [],
+  "recent_signals": [
+    {
+      "ts": "2026-06-01 19:12:02.629845",
+      "ticker": "AAPL",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-01 19:12:01.186610",
+      "ticker": "GOOGL",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-01 19:11:59.236140",
+      "ticker": "AMZN",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    }
+  ],
   "daily_history": [
     {
       "date": "2026-06-01",
