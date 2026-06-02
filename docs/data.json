@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T18:07:35.217675",
+  "generated_at": "2026-06-02T21:25:09.275195",
   "today": "2026-06-02",
   "summary": {
     "trades_today": 4,
@@ -69,6 +69,15 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-02 21:25:08.997634",
+      "ticker": "GOOGL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-02 18:07:34.895712",
       "ticker": "GOOGL",
