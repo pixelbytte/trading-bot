@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-01T22:59:36.734826",
-  "today": "2026-06-01",
+  "generated_at": "2026-06-02T08:25:10.472262",
+  "today": "2026-06-02",
   "summary": {
-    "trades_today": 0,
+    "trades_today": 4,
     "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -12,46 +12,101 @@
   },
   "open_positions": [],
   "strategy_stats": [],
-  "recent_trades": [],
+  "recent_trades": [
+    {
+      "ts": "2026-06-02 08:25:09.959409",
+      "ticker": "BAJFINANCE",
+      "side": "buy",
+      "qty": 106.0,
+      "price": 880.0999755859375,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-02 08:25:09.582697",
+      "ticker": "KOTAKBANK",
+      "side": "buy",
+      "qty": 246.0,
+      "price": 380.8500061035156,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-02 08:25:08.987103",
+      "ticker": "SBIN",
+      "side": "buy",
+      "qty": 97.0,
+      "price": 960.25,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-02 08:25:08.286122",
+      "ticker": "HDFCBANK",
+      "side": "buy",
+      "qty": 125.0,
+      "price": 747.5999755859375,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    }
+  ],
   "recent_signals": [
     {
-      "ts": "2026-06-01 22:21:53.667114",
-      "ticker": "AMZN",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
+      "ts": "2026-06-02 08:25:09.957441",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.899,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-01 19:12:02.629845",
-      "ticker": "AAPL",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-02 08:25:09.580716",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-01 19:12:01.186610",
-      "ticker": "GOOGL",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-02 08:25:08.984369",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-01 19:11:59.236140",
-      "ticker": "AMZN",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-02 08:25:08.284111",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-06-02",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 4,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-01",
       "pnl": 0.0,
@@ -223,17 +278,82 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 0,
+      "trades_today": 4,
       "pnl_today": 0.0,
       "total_pnl": -4393.248632812482,
-      "total_trades": 2,
+      "total_trades": 6,
       "wins": 0,
       "losses": 2,
       "win_rate": 0.0
     },
-    "open_positions": [],
+    "open_positions": [
+      {
+        "ticker": "HDFCBANK",
+        "qty": 125,
+        "avg_entry": 747.6
+      },
+      {
+        "ticker": "SBIN",
+        "qty": 97,
+        "avg_entry": 960.25
+      },
+      {
+        "ticker": "KOTAKBANK",
+        "qty": 246,
+        "avg_entry": 380.85
+      },
+      {
+        "ticker": "BAJFINANCE",
+        "qty": 106,
+        "avg_entry": 880.1
+      }
+    ],
     "strategy_stats": [],
     "recent_trades": [
+      {
+        "ts": "2026-06-02 08:25:09.959409",
+        "ticker": "BAJFINANCE",
+        "side": "buy",
+        "qty": 106.0,
+        "price": 880.0999755859375,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=860.45 TGT=919.40"
+      },
+      {
+        "ts": "2026-06-02 08:25:09.582697",
+        "ticker": "KOTAKBANK",
+        "side": "buy",
+        "qty": 246.0,
+        "price": 380.8500061035156,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=372.70 TGT=397.15"
+      },
+      {
+        "ts": "2026-06-02 08:25:08.987103",
+        "ticker": "SBIN",
+        "side": "buy",
+        "qty": 97.0,
+        "price": 960.25,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=943.00 TGT=994.75"
+      },
+      {
+        "ts": "2026-06-02 08:25:08.286122",
+        "ticker": "HDFCBANK",
+        "side": "buy",
+        "qty": 125.0,
+        "price": 747.5999755859375,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=734.40 TGT=774.00"
+      },
       {
         "ts": "2026-05-25 13:45:31.114719",
         "ticker": "BAJFINANCE",
@@ -259,6 +379,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-02",
+      "pnl": 0.0,
+      "num_trades": 4,
+      "wins": 0,
+      "losses": 2,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-01",
       "pnl": 0.0,
