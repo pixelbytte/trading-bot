@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T15:05:30.374119",
+  "generated_at": "2026-06-03T18:24:36.959546",
   "today": "2026-06-03",
   "summary": {
     "trades_today": 4,
@@ -113,6 +113,33 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-03 18:11:12.636605",
+      "ticker": "DE",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-06-03 18:11:10.946688",
+      "ticker": "AAPL",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-06-03 18:11:09.406187",
+      "ticker": "CAT",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Daily loss limit hit: $-7088.45"
+    },
     {
       "ts": "2026-06-03 08:51:37.965101",
       "ticker": "AXISBANK",
