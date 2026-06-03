@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-02T23:16:48.543403",
-  "today": "2026-06-02",
+  "generated_at": "2026-06-03T08:51:38.595181",
+  "today": "2026-06-03",
   "summary": {
     "trades_today": 4,
-    "realized_pnl": -3323.2469482421902,
+    "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 2,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
@@ -23,6 +23,50 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-06-03 08:51:37.967074",
+      "ticker": "AXISBANK",
+      "side": "buy",
+      "qty": 74.0,
+      "price": 1260.199951171875,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-03 08:51:37.329595",
+      "ticker": "SBIN",
+      "side": "buy",
+      "qty": 97.0,
+      "price": 962.7000122070312,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-03 08:51:36.736899",
+      "ticker": "ICICIBANK",
+      "side": "buy",
+      "qty": 75.0,
+      "price": 1244.300048828125,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-03 08:51:36.129112",
+      "ticker": "HDFCBANK",
+      "side": "buy",
+      "qty": 124.0,
+      "price": 750.2000122070312,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-06-02 08:25:09.959409",
       "ticker": "BAJFINANCE",
@@ -70,49 +114,40 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-06-02 23:16:48.261694",
-      "ticker": "GOOGL",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-02 21:25:08.997634",
-      "ticker": "GOOGL",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-02 18:07:34.895712",
-      "ticker": "GOOGL",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-02 17:54:16.686378",
-      "ticker": "AAPL",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-03 08:51:37.965101",
+      "ticker": "AXISBANK",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-02 17:54:14.297353",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-03 08:51:37.327726",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-03 08:51:36.734962",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-03 08:51:36.124810",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.68,
+      "acted": true,
+      "skip_reason": ""
     },
     {
       "ts": "2026-06-02 08:25:09.957441",
@@ -152,6 +187,16 @@
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-06-03",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 4,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-02",
       "pnl": -3323.2469482421902,
@@ -334,9 +379,9 @@
   "india": {
     "summary": {
       "trades_today": 4,
-      "pnl_today": -3323.2469482421902,
+      "pnl_today": 0.0,
       "total_pnl": -7716.495581054673,
-      "total_trades": 6,
+      "total_trades": 10,
       "wins": 0,
       "losses": 4,
       "win_rate": 0.0
@@ -351,6 +396,26 @@
         "ticker": "BAJFINANCE",
         "qty": 106,
         "avg_entry": 880.1
+      },
+      {
+        "ticker": "HDFCBANK",
+        "qty": 124,
+        "avg_entry": 750.2
+      },
+      {
+        "ticker": "ICICIBANK",
+        "qty": 75,
+        "avg_entry": 1244.3
+      },
+      {
+        "ticker": "SBIN",
+        "qty": 97,
+        "avg_entry": 962.7
+      },
+      {
+        "ticker": "AXISBANK",
+        "qty": 74,
+        "avg_entry": 1260.2
       }
     ],
     "strategy_stats": [
@@ -364,6 +429,50 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-06-03 08:51:37.967074",
+        "ticker": "AXISBANK",
+        "side": "buy",
+        "qty": 74.0,
+        "price": 1260.199951171875,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1231.60 TGT=1317.40"
+      },
+      {
+        "ts": "2026-06-03 08:51:37.329595",
+        "ticker": "SBIN",
+        "side": "buy",
+        "qty": 97.0,
+        "price": 962.7000122070312,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=942.85 TGT=1002.40"
+      },
+      {
+        "ts": "2026-06-03 08:51:36.736899",
+        "ticker": "ICICIBANK",
+        "side": "buy",
+        "qty": 75.0,
+        "price": 1244.300048828125,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1215.50 TGT=1301.90"
+      },
+      {
+        "ts": "2026-06-03 08:51:36.129112",
+        "ticker": "HDFCBANK",
+        "side": "buy",
+        "qty": 124.0,
+        "price": 750.2000122070312,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=743.05 TGT=764.50"
+      },
       {
         "ts": "2026-06-02 08:25:09.959409",
         "ticker": "BAJFINANCE",
@@ -433,6 +542,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-03",
+      "pnl": 0.0,
+      "num_trades": 4,
+      "wins": 0,
+      "losses": 4,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-02",
       "pnl": -3323.2469482421902,
