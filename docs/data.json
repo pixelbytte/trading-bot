@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T13:32:25.435505",
+  "generated_at": "2026-06-04T16:57:09.500413",
   "today": "2026-06-04",
   "summary": {
     "trades_today": 2,
@@ -135,6 +135,60 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-04 16:57:09.146422",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-04 16:57:09.117113",
+      "ticker": "JPM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-04 16:34:26.348022",
+      "ticker": "DE",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-04 16:34:24.490180",
+      "ticker": "AAPL",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-04 16:34:22.423523",
+      "ticker": "CAT",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-04 16:34:20.648999",
+      "ticker": "ARM",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
     {
       "ts": "2026-06-04 08:16:55.894149",
       "ticker": "ICICIBANK",
