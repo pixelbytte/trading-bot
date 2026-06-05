@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T20:30:55.145489",
+  "generated_at": "2026-06-05T22:06:19.208254",
   "today": "2026-06-05",
   "summary": {
     "trades_today": 1,
@@ -146,6 +146,51 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-05 22:06:18.950004",
+      "ticker": "MRVL",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-05 22:06:18.882251",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-05 22:06:18.860622",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-05 22:06:18.792445",
+      "ticker": "AMZN",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-05 22:06:18.770911",
+      "ticker": "GOOGL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-05 20:30:54.856717",
       "ticker": "MRVL",
