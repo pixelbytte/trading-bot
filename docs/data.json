@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T13:25:37.078633",
+  "generated_at": "2026-06-05T16:32:44.784896",
   "today": "2026-06-05",
   "summary": {
     "trades_today": 1,
@@ -146,6 +146,51 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-05 16:32:44.471799",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-05 16:15:29.602870",
+      "ticker": "DE",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-05 16:15:27.881797",
+      "ticker": "AAPL",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-05 16:15:25.595553",
+      "ticker": "CAT",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-05 16:15:23.449561",
+      "ticker": "ARM",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
     {
       "ts": "2026-06-05 08:03:11.075517",
       "ticker": "AXISBANK",
