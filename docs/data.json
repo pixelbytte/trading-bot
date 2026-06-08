@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T17:25:57.318927",
+  "generated_at": "2026-06-08T19:40:44.904745",
   "today": "2026-06-08",
   "summary": {
     "trades_today": 0,
@@ -146,6 +146,15 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-08 19:40:44.635959",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-08 17:25:56.996977",
       "ticker": "MRVL",
