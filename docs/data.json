@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-05T22:12:47.501198",
-  "today": "2026-06-05",
+  "generated_at": "2026-06-08T08:50:24.132232",
+  "today": "2026-06-08",
   "summary": {
-    "trades_today": 1,
-    "realized_pnl": -710.3963867187567,
+    "trades_today": 0,
+    "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 1,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
@@ -147,177 +147,6 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-06-05 22:06:18.950004",
-      "ticker": "MRVL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 22:06:18.882251",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 22:06:18.860622",
-      "ticker": "UNH",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 22:06:18.792445",
-      "ticker": "AMZN",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 22:06:18.770911",
-      "ticker": "GOOGL",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 20:30:54.856717",
-      "ticker": "MRVL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 20:30:54.798718",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 20:30:54.778498",
-      "ticker": "UNH",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 20:30:54.727720",
-      "ticker": "AMZN",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 20:30:54.706909",
-      "ticker": "GOOGL",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 18:29:47.485596",
-      "ticker": "MRVL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 18:29:47.466902",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 18:29:47.448394",
-      "ticker": "UNH",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 18:29:47.343244",
-      "ticker": "AAPL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 16:32:44.471799",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-05 16:15:29.602870",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-05 16:15:27.881797",
-      "ticker": "AAPL",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-05 16:15:25.595553",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-05 16:15:23.449561",
-      "ticker": "ARM",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
       "ts": "2026-06-05 08:03:11.075517",
       "ticker": "AXISBANK",
       "strategy": "india_orb",
@@ -418,6 +247,16 @@
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-06-08",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-05",
       "pnl": -710.3963867187567,
@@ -629,8 +468,8 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 1,
-      "pnl_today": -710.3963867187567,
+      "trades_today": 0,
+      "pnl_today": 0.0,
       "total_pnl": -16141.543200683596,
       "total_trades": 13,
       "wins": 0,
@@ -811,6 +650,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-08",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 10,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-05",
       "pnl": -710.3963867187567,
