@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T19:40:44.904745",
+  "generated_at": "2026-06-08T21:28:13.294369",
   "today": "2026-06-08",
   "summary": {
     "trades_today": 0,
@@ -146,6 +146,15 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-08 21:28:13.020323",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-08 19:40:44.635959",
       "ticker": "COST",
