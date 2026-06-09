@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T22:20:29.415768",
+  "generated_at": "2026-06-09T22:52:02.132282",
   "today": "2026-06-09",
   "summary": {
     "trades_today": 2,
@@ -168,6 +168,60 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-09 22:52:01.867905",
+      "ticker": "AVGO",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 22:52:01.848342",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 22:52:01.829210",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 22:52:01.712437",
+      "ticker": "SPY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 22:52:01.693023",
+      "ticker": "AMZN",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 22:52:01.666309",
+      "ticker": "AAPL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-09 21:05:46.821290",
       "ticker": "AVGO",
@@ -378,24 +432,6 @@
     {
       "ts": "2026-06-02 08:25:09.580716",
       "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-02 08:25:08.984369",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-02 08:25:08.284111",
-      "ticker": "HDFCBANK",
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
