@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-08T23:01:30.384946",
-  "today": "2026-06-08",
+  "generated_at": "2026-06-09T07:43:10.471058",
+  "today": "2026-06-09",
   "summary": {
-    "trades_today": 0,
+    "trades_today": 1,
     "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -23,6 +23,17 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-06-09 07:43:08.907700",
+      "ticker": "SBIN",
+      "side": "buy",
+      "qty": 93.0,
+      "price": 1001.25,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-06-05 08:03:11.078870",
       "ticker": "AXISBANK",
@@ -147,103 +158,13 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-06-08 23:01:30.061407",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-08 21:28:13.020323",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-08 19:40:44.635959",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-08 17:25:56.996977",
-      "ticker": "MRVL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-08 17:25:56.975966",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-08 17:25:56.949865",
-      "ticker": "UNH",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-08 17:25:56.817778",
-      "ticker": "AAPL",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-08 16:57:38.621340",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-09 07:43:08.904214",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-08 16:57:36.798327",
-      "ticker": "AAPL",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-08 16:57:35.210987",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-08 16:57:33.143049",
-      "ticker": "ARM",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     },
     {
       "ts": "2026-06-05 08:03:11.075517",
@@ -346,6 +267,16 @@
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-06-09",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 1,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-08",
       "pnl": 0.0,
@@ -567,10 +498,10 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 0,
+      "trades_today": 1,
       "pnl_today": 0.0,
       "total_pnl": -16141.543200683596,
-      "total_trades": 13,
+      "total_trades": 14,
       "wins": 0,
       "losses": 10,
       "win_rate": 0.0
@@ -590,6 +521,11 @@
         "ticker": "ICICIBANK",
         "qty": 74,
         "avg_entry": 1250.5
+      },
+      {
+        "ticker": "SBIN",
+        "qty": 93,
+        "avg_entry": 1001.25
       }
     ],
     "strategy_stats": [
@@ -603,6 +539,17 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-06-09 07:43:08.907700",
+        "ticker": "SBIN",
+        "side": "buy",
+        "qty": 93.0,
+        "price": 1001.25,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=983.50 TGT=1036.75"
+      },
       {
         "ts": "2026-06-05 08:03:11.078870",
         "ticker": "AXISBANK",
@@ -749,6 +696,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-09",
+      "pnl": 0.0,
+      "num_trades": 1,
+      "wins": 0,
+      "losses": 10,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-08",
       "pnl": 0.0,
