@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T19:00:42.068876",
+  "generated_at": "2026-06-09T21:05:47.088111",
   "today": "2026-06-09",
   "summary": {
     "trades_today": 2,
@@ -168,6 +168,60 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-09 21:05:46.821290",
+      "ticker": "AVGO",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 21:05:46.799625",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 21:05:46.779162",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 21:05:46.667430",
+      "ticker": "SPY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 21:05:46.647041",
+      "ticker": "AMZN",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-09 21:05:46.620626",
+      "ticker": "AAPL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-09 19:00:41.772889",
       "ticker": "COST",
