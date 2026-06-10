@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T17:25:28.187772",
+  "generated_at": "2026-06-10T19:55:09.830896",
   "today": "2026-06-10",
   "summary": {
     "trades_today": 3,
@@ -190,6 +190,51 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-10 19:55:09.569287",
+      "ticker": "AVGO",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-10 19:55:09.550634",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-10 19:55:09.531050",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-10 19:55:09.429713",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-10 19:55:09.399614",
+      "ticker": "SPY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-10 17:25:27.966997",
       "ticker": "COST",
