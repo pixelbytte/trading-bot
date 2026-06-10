@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T13:49:38.780977",
+  "generated_at": "2026-06-10T17:25:28.187772",
   "today": "2026-06-10",
   "summary": {
     "trades_today": 3,
@@ -190,6 +190,33 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-10 17:25:27.966997",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-10 17:25:27.951176",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-10 17:25:27.544374",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-10 08:04:13.226509",
       "ticker": "AXISBANK",
