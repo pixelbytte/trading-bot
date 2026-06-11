@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T20:01:43.327251",
+  "generated_at": "2026-06-11T22:17:37.080702",
   "today": "2026-06-11",
   "summary": {
     "trades_today": 5,
@@ -246,6 +246,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-11 22:17:36.821138",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-11 22:17:36.802290",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-11 22:17:36.747153",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-11 22:17:36.721947",
+      "ticker": "SPY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-06-11 20:01:43.096152",
       "ticker": "COST",
       "strategy": "momentum",
@@ -473,15 +509,6 @@
     {
       "ts": "2026-06-02 08:25:08.984369",
       "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-02 08:25:08.284111",
-      "ticker": "HDFCBANK",
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
