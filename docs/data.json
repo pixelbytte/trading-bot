@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T14:12:40.084511",
+  "generated_at": "2026-06-11T17:38:42.524193",
   "today": "2026-06-11",
   "summary": {
     "trades_today": 5,
@@ -245,6 +245,33 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-11 17:38:42.269036",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-11 17:38:42.252586",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-11 17:38:42.097486",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-11 08:41:04.938756",
       "ticker": "KOTAKBANK",
