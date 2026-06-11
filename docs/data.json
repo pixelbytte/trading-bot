@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T17:38:42.524193",
+  "generated_at": "2026-06-11T20:01:43.327251",
   "today": "2026-06-11",
   "summary": {
     "trades_today": 5,
@@ -245,6 +245,42 @@
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-06-11 20:01:43.096152",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-11 20:01:43.068593",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-11 20:01:42.779750",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-11 20:01:42.688880",
+      "ticker": "SPY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-06-11 17:38:42.269036",
       "ticker": "COST",
