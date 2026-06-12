@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-06-12T08:20:44.689825",
+  "generated_at": "2026-06-12T11:58:46.306150",
   "today": "2026-06-12",
   "summary": {
     "trades_today": 3,
-    "realized_pnl": 0.0,
+    "realized_pnl": -2390.7031066894583,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 0,
+    "losses": 2,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 19,
-      "wins": 4,
-      "losses": 15,
-      "total_pnl": -15808.0,
-      "win_rate": 21.1,
-      "avg_r": -16.64
+      "trades": 22,
+      "wins": 5,
+      "losses": 17,
+      "total_pnl": -14032.9,
+      "win_rate": 22.7,
+      "avg_r": -12.757
     }
   ],
   "recent_trades": [
@@ -31,7 +31,7 @@
       "price": 401.3500061035156,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1328.1014221191458,
       "portfolio_type": "india_paper"
     },
     {
@@ -42,7 +42,7 @@
       "price": 1342.9000244140625,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1062.6016845703125,
       "portfolio_type": "india_paper"
     },
     {
@@ -240,7 +240,7 @@
       "price": 880.0999755859375,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": 4165.802587890623,
       "portfolio_type": "india_paper"
     },
     {
@@ -489,12 +489,12 @@
   "daily_history": [
     {
       "date": "2026-06-12",
-      "pnl": 0.0,
+      "pnl": -2390.7031066894583,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
       "num_trades": 3,
       "wins": 0,
-      "losses": 0,
+      "losses": 2,
       "win_rate": 0.0
     },
     {
@@ -749,43 +749,28 @@
   "india": {
     "summary": {
       "trades_today": 3,
-      "pnl_today": 0.0,
-      "total_pnl": -20201.246936035168,
+      "pnl_today": -2390.7031066894583,
+      "total_pnl": -18426.147454834,
       "total_trades": 25,
-      "wins": 4,
-      "losses": 17,
-      "win_rate": 0.19047619047619047
+      "wins": 5,
+      "losses": 19,
+      "win_rate": 0.20833333333333334
     },
     "open_positions": [
-      {
-        "ticker": "BAJFINANCE",
-        "qty": 106,
-        "avg_entry": 880.1
-      },
       {
         "ticker": "HDFCBANK",
         "qty": 122,
         "avg_entry": 765.8
-      },
-      {
-        "ticker": "AXISBANK",
-        "qty": 69,
-        "avg_entry": 1342.9
-      },
-      {
-        "ticker": "KOTAKBANK",
-        "qty": 233,
-        "avg_entry": 401.35
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 19,
-        "wins": 4,
-        "losses": 15,
-        "total_pnl": -15808.0,
-        "win_rate": 21.1
+        "trades": 22,
+        "wins": 5,
+        "losses": 17,
+        "total_pnl": -14032.9,
+        "win_rate": 22.7
       }
     ],
     "recent_trades": [
@@ -797,8 +782,8 @@
         "price": 401.3500061035156,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=395.65 TGT=412.75"
+        "pnl": -1328.1014221191458,
+        "notes": "SL=395.65 TGT=412.75 | STOP @395.65"
       },
       {
         "ts": "2026-06-12 08:20:43.442229",
@@ -808,8 +793,8 @@
         "price": 1342.9000244140625,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1327.50 TGT=1373.70"
+        "pnl": -1062.6016845703125,
+        "notes": "SL=1327.50 TGT=1373.70 | STOP @1327.5"
       },
       {
         "ts": "2026-06-12 08:20:42.553653",
@@ -1006,8 +991,8 @@
         "price": 880.0999755859375,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=860.45 TGT=919.40"
+        "pnl": 4165.802587890623,
+        "notes": "SL=860.45 TGT=919.40 | TARGET @919.4"
       },
       {
         "ts": "2026-06-02 08:25:09.582697",
@@ -1069,11 +1054,11 @@
   "india_daily_history": [
     {
       "date": "2026-06-12",
-      "pnl": 0.0,
+      "pnl": -2390.7031066894583,
       "num_trades": 3,
-      "wins": 4,
-      "losses": 17,
-      "win_rate": 0.19047619047619047
+      "wins": 5,
+      "losses": 19,
+      "win_rate": 0.20833333333333334
     },
     {
       "date": "2026-06-11",
