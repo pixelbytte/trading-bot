@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T22:21:58.704538",
+  "generated_at": "2026-06-12T22:49:10.635012",
   "today": "2026-06-12",
   "summary": {
     "trades_today": 3,
@@ -279,6 +279,51 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-12 22:49:10.384534",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-12 22:49:10.367063",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-12 22:49:10.348952",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-12 22:49:10.331181",
+      "ticker": "SPY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-12 22:49:10.305301",
+      "ticker": "JPM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-06-12 21:06:19.288103",
       "ticker": "COST",
       "strategy": "momentum",
@@ -500,51 +545,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-10 08:04:12.188684",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-09 07:43:08.904214",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-05 08:03:11.075517",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.709,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-04 08:16:55.894149",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.831,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-04 08:16:54.929750",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.553,
       "acted": true,
       "skip_reason": ""
     }
