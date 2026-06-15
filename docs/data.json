@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-06-12T22:49:10.635012",
-  "today": "2026-06-12",
+  "generated_at": "2026-06-15T09:58:26.243474",
+  "today": "2026-06-15",
   "summary": {
-    "trades_today": 3,
-    "realized_pnl": -2390.7031066894583,
+    "trades_today": 0,
+    "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 2,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 22,
-      "wins": 5,
+      "trades": 23,
+      "wins": 6,
       "losses": 17,
-      "total_pnl": -14032.9,
-      "win_rate": 22.7,
-      "avg_r": -12.757
+      "total_pnl": -11312.3,
+      "win_rate": 26.1,
+      "avg_r": -9.837
     }
   ],
   "recent_trades": [
@@ -53,7 +53,7 @@
       "price": 765.7999877929688,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": 2720.601489257815,
       "portfolio_type": "india_paper"
     },
     {
@@ -279,186 +279,6 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-06-12 22:49:10.384534",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 22:49:10.367063",
-      "ticker": "UNH",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 22:49:10.348952",
-      "ticker": "BAC",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 22:49:10.331181",
-      "ticker": "SPY",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 22:49:10.305301",
-      "ticker": "JPM",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 21:06:19.288103",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 21:06:19.269590",
-      "ticker": "UNH",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 21:06:19.250620",
-      "ticker": "BAC",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 21:06:19.232463",
-      "ticker": "SPY",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 21:06:19.205369",
-      "ticker": "JPM",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 19:10:59.108940",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 19:10:59.087788",
-      "ticker": "UNH",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 19:10:59.067291",
-      "ticker": "BAC",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 19:10:59.039449",
-      "ticker": "JPM",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 16:47:45.057054",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 16:47:45.038830",
-      "ticker": "UNH",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 16:47:44.876836",
-      "ticker": "BAC",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 16:47:44.852131",
-      "ticker": "JPM",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-12 16:33:16.784907",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-12 16:33:14.547677",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
       "ts": "2026-06-12 08:20:44.018373",
       "ticker": "KOTAKBANK",
       "strategy": "india_orb",
@@ -547,9 +367,136 @@
       "confidence": 0.9,
       "acted": true,
       "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-10 08:04:12.188684",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-09 07:43:08.904214",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-05 08:03:11.075517",
+      "ticker": "AXISBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.709,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-04 08:16:55.894149",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.831,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-04 08:16:54.929750",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.553,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-03 08:51:37.965101",
+      "ticker": "AXISBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-03 08:51:37.327726",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-03 08:51:36.734962",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-03 08:51:36.124810",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.68,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-02 08:25:09.957441",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.899,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-02 08:25:09.580716",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-02 08:25:08.984369",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-02 08:25:08.284111",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-06-15",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-12",
       "pnl": -2390.7031066894583,
@@ -811,29 +758,23 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 3,
-      "pnl_today": -2390.7031066894583,
-      "total_pnl": -18426.147454834,
+      "trades_today": 0,
+      "pnl_today": 0.0,
+      "total_pnl": -15705.545965576188,
       "total_trades": 25,
-      "wins": 5,
+      "wins": 6,
       "losses": 19,
-      "win_rate": 0.20833333333333334
+      "win_rate": 0.24
     },
-    "open_positions": [
-      {
-        "ticker": "HDFCBANK",
-        "qty": 122,
-        "avg_entry": 765.8
-      }
-    ],
+    "open_positions": [],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 22,
-        "wins": 5,
+        "trades": 23,
+        "wins": 6,
         "losses": 17,
-        "total_pnl": -14032.9,
-        "win_rate": 22.7
+        "total_pnl": -11312.3,
+        "win_rate": 26.1
       }
     ],
     "recent_trades": [
@@ -867,8 +808,8 @@
         "price": 765.7999877929688,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=754.65 TGT=788.10"
+        "pnl": 2720.601489257815,
+        "notes": "SL=754.65 TGT=788.10 | TARGET @788.1"
       },
       {
         "ts": "2026-06-11 08:41:04.941512",
@@ -1115,6 +1056,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-15",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 6,
+      "losses": 19,
+      "win_rate": 0.24
+    },
     {
       "date": "2026-06-12",
       "pnl": -2390.7031066894583,
