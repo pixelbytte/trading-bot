@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-15T23:25:27.091144",
-  "today": "2026-06-15",
+  "generated_at": "2026-06-16T09:22:26.047402",
+  "today": "2026-06-16",
   "summary": {
-    "trades_today": 0,
+    "trades_today": 5,
     "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -23,6 +23,61 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-06-16 09:22:25.487818",
+      "ticker": "EICHERMOT",
+      "side": "buy",
+      "qty": 49.0,
+      "price": 7624.5,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-16 09:22:25.292367",
+      "ticker": "LT",
+      "side": "buy",
+      "qty": 89.0,
+      "price": 4169.8,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-16 09:22:25.051369",
+      "ticker": "TRENT",
+      "side": "buy",
+      "qty": 129.0,
+      "price": 2901.1,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-16 09:22:24.618966",
+      "ticker": "KOTAKBANK",
+      "side": "buy",
+      "qty": 459.0,
+      "price": 408.20001220703125,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-16 09:22:23.170788",
+      "ticker": "HDFCBANK",
+      "side": "buy",
+      "qty": 239.0,
+      "price": 784.2999877929688,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-06-12 08:20:44.020356",
       "ticker": "KOTAKBANK",
@@ -279,67 +334,49 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-06-15 23:25:26.772823",
-      "ticker": "COST",
+      "ts": "2026-06-16 09:22:25.485534",
+      "ticker": "EICHERMOT",
       "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
+      "action": "buy",
+      "confidence": 0.72,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-15 21:37:04.358586",
-      "ticker": "COST",
+      "ts": "2026-06-16 09:22:25.290057",
+      "ticker": "LT",
       "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-15 18:43:12.432887",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-15 18:13:45.534860",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.72,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-15 18:13:43.088918",
-      "ticker": "JPM",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-16 09:22:25.049189",
+      "ticker": "TRENT",
+      "strategy": "ma_rsi",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.7,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-15 18:13:41.034301",
-      "ticker": "GOOGL",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-16 09:22:24.616443",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.716,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-15 18:13:38.898941",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-16 09:22:23.167056",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.598,
+      "acted": true,
+      "skip_reason": ""
     },
     {
       "ts": "2026-06-12 08:20:44.018373",
@@ -550,6 +587,16 @@
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-06-16",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 5,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-15",
       "pnl": 0.0,
@@ -821,15 +868,41 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 0,
+      "trades_today": 5,
       "pnl_today": 0.0,
       "total_pnl": -15705.545965576188,
-      "total_trades": 25,
+      "total_trades": 30,
       "wins": 6,
       "losses": 19,
       "win_rate": 0.24
     },
-    "open_positions": [],
+    "open_positions": [
+      {
+        "ticker": "HDFCBANK",
+        "qty": 239,
+        "avg_entry": 784.3
+      },
+      {
+        "ticker": "KOTAKBANK",
+        "qty": 459,
+        "avg_entry": 408.2
+      },
+      {
+        "ticker": "TRENT",
+        "qty": 129,
+        "avg_entry": 2901.1
+      },
+      {
+        "ticker": "LT",
+        "qty": 89,
+        "avg_entry": 4169.8
+      },
+      {
+        "ticker": "EICHERMOT",
+        "qty": 49,
+        "avg_entry": 7624.5
+      }
+    ],
     "strategy_stats": [
       {
         "strategy": "bracket",
@@ -841,6 +914,61 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-06-16 09:22:25.487818",
+        "ticker": "EICHERMOT",
+        "side": "buy",
+        "qty": 49.0,
+        "price": 7624.5,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=7341.05 TGT=8191.40"
+      },
+      {
+        "ts": "2026-06-16 09:22:25.292367",
+        "ticker": "LT",
+        "side": "buy",
+        "qty": 89.0,
+        "price": 4169.8,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=4031.93 TGT=4445.54"
+      },
+      {
+        "ts": "2026-06-16 09:22:25.051369",
+        "ticker": "TRENT",
+        "side": "buy",
+        "qty": 129.0,
+        "price": 2901.1,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=2766.77 TGT=3169.76"
+      },
+      {
+        "ts": "2026-06-16 09:22:24.618966",
+        "ticker": "KOTAKBANK",
+        "side": "buy",
+        "qty": 459.0,
+        "price": 408.20001220703125,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=405.55 TGT=413.50"
+      },
+      {
+        "ts": "2026-06-16 09:22:23.170788",
+        "ticker": "HDFCBANK",
+        "side": "buy",
+        "qty": 239.0,
+        "price": 784.2999877929688,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=779.50 TGT=793.90"
+      },
       {
         "ts": "2026-06-12 08:20:44.020356",
         "ticker": "KOTAKBANK",
@@ -1119,6 +1247,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-16",
+      "pnl": 0.0,
+      "num_trades": 5,
+      "wins": 6,
+      "losses": 19,
+      "win_rate": 0.24
+    },
     {
       "date": "2026-06-15",
       "pnl": 0.0,
