@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T22:51:27.404784",
+  "generated_at": "2026-06-16T23:11:44.618090",
   "today": "2026-06-16",
   "summary": {
     "trades_today": 5,
@@ -334,6 +334,15 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-16 23:11:44.334187",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-06-16 21:33:29.643880",
       "ticker": "COST",
       "strategy": "momentum",
@@ -588,15 +597,6 @@
     {
       "ts": "2026-06-03 08:51:37.327726",
       "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-03 08:51:36.734962",
-      "ticker": "ICICIBANK",
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
