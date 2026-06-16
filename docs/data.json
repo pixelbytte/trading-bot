@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T18:30:09.061251",
+  "generated_at": "2026-06-16T21:33:29.925479",
   "today": "2026-06-16",
   "summary": {
     "trades_today": 5,
@@ -334,6 +334,15 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-16 21:33:29.643880",
+      "ticker": "COST",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-06-16 18:30:08.794813",
       "ticker": "COST",
       "strategy": "momentum",
@@ -591,15 +600,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-03 08:51:36.124810",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.68,
       "acted": true,
       "skip_reason": ""
     }
