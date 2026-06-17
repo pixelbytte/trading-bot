@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-16T23:11:44.618090",
-  "today": "2026-06-16",
+  "generated_at": "2026-06-17T08:58:58.210497",
+  "today": "2026-06-17",
   "summary": {
-    "trades_today": 5,
-    "realized_pnl": -2363.5526855468697,
+    "trades_today": 1,
+    "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 2,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
@@ -23,6 +23,17 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-06-17 08:58:56.794309",
+      "ticker": "SBIN",
+      "side": "buy",
+      "qty": 183.0,
+      "price": 1022.7000122070312,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-06-16 09:22:25.487818",
       "ticker": "EICHERMOT",
@@ -334,76 +345,13 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-06-16 23:11:44.334187",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-16 21:33:29.643880",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-16 18:30:08.794813",
-      "ticker": "COST",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-06-16 18:19:24.977873",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-17 08:58:56.789953",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-16 18:19:22.584249",
-      "ticker": "JPM",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-16 18:19:20.701621",
-      "ticker": "AAPL",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-16 18:19:18.690218",
-      "ticker": "GOOGL",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-06-16 18:19:16.570875",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
+      "confidence": 0.709,
+      "acted": true,
+      "skip_reason": ""
     },
     {
       "ts": "2026-06-16 09:22:25.485534",
@@ -602,9 +550,73 @@
       "confidence": 0.9,
       "acted": true,
       "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-03 08:51:36.734962",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-03 08:51:36.124810",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.68,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-02 08:25:09.957441",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.899,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-02 08:25:09.580716",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-02 08:25:08.984369",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-02 08:25:08.284111",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-06-17",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 1,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-16",
       "pnl": -2363.5526855468697,
@@ -886,10 +898,10 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 5,
-      "pnl_today": -2363.5526855468697,
+      "trades_today": 1,
+      "pnl_today": 0.0,
       "total_pnl": -18069.09865112306,
-      "total_trades": 30,
+      "total_trades": 31,
       "wins": 6,
       "losses": 21,
       "win_rate": 0.2222222222222222
@@ -909,6 +921,11 @@
         "ticker": "EICHERMOT",
         "qty": 49,
         "avg_entry": 7624.5
+      },
+      {
+        "ticker": "SBIN",
+        "qty": 183,
+        "avg_entry": 1022.7
       }
     ],
     "strategy_stats": [
@@ -922,6 +939,17 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-06-17 08:58:56.794309",
+        "ticker": "SBIN",
+        "side": "buy",
+        "qty": 183.0,
+        "price": 1022.7000122070312,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1014.80 TGT=1038.50"
+      },
       {
         "ts": "2026-06-16 09:22:25.487818",
         "ticker": "EICHERMOT",
@@ -1255,6 +1283,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-17",
+      "pnl": 0.0,
+      "num_trades": 1,
+      "wins": 6,
+      "losses": 21,
+      "win_rate": 0.2222222222222222
+    },
     {
       "date": "2026-06-16",
       "pnl": -2363.5526855468697,
