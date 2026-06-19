@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-18T22:54:18.567176",
-  "today": "2026-06-18",
+  "generated_at": "2026-06-19T09:04:09.859286",
+  "today": "2026-06-19",
   "summary": {
-    "trades_today": 4,
-    "realized_pnl": -5958.9053955078125,
+    "trades_today": 3,
+    "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 3,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
@@ -23,6 +23,39 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-06-19 09:04:09.318923",
+      "ticker": "BEL",
+      "side": "buy",
+      "qty": 874.0,
+      "price": 428.6,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-19 09:04:09.064781",
+      "ticker": "BAJFINANCE",
+      "side": "buy",
+      "qty": 194.0,
+      "price": 964.5,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-19 09:04:07.860068",
+      "ticker": "ICICIBANK",
+      "side": "buy",
+      "qty": 138.0,
+      "price": 1350.0999755859375,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-06-18 08:41:28.126563",
       "ticker": "ADANIPORTS",
@@ -389,40 +422,31 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-06-18 16:46:21.183977",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-19 09:04:09.316466",
+      "ticker": "BEL",
+      "strategy": "momentum",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
+      "confidence": 0.72,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-18 16:46:19.267870",
-      "ticker": "JPM",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-19 09:04:09.062374",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
+      "confidence": 0.732,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-18 16:46:17.019880",
-      "ticker": "AAPL",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-19 09:04:07.856459",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-06-18 16:46:14.645575",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Daily loss limit hit: $-5958.91"
+      "confidence": 0.673,
+      "acted": true,
+      "skip_reason": ""
     },
     {
       "ts": "2026-06-18 08:41:28.123730",
@@ -657,9 +681,28 @@
       "confidence": 0.9,
       "acted": true,
       "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-03 08:51:37.327726",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-06-19",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 3,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-18",
       "pnl": -5958.9053955078125,
@@ -961,10 +1004,10 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 4,
-      "pnl_today": -5958.9053955078125,
+      "trades_today": 3,
+      "pnl_today": 0.0,
       "total_pnl": 9183.433719482446,
-      "total_trades": 35,
+      "total_trades": 38,
       "wins": 7,
       "losses": 25,
       "win_rate": 0.21875
@@ -984,6 +1027,21 @@
         "ticker": "ADANIPORTS",
         "qty": 205,
         "avg_entry": 1828.6
+      },
+      {
+        "ticker": "ICICIBANK",
+        "qty": 138,
+        "avg_entry": 1350.1
+      },
+      {
+        "ticker": "BAJFINANCE",
+        "qty": 194,
+        "avg_entry": 964.5
+      },
+      {
+        "ticker": "BEL",
+        "qty": 874,
+        "avg_entry": 428.6
       }
     ],
     "strategy_stats": [
@@ -997,6 +1055,39 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-06-19 09:04:09.318923",
+        "ticker": "BEL",
+        "side": "buy",
+        "qty": 874.0,
+        "price": 428.6,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=414.76 TGT=456.27"
+      },
+      {
+        "ts": "2026-06-19 09:04:09.064781",
+        "ticker": "BAJFINANCE",
+        "side": "buy",
+        "qty": 194.0,
+        "price": 964.5,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=954.10 TGT=985.30"
+      },
+      {
+        "ts": "2026-06-19 09:04:07.860068",
+        "ticker": "ICICIBANK",
+        "side": "buy",
+        "qty": 138.0,
+        "price": 1350.0999755859375,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1337.00 TGT=1376.30"
+      },
       {
         "ts": "2026-06-18 08:41:28.126563",
         "ticker": "ADANIPORTS",
@@ -1385,6 +1476,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-19",
+      "pnl": 0.0,
+      "num_trades": 3,
+      "wins": 7,
+      "losses": 25,
+      "win_rate": 0.21875
+    },
     {
       "date": "2026-06-18",
       "pnl": -5958.9053955078125,
