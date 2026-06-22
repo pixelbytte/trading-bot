@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T18:14:44.019413",
+  "generated_at": "2026-06-22T21:20:02.739897",
   "today": "2026-06-22",
   "summary": {
     "trades_today": 2,
@@ -444,6 +444,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-22 21:20:02.433311",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-22 21:20:02.379308",
+      "ticker": "MU",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-22 21:20:02.358272",
+      "ticker": "JPM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-22 21:20:02.329114",
+      "ticker": "GOOGL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-06-22 18:14:43.749187",
       "ticker": "BAC",
       "strategy": "mean_reversion",
@@ -671,42 +707,6 @@
     {
       "ts": "2026-06-12 08:20:42.550119",
       "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-11 08:41:04.938756",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-11 08:41:04.589663",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.607,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-11 08:41:04.068976",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.592,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-11 08:41:03.497093",
-      "ticker": "ICICIBANK",
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
