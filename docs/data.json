@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T12:47:15.084769",
+  "generated_at": "2026-06-23T16:29:02.558044",
   "today": "2026-06-23",
   "summary": {
     "trades_today": 0,
@@ -444,6 +444,60 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-23 16:29:02.279992",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-23 16:29:02.201738",
+      "ticker": "JPM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-23 16:12:49.547848",
+      "ticker": "DE",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-23 16:12:46.926905",
+      "ticker": "JPM",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-23 16:12:45.146572",
+      "ticker": "AAPL",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-06-23 16:12:36.758302",
+      "ticker": "CAT",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
       "ts": "2026-06-22 09:44:55.130903",
       "ticker": "KOTAKBANK",
       "strategy": "india_orb",
@@ -656,60 +710,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-10 08:04:12.610144",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-10 08:04:12.188684",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-09 07:43:08.904214",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-05 08:03:11.075517",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.709,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-04 08:16:55.894149",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.831,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-04 08:16:54.929750",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.553,
       "acted": true,
       "skip_reason": ""
     }
