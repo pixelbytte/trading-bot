@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T18:24:48.639176",
+  "generated_at": "2026-06-23T20:34:54.600698",
   "today": "2026-06-23",
   "summary": {
     "trades_today": 0,
@@ -444,6 +444,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-23 20:34:54.411781",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-23 20:34:54.381632",
+      "ticker": "JPM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-06-23 18:24:48.371451",
       "ticker": "BAC",
       "strategy": "mean_reversion",
@@ -692,24 +710,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.607,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-11 08:41:04.068976",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.592,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-11 08:41:03.497093",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
       "acted": true,
       "skip_reason": ""
     }
