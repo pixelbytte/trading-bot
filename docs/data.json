@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-25T12:33:31.902427",
+  "generated_at": "2026-06-25T16:29:45.747465",
   "today": "2026-06-25",
   "summary": {
     "trades_today": 2,
@@ -488,6 +488,33 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-25 16:06:50.613605",
+      "ticker": "DE",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-06-25 16:06:48.990642",
+      "ticker": "JPM",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-06-25 16:06:46.568075",
+      "ticker": "CAT",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Daily loss limit hit: $-4919.00"
+    },
+    {
       "ts": "2026-06-25 07:38:46.934859",
       "ticker": "KOTAKBANK",
       "strategy": "india_orb",
@@ -727,33 +754,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.782,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-10 08:04:13.226509",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-10 08:04:12.610144",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-10 08:04:12.188684",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
       "acted": true,
       "skip_reason": ""
     }
