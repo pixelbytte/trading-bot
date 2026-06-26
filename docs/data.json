@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T18:11:21.202494",
+  "generated_at": "2026-06-26T20:12:29.551483",
   "today": "2026-06-26",
   "summary": {
     "trades_today": 2,
@@ -510,6 +510,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-26 20:12:29.249101",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-26 20:12:29.143039",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-26 20:12:29.121967",
+      "ticker": "GOOGL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-26 20:12:29.094429",
+      "ticker": "AAPL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-06-26 18:11:20.950564",
       "ticker": "UNH",
       "strategy": "mean_reversion",
@@ -740,42 +776,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.709,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:25.485534",
-      "ticker": "EICHERMOT",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:25.290057",
-      "ticker": "LT",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:25.049189",
-      "ticker": "TRENT",
-      "strategy": "ma_rsi",
-      "action": "buy",
-      "confidence": 0.7,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:24.616443",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.716,
       "acted": true,
       "skip_reason": ""
     }
