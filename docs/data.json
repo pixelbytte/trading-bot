@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T22:08:18.051147",
+  "generated_at": "2026-06-26T22:54:04.457125",
   "today": "2026-06-26",
   "summary": {
     "trades_today": 2,
@@ -510,6 +510,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-06-26 22:54:04.197452",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-26 22:54:04.037383",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-26 22:54:04.018630",
+      "ticker": "GOOGL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-06-26 22:54:03.985288",
+      "ticker": "AAPL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-06-26 21:42:33.008988",
       "ticker": "UNH",
       "strategy": "mean_reversion",
@@ -740,42 +776,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.576,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:09.316466",
-      "ticker": "BEL",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:09.062374",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.732,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:07.856459",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.673,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-18 08:41:28.123730",
-      "ticker": "ADANIPORTS",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
       "acted": true,
       "skip_reason": ""
     }
