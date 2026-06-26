@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-25T22:24:22.529534",
-  "today": "2026-06-25",
+  "generated_at": "2026-06-26T07:46:01.123038",
+  "today": "2026-06-26",
   "summary": {
     "trades_today": 2,
-    "realized_pnl": -4918.996276855476,
+    "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 2,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
@@ -23,6 +23,28 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-06-26 07:46:00.704288",
+      "ticker": "AUROPHARMA",
+      "side": "buy",
+      "qty": 241.0,
+      "price": 1555.2,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-06-26 07:46:00.435617",
+      "ticker": "AUROPHARMA",
+      "side": "buy",
+      "qty": 241.0,
+      "price": 1555.2,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-06-25 07:38:46.936886",
       "ticker": "KOTAKBANK",
@@ -488,31 +510,22 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-06-25 16:06:50.613605",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-26 07:46:00.702291",
+      "ticker": "AUROPHARMA",
+      "strategy": "momentum",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
+      "confidence": 0.72,
+      "acted": true,
+      "skip_reason": ""
     },
     {
-      "ts": "2026-06-25 16:06:48.990642",
-      "ticker": "JPM",
-      "strategy": "stage2_trend",
+      "ts": "2026-06-26 07:46:00.432308",
+      "ticker": "AUROPHARMA",
+      "strategy": "ma_rsi",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-06-25 16:06:46.568075",
-      "ticker": "CAT",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Daily loss limit hit: $-4919.00"
+      "confidence": 0.7,
+      "acted": true,
+      "skip_reason": ""
     },
     {
       "ts": "2026-06-25 07:38:46.934859",
@@ -756,9 +769,28 @@
       "confidence": 0.782,
       "acted": true,
       "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-10 08:04:13.226509",
+      "ticker": "AXISBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-06-26",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 2,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-06-25",
       "pnl": -4918.996276855476,
@@ -1111,9 +1143,9 @@
   "india": {
     "summary": {
       "trades_today": 2,
-      "pnl_today": -4918.996276855476,
+      "pnl_today": 0.0,
       "total_pnl": -18320.61147338867,
-      "total_trades": 44,
+      "total_trades": 46,
       "wins": 7,
       "losses": 33,
       "win_rate": 0.175
@@ -1138,6 +1170,11 @@
         "ticker": "HDFCBANK",
         "qty": 237,
         "avg_entry": 789.2
+      },
+      {
+        "ticker": "AUROPHARMA",
+        "qty": 482,
+        "avg_entry": 1555.2
       }
     ],
     "strategy_stats": [
@@ -1151,6 +1188,28 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-06-26 07:46:00.704288",
+        "ticker": "AUROPHARMA",
+        "side": "buy",
+        "qty": 241.0,
+        "price": 1555.2,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1499.04 TGT=1667.53"
+      },
+      {
+        "ts": "2026-06-26 07:46:00.435617",
+        "ticker": "AUROPHARMA",
+        "side": "buy",
+        "qty": 241.0,
+        "price": 1555.2,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1499.04 TGT=1667.53"
+      },
       {
         "ts": "2026-06-25 07:38:46.936886",
         "ticker": "KOTAKBANK",
@@ -1638,6 +1697,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-06-26",
+      "pnl": 0.0,
+      "num_trades": 2,
+      "wins": 7,
+      "losses": 33,
+      "win_rate": 0.175
+    },
     {
       "date": "2026-06-25",
       "pnl": -4918.996276855476,
