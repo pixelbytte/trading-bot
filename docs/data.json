@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T18:03:21.197153",
+  "generated_at": "2026-07-02T19:53:50.922621",
   "today": "2026-07-02",
   "summary": {
     "trades_today": 0,
@@ -532,6 +532,60 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-02 19:53:50.640673",
+      "ticker": "HIMS",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-02 19:53:50.618515",
+      "ticker": "HD",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-02 19:53:50.544012",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-02 19:53:50.471887",
+      "ticker": "MA",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-02 19:53:50.450920",
+      "ticker": "V",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-02 19:53:50.424016",
+      "ticker": "AAPL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-02 18:03:20.965669",
       "ticker": "HIMS",
       "strategy": "mean_reversion",
@@ -744,60 +798,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.631,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-22 09:44:54.530322",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.576,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:09.316466",
-      "ticker": "BEL",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:09.062374",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.732,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:07.856459",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.673,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-18 08:41:28.123730",
-      "ticker": "ADANIPORTS",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-18 08:41:27.451000",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.683,
       "acted": true,
       "skip_reason": ""
     }
