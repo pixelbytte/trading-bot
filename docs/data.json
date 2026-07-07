@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-07T12:39:01.130034",
+  "generated_at": "2026-07-07T16:35:16.384805",
   "today": "2026-07-07",
   "summary": {
-    "trades_today": 1,
+    "trades_today": 5,
     "realized_pnl": -1494.5029907226508,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -23,6 +23,50 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-07-07 16:06:52.735703",
+      "ticker": "JPM",
+      "side": "buy",
+      "qty": 34.0,
+      "price": 343.5,
+      "strategy": "stage2_trend",
+      "status": "OrderStatus.PENDING_NEW",
+      "pnl": null,
+      "portfolio_type": "day_trading"
+    },
+    {
+      "ts": "2026-07-07 16:06:50.408001",
+      "ticker": "GS",
+      "side": "buy",
+      "qty": 11.0,
+      "price": 1045.09,
+      "strategy": "stage2_trend",
+      "status": "OrderStatus.PENDING_NEW",
+      "pnl": null,
+      "portfolio_type": "day_trading"
+    },
+    {
+      "ts": "2026-07-07 16:06:48.535185",
+      "ticker": "AAPL",
+      "side": "buy",
+      "qty": 38.0,
+      "price": 313.91,
+      "strategy": "stage2_trend",
+      "status": "OrderStatus.PENDING_NEW",
+      "pnl": null,
+      "portfolio_type": "day_trading"
+    },
+    {
+      "ts": "2026-07-07 16:06:46.350659",
+      "ticker": "LLY",
+      "side": "buy",
+      "qty": 9.0,
+      "price": 1238.78,
+      "strategy": "stage2_trend",
+      "status": "OrderStatus.PENDING_NEW",
+      "pnl": null,
+      "portfolio_type": "day_trading"
+    },
     {
       "ts": "2026-07-07 07:33:52.416762",
       "ticker": "KOTAKBANK",
@@ -528,42 +572,81 @@
       "status": "paper_fill",
       "pnl": 4165.802587890623,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-02 08:25:09.582697",
-      "ticker": "KOTAKBANK",
-      "side": "buy",
-      "qty": 246.0,
-      "price": 380.8500061035156,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": 4009.7984985351504,
-      "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-02 08:25:08.987103",
-      "ticker": "SBIN",
-      "side": "buy",
-      "qty": 97.0,
-      "price": 960.25,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1673.25,
-      "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-02 08:25:08.286122",
-      "ticker": "HDFCBANK",
-      "side": "buy",
-      "qty": 125.0,
-      "price": 747.5999755859375,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1649.9969482421902,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-07-07 16:35:16.129313",
+      "ticker": "HIMS",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-07 16:35:16.065941",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-07 16:35:16.001134",
+      "ticker": "MA",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-07 16:06:55.119251",
+      "ticker": "DE",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-07-07 16:06:52.757955",
+      "ticker": "JPM",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-07-07 16:06:50.429651",
+      "ticker": "GS",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-07-07 16:06:48.557097",
+      "ticker": "AAPL",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-07-07 16:06:46.373814",
+      "ticker": "LLY",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-07-07 07:33:52.413353",
       "ticker": "KOTAKBANK",
@@ -761,78 +844,6 @@
       "confidence": 0.72,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:25.290057",
-      "ticker": "LT",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:25.049189",
-      "ticker": "TRENT",
-      "strategy": "ma_rsi",
-      "action": "buy",
-      "confidence": 0.7,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:24.616443",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.716,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:23.167056",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.598,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-12 08:20:44.018373",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.731,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-12 08:20:43.439203",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.891,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-12 08:20:42.550119",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-11 08:41:04.938756",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
@@ -841,7 +852,7 @@
       "pnl": -1494.5029907226508,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 1,
+      "num_trades": 5,
       "wins": 0,
       "losses": 1,
       "win_rate": 0.0
