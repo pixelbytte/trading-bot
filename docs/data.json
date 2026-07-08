@@ -1,28 +1,39 @@
 {
-  "generated_at": "2026-07-08T06:24:19.195175",
+  "generated_at": "2026-07-08T09:05:18.939403",
   "today": "2026-07-08",
   "summary": {
-    "trades_today": 1,
-    "realized_pnl": 0.0,
+    "trades_today": 2,
+    "realized_pnl": -2969.991210937492,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 33,
+      "trades": 34,
       "wins": 6,
-      "losses": 27,
-      "total_pnl": -32685.76,
-      "win_rate": 18.2,
-      "avg_r": -19.81
+      "losses": 28,
+      "total_pnl": -35655.75,
+      "win_rate": 17.6,
+      "avg_r": -20.974
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-07-08 09:05:18.377797",
+      "ticker": "TITAN",
+      "side": "buy",
+      "qty": 81.0,
+      "price": 4604.2,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-07-08 06:24:18.568189",
       "ticker": "SBIN",
@@ -31,7 +42,7 @@
       "price": 1037.699951171875,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -2969.991210937492,
       "portfolio_type": "india_paper"
     },
     {
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": -1673.25,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-02 08:25:08.286122",
-      "ticker": "HDFCBANK",
-      "side": "buy",
-      "qty": 125.0,
-      "price": 747.5999755859375,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1649.9969482421902,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-07-08 09:05:18.374303",
+      "ticker": "TITAN",
+      "strategy": "momentum",
+      "action": "buy",
+      "confidence": 0.72,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-07-08 06:24:18.565136",
       "ticker": "SBIN",
@@ -835,26 +844,17 @@
       "confidence": 0.891,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-12 08:20:42.550119",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
     {
       "date": "2026-07-08",
-      "pnl": 0.0,
+      "pnl": -2969.991210937492,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 1,
+      "num_trades": 2,
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
@@ -1288,13 +1288,13 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 1,
-      "pnl_today": 0.0,
-      "total_pnl": -38490.90394897465,
-      "total_trades": 52,
+      "trades_today": 2,
+      "pnl_today": -2969.991210937492,
+      "total_pnl": -41460.89515991214,
+      "total_trades": 53,
       "wins": 9,
-      "losses": 37,
-      "win_rate": 0.1956521739130435
+      "losses": 38,
+      "win_rate": 0.19148936170212766
     },
     "open_positions": [
       {
@@ -1318,22 +1318,33 @@
         "avg_entry": 829.5
       },
       {
-        "ticker": "SBIN",
-        "qty": 180,
-        "avg_entry": 1037.7
+        "ticker": "TITAN",
+        "qty": 81,
+        "avg_entry": 4604.2
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 33,
+        "trades": 34,
         "wins": 6,
-        "losses": 27,
-        "total_pnl": -32685.76,
-        "win_rate": 18.2
+        "losses": 28,
+        "total_pnl": -35655.75,
+        "win_rate": 17.6
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-07-08 09:05:18.377797",
+        "ticker": "TITAN",
+        "side": "buy",
+        "qty": 81.0,
+        "price": 4604.2,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=4453.06 TGT=4906.49"
+      },
       {
         "ts": "2026-07-08 06:24:18.568189",
         "ticker": "SBIN",
@@ -1342,8 +1353,8 @@
         "price": 1037.699951171875,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1021.20 TGT=1070.70"
+        "pnl": -2969.991210937492,
+        "notes": "SL=1021.20 TGT=1070.70 | STOP @1021.2"
       },
       {
         "ts": "2026-07-07 07:33:52.416762",
@@ -1911,11 +1922,11 @@
   "india_daily_history": [
     {
       "date": "2026-07-08",
-      "pnl": 0.0,
-      "num_trades": 1,
+      "pnl": -2969.991210937492,
+      "num_trades": 2,
       "wins": 9,
-      "losses": 37,
-      "win_rate": 0.1956521739130435
+      "losses": 38,
+      "win_rate": 0.19148936170212766
     },
     {
       "date": "2026-07-07",
