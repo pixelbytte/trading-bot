@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-09T16:30:45.025083",
+  "generated_at": "2026-07-09T18:22:10.481591",
   "today": "2026-07-09",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,15 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-09 18:22:10.148623",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-09 16:30:44.764704",
       "ticker": "BAC",
       "strategy": "mean_reversion",
@@ -833,15 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.598,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-12 08:20:44.018373",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.731,
       "acted": true,
       "skip_reason": ""
     }
