@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T21:54:54.433070",
+  "generated_at": "2026-07-15T22:42:37.220033",
   "today": "2026-07-15",
   "summary": {
     "trades_today": 1,
@@ -576,6 +576,51 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-15 22:42:36.917666",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-15 22:42:36.897528",
+      "ticker": "GS",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-15 22:42:36.877917",
+      "ticker": "MU",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-15 22:42:36.821457",
+      "ticker": "META",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-15 22:42:36.801587",
+      "ticker": "AMZN",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-15 21:42:00.324943",
       "ticker": "BAC",
       "strategy": "mean_reversion",
@@ -797,51 +842,6 @@
       "strategy": "mean_reversion",
       "action": "sell",
       "confidence": 0.65,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-07-15 15:37:49.578105",
-      "ticker": "MA",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-07-15 15:37:49.558510",
-      "ticker": "V",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-07-15 15:37:49.391216",
-      "ticker": "META",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-07-15 15:37:49.372080",
-      "ticker": "AMZN",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-07-08 09:05:18.374303",
-      "ticker": "TITAN",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
       "acted": true,
       "skip_reason": ""
     }
