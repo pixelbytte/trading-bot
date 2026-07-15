@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T18:14:21.619274",
+  "generated_at": "2026-07-15T19:40:22.070660",
   "today": "2026-07-15",
   "summary": {
     "trades_today": 1,
@@ -576,6 +576,33 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-15 19:40:21.803202",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-15 19:40:21.784099",
+      "ticker": "GS",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-15 19:40:21.665550",
+      "ticker": "META",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-15 18:14:21.326288",
       "ticker": "BAC",
       "strategy": "mean_reversion",
@@ -815,33 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-24 07:36:40.151221",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.682,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-24 07:36:39.199823",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-22 09:44:55.130903",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.631,
       "acted": true,
       "skip_reason": ""
     }
