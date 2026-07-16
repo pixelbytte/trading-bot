@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T08:35:16.661144",
+  "generated_at": "2026-07-16T10:34:52.117649",
   "today": "2026-07-16",
   "summary": {
     "trades_today": 0,
@@ -14,12 +14,12 @@
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 22,
-      "wins": 3,
-      "losses": 19,
-      "total_pnl": -25755.35,
-      "win_rate": 13.6,
-      "avg_r": -23.414
+      "trades": 17,
+      "wins": 2,
+      "losses": 15,
+      "total_pnl": -31889.46,
+      "win_rate": 11.8,
+      "avg_r": -37.517
     }
   ],
   "recent_trades": [
@@ -1386,11 +1386,11 @@
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 22,
-        "wins": 3,
-        "losses": 19,
-        "total_pnl": -25755.35,
-        "win_rate": 13.6
+        "trades": 17,
+        "wins": 2,
+        "losses": 15,
+        "total_pnl": -31889.46,
+        "win_rate": 11.8
       }
     ],
     "recent_trades": [
