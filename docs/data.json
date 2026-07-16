@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T19:34:58.708319",
+  "generated_at": "2026-07-16T20:35:32.440725",
   "today": "2026-07-16",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,51 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-16 20:35:32.175958",
+      "ticker": "XOM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-16 20:35:32.156838",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-16 20:35:32.137521",
+      "ticker": "MA",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-16 20:35:32.112433",
+      "ticker": "V",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-16 20:35:32.091629",
+      "ticker": "GOOGL",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-16 19:34:58.418050",
       "ticker": "BAC",
       "strategy": "mean_reversion",
@@ -797,51 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-22 09:44:55.130903",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.631,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-22 09:44:54.530322",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.576,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:09.316466",
-      "ticker": "BEL",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:09.062374",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.732,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:07.856459",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.673,
       "acted": true,
       "skip_reason": ""
     }
