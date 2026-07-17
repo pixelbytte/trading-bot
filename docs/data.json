@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-17T16:41:33.657322",
+  "generated_at": "2026-07-17T17:48:19.023060",
   "today": "2026-07-17",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-17 17:48:18.692096",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-17 17:48:18.668318",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-17 16:41:33.366683",
       "ticker": "BAC",
       "strategy": "mean_reversion",
@@ -824,24 +842,6 @@
       "strategy": "momentum",
       "action": "buy",
       "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:25.290057",
-      "ticker": "LT",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:25.049189",
-      "ticker": "TRENT",
-      "strategy": "ma_rsi",
-      "action": "buy",
-      "confidence": 0.7,
       "acted": true,
       "skip_reason": ""
     }
