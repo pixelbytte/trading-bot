@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-17T11:41:18.724043",
+  "generated_at": "2026-07-17T15:18:19.233514",
   "today": "2026-07-17",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-17 15:18:18.937255",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-17 15:18:18.916126",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-08 09:05:18.374303",
       "ticker": "TITAN",
       "strategy": "momentum",
@@ -824,24 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.598,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-12 08:20:44.018373",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.731,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-12 08:20:43.439203",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.891,
       "acted": true,
       "skip_reason": ""
     }
