@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T15:55:20.395830",
+  "generated_at": "2026-07-20T18:09:58.536334",
   "today": "2026-07-20",
   "summary": {
     "trades_today": 1,
@@ -576,6 +576,15 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-20 18:09:58.248989",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-20 15:55:20.122330",
       "ticker": "BAC",
       "strategy": "mean_reversion",
@@ -830,15 +839,6 @@
     {
       "ts": "2026-06-16 09:22:25.485534",
       "ticker": "EICHERMOT",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:25.290057",
-      "ticker": "LT",
       "strategy": "momentum",
       "action": "buy",
       "confidence": 0.72,
