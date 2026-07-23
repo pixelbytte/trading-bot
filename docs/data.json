@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23T17:40:46.545901",
+  "generated_at": "2026-07-23T18:50:57.849990",
   "today": "2026-07-23",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-23 18:50:57.567731",
+      "ticker": "XOM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-23 18:50:57.537488",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-23 17:40:46.291051",
       "ticker": "XOM",
       "strategy": "mean_reversion",
@@ -824,24 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.651,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-17 08:58:56.789953",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.709,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:25.485534",
-      "ticker": "EICHERMOT",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
       "acted": true,
       "skip_reason": ""
     }
