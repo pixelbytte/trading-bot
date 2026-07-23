@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23T20:17:17.861491",
+  "generated_at": "2026-07-23T21:36:45.582473",
   "today": "2026-07-23",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,33 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-07-23 21:36:45.294190",
+      "ticker": "XOM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-23 21:36:45.274570",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-07-23 21:36:45.255520",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-07-23 20:17:17.583127",
       "ticker": "XOM",
       "strategy": "mean_reversion",
@@ -812,33 +839,6 @@
     {
       "ts": "2026-06-19 09:04:09.316466",
       "ticker": "BEL",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:09.062374",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.732,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-19 09:04:07.856459",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.673,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-18 08:41:28.123730",
-      "ticker": "ADANIPORTS",
       "strategy": "momentum",
       "action": "buy",
       "confidence": 0.72,
