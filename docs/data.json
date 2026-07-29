@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-29T06:27:06.451179",
+  "generated_at": "2026-07-29T09:21:19.949278",
   "today": "2026-07-29",
   "summary": {
-    "trades_today": 0,
+    "trades_today": 1,
     "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -14,15 +14,26 @@
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 6,
-      "wins": 2,
+      "trades": 7,
+      "wins": 3,
       "losses": 4,
-      "total_pnl": 18338.94,
-      "win_rate": 33.3,
-      "avg_r": 61.13
+      "total_pnl": 21413.34,
+      "win_rate": 42.9,
+      "avg_r": 61.181
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-07-29 09:21:19.373904",
+      "ticker": "HDFCBANK",
+      "side": "buy",
+      "qty": 250.0,
+      "price": 748.9000244140625,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-07-24 06:22:03.478811",
       "ticker": "KOTAKBANK",
@@ -31,7 +42,7 @@
       "price": 383.6000061035156,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": 3074.397021484364,
       "portfolio_type": "india_paper"
     },
     {
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": -2160.003662109375,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-03 08:51:36.129112",
-      "ticker": "HDFCBANK",
-      "side": "buy",
-      "qty": 124.0,
-      "price": 750.2000122070312,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -886.6015136718806,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-07-29 09:21:19.369949",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.617,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-07-24 06:22:03.475394",
       "ticker": "KOTAKBANK",
@@ -835,15 +844,6 @@
       "confidence": 0.7,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-16 09:22:24.616443",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.716,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
@@ -852,7 +852,7 @@
       "pnl": 0.0,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 0,
+      "num_trades": 1,
       "wins": 0,
       "losses": 0,
       "win_rate": 0.0
@@ -1438,13 +1438,13 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 0,
+      "trades_today": 1,
       "pnl_today": 0.0,
-      "total_pnl": -31123.305159912154,
-      "total_trades": 56,
-      "wins": 10,
+      "total_pnl": -28048.90813842779,
+      "total_trades": 57,
+      "wins": 11,
       "losses": 40,
-      "win_rate": 0.2
+      "win_rate": 0.21568627450980393
     },
     "open_positions": [
       {
@@ -1468,22 +1468,33 @@
         "avg_entry": 3792.0
       },
       {
-        "ticker": "KOTAKBANK",
-        "qty": 488,
-        "avg_entry": 383.6
+        "ticker": "HDFCBANK",
+        "qty": 250,
+        "avg_entry": 748.9
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 6,
-        "wins": 2,
+        "trades": 7,
+        "wins": 3,
         "losses": 4,
-        "total_pnl": 18338.94,
-        "win_rate": 33.3
+        "total_pnl": 21413.34,
+        "win_rate": 42.9
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-07-29 09:21:19.373904",
+        "ticker": "HDFCBANK",
+        "side": "buy",
+        "qty": 250.0,
+        "price": 748.9000244140625,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=741.00 TGT=764.70"
+      },
       {
         "ts": "2026-07-24 06:22:03.478811",
         "ticker": "KOTAKBANK",
@@ -1492,8 +1503,8 @@
         "price": 383.6000061035156,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=380.45 TGT=389.90"
+        "pnl": 3074.397021484364,
+        "notes": "SL=380.45 TGT=389.90 | TARGET @389.9"
       },
       {
         "ts": "2026-07-22 06:24:22.392488",
@@ -2106,10 +2117,10 @@
     {
       "date": "2026-07-29",
       "pnl": 0.0,
-      "num_trades": 0,
-      "wins": 10,
+      "num_trades": 1,
+      "wins": 11,
       "losses": 40,
-      "win_rate": 0.2
+      "win_rate": 0.21568627450980393
     },
     {
       "date": "2026-07-28",
