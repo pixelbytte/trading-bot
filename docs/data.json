@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-07-30T09:12:03.924787",
+  "generated_at": "2026-07-30T11:20:50.036934",
   "today": "2026-07-30",
   "summary": {
     "trades_today": 3,
-    "realized_pnl": -1508.80224609375,
+    "realized_pnl": -5625.556713867199,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 1,
+    "losses": 3,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 9,
+      "trades": 11,
       "wins": 4,
-      "losses": 5,
-      "total_pnl": 50816.33,
-      "win_rate": 44.4,
-      "avg_r": 112.925
+      "losses": 7,
+      "total_pnl": 46699.57,
+      "win_rate": 36.4,
+      "avg_r": 84.908
     }
   ],
   "recent_trades": [
@@ -31,7 +31,7 @@
       "price": 1022.4000244140625,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -2635.2044677734375,
       "portfolio_type": "india_paper"
     },
     {
@@ -42,7 +42,7 @@
       "price": 751.5,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1481.5500000000113,
       "portfolio_type": "india_paper"
     },
     {
@@ -849,12 +849,12 @@
   "daily_history": [
     {
       "date": "2026-07-30",
-      "pnl": -1508.80224609375,
+      "pnl": -5625.556713867199,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
       "num_trades": 3,
       "wins": 0,
-      "losses": 1,
+      "losses": 3,
       "win_rate": 0.0
     },
     {
@@ -1449,12 +1449,12 @@
   "india": {
     "summary": {
       "trades_today": 3,
-      "pnl_today": -1508.80224609375,
-      "total_pnl": -2759.916488037172,
+      "pnl_today": -5625.556713867199,
+      "total_pnl": -6876.67095581062,
       "total_trades": 60,
       "wins": 12,
-      "losses": 42,
-      "win_rate": 0.2222222222222222
+      "losses": 44,
+      "win_rate": 0.21428571428571427
     },
     "open_positions": [
       {
@@ -1471,26 +1471,16 @@
         "ticker": "TECHM",
         "qty": 238,
         "avg_entry": 1572.9
-      },
-      {
-        "ticker": "HDFCBANK",
-        "qty": 249,
-        "avg_entry": 751.5
-      },
-      {
-        "ticker": "SBIN",
-        "qty": 183,
-        "avg_entry": 1022.4
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 9,
+        "trades": 11,
         "wins": 4,
-        "losses": 5,
-        "total_pnl": 50816.33,
-        "win_rate": 44.4
+        "losses": 7,
+        "total_pnl": 46699.57,
+        "win_rate": 36.4
       }
     ],
     "recent_trades": [
@@ -1502,8 +1492,8 @@
         "price": 1022.4000244140625,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1008.00 TGT=1051.20"
+        "pnl": -2635.2044677734375,
+        "notes": "SL=1008.00 TGT=1051.20 | STOP @1008.0"
       },
       {
         "ts": "2026-07-30 09:12:02.560992",
@@ -1513,8 +1503,8 @@
         "price": 751.5,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=745.55 TGT=763.40"
+        "pnl": -1481.5500000000113,
+        "notes": "SL=745.55 TGT=763.40 | STOP @745.55"
       },
       {
         "ts": "2026-07-30 06:22:44.163355",
@@ -2159,11 +2149,11 @@
   "india_daily_history": [
     {
       "date": "2026-07-30",
-      "pnl": -1508.80224609375,
+      "pnl": -5625.556713867199,
       "num_trades": 3,
       "wins": 12,
-      "losses": 42,
-      "win_rate": 0.2222222222222222
+      "losses": 44,
+      "win_rate": 0.21428571428571427
     },
     {
       "date": "2026-07-29",
