@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T06:55:12.496915",
+  "generated_at": "2026-08-03T10:37:39.350685",
   "today": "2026-08-03",
   "summary": {
     "trades_today": 1,
@@ -14,12 +14,12 @@
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 9,
-      "wins": 2,
+      "trades": 10,
+      "wins": 3,
       "losses": 7,
-      "total_pnl": 14448.54,
-      "win_rate": 22.2,
-      "avg_r": 32.108
+      "total_pnl": 38934.03,
+      "win_rate": 30.0,
+      "avg_r": 77.868
     }
   ],
   "recent_trades": [
@@ -130,7 +130,7 @@
       "price": 4604.2,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": 24485.489999999998,
       "portfolio_type": "india_paper"
     },
     {
@@ -1452,22 +1452,17 @@
     "summary": {
       "trades_today": 1,
       "pnl_today": 0.0,
-      "total_pnl": -6876.67095581062,
+      "total_pnl": 17608.81904418938,
       "total_trades": 62,
-      "wins": 12,
+      "wins": 13,
       "losses": 44,
-      "win_rate": 0.21428571428571427
+      "win_rate": 0.22807017543859648
     },
     "open_positions": [
       {
         "ticker": "AUROPHARMA",
         "qty": 482,
         "avg_entry": 1555.2
-      },
-      {
-        "ticker": "TITAN",
-        "qty": 81,
-        "avg_entry": 4604.2
       },
       {
         "ticker": "TECHM",
@@ -1488,11 +1483,11 @@
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 9,
-        "wins": 2,
+        "trades": 10,
+        "wins": 3,
         "losses": 7,
-        "total_pnl": 14448.54,
-        "win_rate": 22.2
+        "total_pnl": 38934.03,
+        "win_rate": 30.0
       }
     ],
     "recent_trades": [
@@ -1603,8 +1598,8 @@
         "price": 4604.2,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=4453.06 TGT=4906.49"
+        "pnl": 24485.489999999998,
+        "notes": "SL=4453.06 TGT=4906.49 | TARGET @4906.49"
       },
       {
         "ts": "2026-07-08 06:24:18.568189",
@@ -2185,9 +2180,9 @@
       "date": "2026-08-03",
       "pnl": 0.0,
       "num_trades": 1,
-      "wins": 12,
+      "wins": 13,
       "losses": 44,
-      "win_rate": 0.21428571428571427
+      "win_rate": 0.22807017543859648
     },
     {
       "date": "2026-07-31",
