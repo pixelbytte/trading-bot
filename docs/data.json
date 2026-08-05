@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-05T06:23:42.202592",
+  "generated_at": "2026-08-05T09:18:14.463639",
   "today": "2026-08-05",
   "summary": {
-    "trades_today": 1,
-    "realized_pnl": 0.0,
+    "trades_today": 2,
+    "realized_pnl": -1744.40869140625,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "win_rate": 0.0
   },
   "open_positions": [],
@@ -17,12 +17,23 @@
       "trades": 10,
       "wins": 3,
       "losses": 7,
-      "total_pnl": 38934.03,
+      "total_pnl": 42523.22,
       "win_rate": 30.0,
-      "avg_r": 77.868
+      "avg_r": 85.046
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-05 09:18:13.852785",
+      "ticker": "SBIN",
+      "side": "buy",
+      "qty": 178.0,
+      "price": 1051.800048828125,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-05 06:23:41.466850",
       "ticker": "SBIN",
@@ -31,7 +42,7 @@
       "price": 1050.300048828125,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1744.40869140625,
       "portfolio_type": "india_paper"
     },
     {
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": -2238.1969726562556,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-09 07:43:08.907700",
-      "ticker": "SBIN",
-      "side": "buy",
-      "qty": 93.0,
-      "price": 1001.25,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1650.75,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-05 09:18:13.850105",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.664,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-05 06:23:41.463763",
       "ticker": "SBIN",
@@ -835,26 +844,17 @@
       "confidence": 0.72,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-18 08:41:27.451000",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.683,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
     {
       "date": "2026-08-05",
-      "pnl": 0.0,
+      "pnl": -1744.40869140625,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 1,
+      "num_trades": 2,
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
@@ -1450,13 +1450,13 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 1,
-      "pnl_today": 0.0,
-      "total_pnl": 17608.81904418938,
-      "total_trades": 63,
+      "trades_today": 2,
+      "pnl_today": -1744.40869140625,
+      "total_pnl": 15864.410352783127,
+      "total_trades": 64,
       "wins": 13,
-      "losses": 44,
-      "win_rate": 0.22807017543859648
+      "losses": 45,
+      "win_rate": 0.22413793103448276
     },
     "open_positions": [
       {
@@ -1482,7 +1482,7 @@
       {
         "ticker": "SBIN",
         "qty": 178,
-        "avg_entry": 1050.3
+        "avg_entry": 1051.8
       }
     ],
     "strategy_stats": [
@@ -1491,11 +1491,22 @@
         "trades": 10,
         "wins": 3,
         "losses": 7,
-        "total_pnl": 38934.03,
+        "total_pnl": 42523.22,
         "win_rate": 30.0
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-05 09:18:13.852785",
+        "ticker": "SBIN",
+        "side": "buy",
+        "qty": 178.0,
+        "price": 1051.800048828125,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1040.50 TGT=1074.40"
+      },
       {
         "ts": "2026-08-05 06:23:41.466850",
         "ticker": "SBIN",
@@ -1504,8 +1515,8 @@
         "price": 1050.300048828125,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1040.50 TGT=1069.90"
+        "pnl": -1744.40869140625,
+        "notes": "SL=1040.50 TGT=1069.90 | STOP @1040.5"
       },
       {
         "ts": "2026-08-03 06:55:11.634247",
@@ -2194,11 +2205,11 @@
   "india_daily_history": [
     {
       "date": "2026-08-05",
-      "pnl": 0.0,
-      "num_trades": 1,
+      "pnl": -1744.40869140625,
+      "num_trades": 2,
       "wins": 13,
-      "losses": 44,
-      "win_rate": 0.22807017543859648
+      "losses": 45,
+      "win_rate": 0.22413793103448276
     },
     {
       "date": "2026-08-04",
