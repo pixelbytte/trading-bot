@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T19:17:12.419105",
+  "generated_at": "2026-08-07T20:07:22.247199",
   "today": "2026-08-07",
   "summary": {
     "trades_today": 1,
@@ -576,6 +576,78 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-07 20:07:21.934554",
+      "ticker": "HD",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-07 20:07:21.912986",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-07 20:07:21.792721",
+      "ticker": "BAC",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-07 20:07:21.771473",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-07 20:07:21.749105",
+      "ticker": "PLTR",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-07 20:07:21.726319",
+      "ticker": "SPY",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-07 20:07:21.704770",
+      "ticker": "NVDA",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-07 20:07:21.662074",
+      "ticker": "MSFT",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-08-07 19:17:12.134648",
       "ticker": "UNH",
       "strategy": "momentum",
@@ -766,78 +838,6 @@
     },
     {
       "ts": "2026-08-07 16:02:53.786637",
-      "ticker": "SPY",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-07 16:02:53.764306",
-      "ticker": "AMZN",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-07 16:02:53.743741",
-      "ticker": "NVDA",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-07 16:02:53.716494",
-      "ticker": "MSFT",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-07 14:57:49.968438",
-      "ticker": "UNH",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-07 14:57:49.950794",
-      "ticker": "BAC",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-07 14:57:49.931937",
-      "ticker": "GS",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-07 14:57:49.911164",
-      "ticker": "PLTR",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-07 14:57:49.892173",
       "ticker": "SPY",
       "strategy": "mean_reversion",
       "action": "sell",
