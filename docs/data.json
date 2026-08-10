@@ -1,28 +1,39 @@
 {
-  "generated_at": "2026-08-10T05:21:17.715443",
+  "generated_at": "2026-08-10T06:50:46.651328",
   "today": "2026-08-10",
   "summary": {
-    "trades_today": 2,
-    "realized_pnl": 0.0,
+    "trades_today": 3,
+    "realized_pnl": -1955.8031005859375,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 9,
+      "trades": 10,
       "wins": 2,
-      "losses": 7,
-      "total_pnl": 19351.62,
-      "win_rate": 22.2,
-      "avg_r": 43.004
+      "losses": 8,
+      "total_pnl": 17395.81,
+      "win_rate": 20.0,
+      "avg_r": 34.792
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-10 06:50:46.111332",
+      "ticker": "HDFCBANK",
+      "side": "buy",
+      "qty": 255.0,
+      "price": 734.7999877929688,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-10 05:21:17.228708",
       "ticker": "TRENT",
@@ -42,7 +53,7 @@
       "price": 736.2000122070312,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1955.8031005859375,
       "portfolio_type": "india_paper"
     },
     {
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": -1102.0477294921875,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-11 08:41:03.499995",
-      "ticker": "ICICIBANK",
-      "side": "buy",
-      "qty": 70.0,
-      "price": 1320.9000244140625,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -2324.001708984372,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-10 06:50:46.107396",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.673,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-10 05:21:17.226598",
       "ticker": "TRENT",
@@ -835,26 +844,17 @@
       "confidence": 0.631,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-22 09:44:54.530322",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.576,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
     {
       "date": "2026-08-10",
-      "pnl": 0.0,
+      "pnl": -1955.8031005859375,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 2,
+      "num_trades": 3,
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
@@ -1450,13 +1450,13 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 2,
-      "pnl_today": 0.0,
-      "total_pnl": 66856.86166137684,
-      "total_trades": 68,
+      "trades_today": 3,
+      "pnl_today": -1955.8031005859375,
+      "total_pnl": 64901.058560790894,
+      "total_trades": 69,
       "wins": 15,
-      "losses": 47,
-      "win_rate": 0.24193548387096775
+      "losses": 48,
+      "win_rate": 0.23809523809523808
     },
     "open_positions": [
       {
@@ -1480,27 +1480,38 @@
         "avg_entry": 1085.0
       },
       {
-        "ticker": "HDFCBANK",
-        "qty": 254,
-        "avg_entry": 736.2
-      },
-      {
         "ticker": "TRENT",
         "qty": 125,
         "avg_entry": 2997.0
+      },
+      {
+        "ticker": "HDFCBANK",
+        "qty": 255,
+        "avg_entry": 734.8
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 9,
+        "trades": 10,
         "wins": 2,
-        "losses": 7,
-        "total_pnl": 19351.62,
-        "win_rate": 22.2
+        "losses": 8,
+        "total_pnl": 17395.81,
+        "win_rate": 20.0
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-10 06:50:46.111332",
+        "ticker": "HDFCBANK",
+        "side": "buy",
+        "qty": 255.0,
+        "price": 734.7999877929688,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=728.50 TGT=747.40"
+      },
       {
         "ts": "2026-08-10 05:21:17.228708",
         "ticker": "TRENT",
@@ -1520,8 +1531,8 @@
         "price": 736.2000122070312,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=728.50 TGT=751.60"
+        "pnl": -1955.8031005859375,
+        "notes": "SL=728.50 TGT=751.60 | STOP @728.5"
       },
       {
         "ts": "2026-08-07 05:36:20.260179",
@@ -2254,11 +2265,11 @@
   "india_daily_history": [
     {
       "date": "2026-08-10",
-      "pnl": 0.0,
-      "num_trades": 2,
+      "pnl": -1955.8031005859375,
+      "num_trades": 3,
       "wins": 15,
-      "losses": 47,
-      "win_rate": 0.24193548387096775
+      "losses": 48,
+      "win_rate": 0.23809523809523808
     },
     {
       "date": "2026-08-07",
