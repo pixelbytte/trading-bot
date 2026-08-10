@@ -1,28 +1,39 @@
 {
-  "generated_at": "2026-08-10T06:50:46.651328",
+  "generated_at": "2026-08-10T08:23:52.568454",
   "today": "2026-08-10",
   "summary": {
-    "trades_today": 3,
-    "realized_pnl": -1955.8031005859375,
+    "trades_today": 4,
+    "realized_pnl": -3562.2999877929688,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 1,
+    "losses": 2,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 10,
+      "trades": 11,
       "wins": 2,
-      "losses": 8,
-      "total_pnl": 17395.81,
-      "win_rate": 20.0,
-      "avg_r": 34.792
+      "losses": 9,
+      "total_pnl": 15789.32,
+      "win_rate": 18.2,
+      "avg_r": 28.708
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-10 08:23:51.949165",
+      "ticker": "HDFCBANK",
+      "side": "buy",
+      "qty": 255.0,
+      "price": 733.75,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-10 06:50:46.111332",
       "ticker": "HDFCBANK",
@@ -31,7 +42,7 @@
       "price": 734.7999877929688,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1606.4968872070312,
       "portfolio_type": "india_paper"
     },
     {
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": 1576.198266601556,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-11 08:41:04.072224",
-      "ticker": "SBIN",
-      "side": "buy",
-      "qty": 93.0,
-      "price": 1005.3499755859375,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1102.0477294921875,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-10 08:23:51.946038",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.601,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-10 06:50:46.107396",
       "ticker": "HDFCBANK",
@@ -835,26 +844,17 @@
       "confidence": 0.9,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-22 09:44:55.130903",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.631,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
     {
       "date": "2026-08-10",
-      "pnl": -1955.8031005859375,
+      "pnl": -3562.2999877929688,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 3,
+      "num_trades": 4,
       "wins": 0,
-      "losses": 1,
+      "losses": 2,
       "win_rate": 0.0
     },
     {
@@ -1450,13 +1450,13 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 3,
-      "pnl_today": -1955.8031005859375,
-      "total_pnl": 64901.058560790894,
-      "total_trades": 69,
+      "trades_today": 4,
+      "pnl_today": -3562.2999877929688,
+      "total_pnl": 63294.56167358386,
+      "total_trades": 70,
       "wins": 15,
-      "losses": 48,
-      "win_rate": 0.23809523809523808
+      "losses": 49,
+      "win_rate": 0.234375
     },
     "open_positions": [
       {
@@ -1487,20 +1487,31 @@
       {
         "ticker": "HDFCBANK",
         "qty": 255,
-        "avg_entry": 734.8
+        "avg_entry": 733.75
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 10,
+        "trades": 11,
         "wins": 2,
-        "losses": 8,
-        "total_pnl": 17395.81,
-        "win_rate": 20.0
+        "losses": 9,
+        "total_pnl": 15789.32,
+        "win_rate": 18.2
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-10 08:23:51.949165",
+        "ticker": "HDFCBANK",
+        "side": "buy",
+        "qty": 255.0,
+        "price": 733.75,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=728.50 TGT=744.25"
+      },
       {
         "ts": "2026-08-10 06:50:46.111332",
         "ticker": "HDFCBANK",
@@ -1509,8 +1520,8 @@
         "price": 734.7999877929688,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=728.50 TGT=747.40"
+        "pnl": -1606.4968872070312,
+        "notes": "SL=728.50 TGT=747.40 | STOP @728.5"
       },
       {
         "ts": "2026-08-10 05:21:17.228708",
@@ -2265,11 +2276,11 @@
   "india_daily_history": [
     {
       "date": "2026-08-10",
-      "pnl": -1955.8031005859375,
-      "num_trades": 3,
+      "pnl": -3562.2999877929688,
+      "num_trades": 4,
       "wins": 15,
-      "losses": 48,
-      "win_rate": 0.23809523809523808
+      "losses": 49,
+      "win_rate": 0.234375
     },
     {
       "date": "2026-08-07",
