@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-08-10T21:59:41.749970",
-  "today": "2026-08-10",
+  "generated_at": "2026-08-11T05:02:43.945300",
+  "today": "2026-08-11",
   "summary": {
-    "trades_today": 4,
-    "realized_pnl": -4901.049987792969,
+    "trades_today": 0,
+    "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 3,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 12,
+      "trades": 13,
       "wins": 2,
-      "losses": 10,
-      "total_pnl": 14450.57,
-      "win_rate": 16.7,
-      "avg_r": 24.084
+      "losses": 11,
+      "total_pnl": 11485.46,
+      "win_rate": 15.4,
+      "avg_r": 17.67
     }
   ],
   "recent_trades": [
@@ -119,7 +119,7 @@
       "price": 1250.800048828125,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -2965.1072753906114,
       "portfolio_type": "india_paper"
     },
     {
@@ -576,51 +576,6 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-08-10 14:40:09.216225",
-      "ticker": "GOOGL",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-08-10 14:40:07.167181",
-      "ticker": "AVGO",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-08-10 14:40:05.081872",
-      "ticker": "AMZN",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-08-10 14:40:02.753873",
-      "ticker": "NVDA",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-08-10 14:40:01.108177",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Daily loss limit hit: $-4901.05"
-    },
-    {
       "ts": "2026-08-10 08:23:51.946038",
       "ticker": "HDFCBANK",
       "strategy": "india_orb",
@@ -844,9 +799,64 @@
       "confidence": 0.72,
       "acted": true,
       "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-26 07:46:00.432308",
+      "ticker": "AUROPHARMA",
+      "strategy": "ma_rsi",
+      "action": "buy",
+      "confidence": 0.7,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-25 07:38:46.934859",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.873,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-25 07:38:45.871111",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-24 07:36:40.151221",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.682,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-06-24 07:36:39.199823",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-08-11",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-08-10",
       "pnl": -4901.049987792969,
@@ -1436,27 +1446,17 @@
       "wins": 0,
       "losses": 0,
       "win_rate": 0.0
-    },
-    {
-      "date": "2026-05-20",
-      "pnl": 0.0,
-      "dt_pnl": 0.0,
-      "lt_pnl": 0.0,
-      "num_trades": 0,
-      "wins": 0,
-      "losses": 0,
-      "win_rate": 0.0
     }
   ],
   "india": {
     "summary": {
-      "trades_today": 4,
-      "pnl_today": -4901.049987792969,
-      "total_pnl": 61955.81167358386,
+      "trades_today": 0,
+      "pnl_today": 0.0,
+      "total_pnl": 58990.70439819325,
       "total_trades": 70,
       "wins": 15,
-      "losses": 50,
-      "win_rate": 0.23076923076923078
+      "losses": 51,
+      "win_rate": 0.22727272727272727
     },
     "open_positions": [
       {
@@ -1468,11 +1468,6 @@
         "ticker": "EICHERMOT",
         "qty": 47,
         "avg_entry": 7912.5
-      },
-      {
-        "ticker": "AXISBANK",
-        "qty": 149,
-        "avg_entry": 1250.8
       },
       {
         "ticker": "SBIN",
@@ -1488,11 +1483,11 @@
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 12,
+        "trades": 13,
         "wins": 2,
-        "losses": 10,
-        "total_pnl": 14450.57,
-        "win_rate": 16.7
+        "losses": 11,
+        "total_pnl": 11485.46,
+        "win_rate": 15.4
       }
     ],
     "recent_trades": [
@@ -1592,8 +1587,8 @@
         "price": 1250.800048828125,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1230.90 TGT=1290.60"
+        "pnl": -2965.1072753906114,
+        "notes": "SL=1230.90 TGT=1290.60 | STOP @1230.9"
       },
       {
         "ts": "2026-07-31 06:39:54.856922",
@@ -2269,6 +2264,14 @@
     ]
   },
   "india_daily_history": [
+    {
+      "date": "2026-08-11",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 15,
+      "losses": 51,
+      "win_rate": 0.22727272727272727
+    },
     {
       "date": "2026-08-10",
       "pnl": -4901.049987792969,
