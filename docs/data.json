@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-11T07:35:17.672559",
+  "generated_at": "2026-08-11T08:36:25.624125",
   "today": "2026-08-11",
   "summary": {
-    "trades_today": 0,
+    "trades_today": 1,
     "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -23,6 +23,17 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-11 08:36:24.426366",
+      "ticker": "BAJFINANCE",
+      "side": "buy",
+      "qty": 170.0,
+      "price": 1098.0,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-10 08:23:51.949165",
       "ticker": "HDFCBANK",
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": -2441.0971069335938,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-11 08:41:04.592179",
-      "ticker": "AXISBANK",
-      "side": "buy",
-      "qty": 71.0,
-      "price": 1320.4000244140625,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": 1576.198266601556,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-11 08:36:24.422040",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.6,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-10 08:23:51.946038",
       "ticker": "HDFCBANK",
@@ -835,15 +844,6 @@
       "confidence": 0.682,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-06-24 07:36:39.199823",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
@@ -852,7 +852,7 @@
       "pnl": 0.0,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 0,
+      "num_trades": 1,
       "wins": 0,
       "losses": 0,
       "win_rate": 0.0
@@ -1450,10 +1450,10 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 0,
+      "trades_today": 1,
       "pnl_today": 0.0,
       "total_pnl": 58990.70439819325,
-      "total_trades": 70,
+      "total_trades": 71,
       "wins": 15,
       "losses": 51,
       "win_rate": 0.22727272727272727
@@ -1478,6 +1478,11 @@
         "ticker": "TRENT",
         "qty": 125,
         "avg_entry": 2997.0
+      },
+      {
+        "ticker": "BAJFINANCE",
+        "qty": 170,
+        "avg_entry": 1098.0
       }
     ],
     "strategy_stats": [
@@ -1491,6 +1496,17 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-11 08:36:24.426366",
+        "ticker": "BAJFINANCE",
+        "side": "buy",
+        "qty": 170.0,
+        "price": 1098.0,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1086.60 TGT=1120.80"
+      },
       {
         "ts": "2026-08-10 08:23:51.949165",
         "ticker": "HDFCBANK",
@@ -2267,7 +2283,7 @@
     {
       "date": "2026-08-11",
       "pnl": 0.0,
-      "num_trades": 0,
+      "num_trades": 1,
       "wins": 15,
       "losses": 51,
       "win_rate": 0.22727272727272727
