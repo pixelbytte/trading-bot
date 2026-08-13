@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-08-13T07:01:58.315026",
+  "generated_at": "2026-08-13T08:42:18.860834",
   "today": "2026-08-13",
   "summary": {
     "trades_today": 1,
-    "realized_pnl": 0.0,
+    "realized_pnl": -1457.9029174804632,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 16,
+      "trades": 17,
       "wins": 2,
-      "losses": 14,
-      "total_pnl": 5570.61,
-      "win_rate": 12.5,
-      "avg_r": 6.963
+      "losses": 15,
+      "total_pnl": 4112.71,
+      "win_rate": 11.8,
+      "avg_r": 4.838
     }
   ],
   "recent_trades": [
@@ -31,7 +31,7 @@
       "price": 392.1000061035156,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1457.9029174804632,
       "portfolio_type": "india_paper"
     },
     {
@@ -849,12 +849,12 @@
   "daily_history": [
     {
       "date": "2026-08-13",
-      "pnl": 0.0,
+      "pnl": -1457.9029174804632,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
       "num_trades": 1,
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
@@ -1451,12 +1451,12 @@
   "india": {
     "summary": {
       "trades_today": 1,
-      "pnl_today": 0.0,
-      "total_pnl": 53075.85394653308,
+      "pnl_today": -1457.9029174804632,
+      "total_pnl": 51617.951029052616,
       "total_trades": 74,
       "wins": 15,
-      "losses": 54,
-      "win_rate": 0.21739130434782608
+      "losses": 55,
+      "win_rate": 0.21428571428571427
     },
     "open_positions": [
       {
@@ -1478,21 +1478,16 @@
         "ticker": "TRENT",
         "qty": 125,
         "avg_entry": 2997.0
-      },
-      {
-        "ticker": "KOTAKBANK",
-        "qty": 478,
-        "avg_entry": 392.1
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 16,
+        "trades": 17,
         "wins": 2,
-        "losses": 14,
-        "total_pnl": 5570.61,
-        "win_rate": 12.5
+        "losses": 15,
+        "total_pnl": 4112.71,
+        "win_rate": 11.8
       }
     ],
     "recent_trades": [
@@ -1504,8 +1499,8 @@
         "price": 392.1000061035156,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=389.05 TGT=398.20"
+        "pnl": -1457.9029174804632,
+        "notes": "SL=389.05 TGT=398.20 | STOP @389.05"
       },
       {
         "ts": "2026-08-12 09:31:50.976969",
@@ -2315,11 +2310,11 @@
   "india_daily_history": [
     {
       "date": "2026-08-13",
-      "pnl": 0.0,
+      "pnl": -1457.9029174804632,
       "num_trades": 1,
       "wins": 15,
-      "losses": 54,
-      "win_rate": 0.21739130434782608
+      "losses": 55,
+      "win_rate": 0.21428571428571427
     },
     {
       "date": "2026-08-12",
