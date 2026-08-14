@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-14T21:42:37.400528",
+  "generated_at": "2026-08-14T22:01:28.457349",
   "today": "2026-08-14",
   "summary": {
     "trades_today": 1,
@@ -576,6 +576,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-14 22:01:28.187321",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-14 22:01:28.161250",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-08-14 21:42:37.150783",
       "ticker": "UNH",
       "strategy": "momentum",
@@ -824,24 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.673,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-10 05:21:17.226598",
-      "ticker": "TRENT",
-      "strategy": "ma_rsi",
-      "action": "buy",
-      "confidence": 0.7,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-10 05:21:16.452109",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.768,
       "acted": true,
       "skip_reason": ""
     }
