@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-14T17:01:34.490384",
+  "generated_at": "2026-08-14T18:07:41.540344",
   "today": "2026-08-14",
   "summary": {
     "trades_today": 1,
@@ -576,6 +576,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-14 18:07:41.213661",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-14 18:07:41.186201",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-08-14 17:01:34.236748",
       "ticker": "UNH",
       "strategy": "momentum",
@@ -824,24 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.617,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-07-24 06:22:03.475394",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.589,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-07-22 06:24:22.389054",
-      "ticker": "TVSMOTOR",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
       "acted": true,
       "skip_reason": ""
     }
