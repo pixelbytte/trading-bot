@@ -1,28 +1,61 @@
 {
-  "generated_at": "2026-08-17T07:59:30.137881",
+  "generated_at": "2026-08-17T08:50:08.905830",
   "today": "2026-08-17",
   "summary": {
-    "trades_today": 4,
-    "realized_pnl": 2167.204199218758,
+    "trades_today": 7,
+    "realized_pnl": -1685.09056396483,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 1,
-    "losses": 0,
-    "win_rate": 1.0
+    "losses": 3,
+    "win_rate": 0.25
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 20,
+      "trades": 23,
       "wins": 3,
-      "losses": 17,
-      "total_pnl": -4771.59,
-      "win_rate": 15.0,
-      "avg_r": -4.772
+      "losses": 20,
+      "total_pnl": -8623.89,
+      "win_rate": 13.0,
+      "avg_r": -7.499
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-17 08:50:08.354665",
+      "ticker": "AXISBANK",
+      "side": "buy",
+      "qty": 152.0,
+      "price": 1230.5999755859375,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-08-17 08:50:07.943962",
+      "ticker": "SBIN",
+      "side": "buy",
+      "qty": 176.0,
+      "price": 1064.199951171875,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-08-17 08:50:07.686187",
+      "ticker": "ICICIBANK",
+      "side": "buy",
+      "qty": 132.0,
+      "price": 1420.0,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-17 07:59:29.449219",
       "ticker": "SBIN",
@@ -31,7 +64,7 @@
       "price": 1065.699951171875,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1872.491455078125,
       "portfolio_type": "india_paper"
     },
     {
@@ -42,7 +75,7 @@
       "price": 1419.800048828125,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1003.206445312494,
       "portfolio_type": "india_paper"
     },
     {
@@ -53,7 +86,7 @@
       "price": 728.2999877929688,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -976.5968627929688,
       "portfolio_type": "india_paper"
     },
     {
@@ -539,42 +572,36 @@
       "status": "paper_fill",
       "pnl": -3186.208740234375,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-18 08:41:26.481830",
-      "ticker": "ICICIBANK",
-      "side": "buy",
-      "qty": 139.0,
-      "price": 1344.0,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1320.5,
-      "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-17 08:58:56.794309",
-      "ticker": "SBIN",
-      "side": "buy",
-      "qty": 183.0,
-      "price": 1022.7000122070312,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1445.702233886727,
-      "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-16 09:22:25.487818",
-      "ticker": "EICHERMOT",
-      "side": "buy",
-      "qty": 49.0,
-      "price": 7624.5,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -13889.049999999992,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-17 08:50:08.352539",
+      "ticker": "AXISBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.693,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-17 08:50:07.941724",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.574,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-17 08:50:07.682930",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.596,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-17 07:59:29.447127",
       "ticker": "SBIN",
@@ -817,45 +844,18 @@
       "confidence": 0.72,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-07-08 06:24:18.565136",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.88,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-07-07 07:33:52.413353",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.563,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-07-06 08:15:57.896425",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
     {
       "date": "2026-08-17",
-      "pnl": 2167.204199218758,
+      "pnl": -1685.09056396483,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 4,
+      "num_trades": 7,
       "wins": 1,
-      "losses": 0,
-      "win_rate": 1.0
+      "losses": 3,
+      "win_rate": 0.25
     },
     {
       "date": "2026-08-14",
@@ -1450,13 +1450,13 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 4,
-      "pnl_today": 2167.204199218758,
-      "total_pnl": 42733.65232299798,
-      "total_trades": 79,
+      "trades_today": 7,
+      "pnl_today": -1685.09056396483,
+      "total_pnl": 38881.35755981439,
+      "total_trades": 82,
       "wins": 16,
-      "losses": 57,
-      "win_rate": 0.2191780821917808
+      "losses": 60,
+      "win_rate": 0.21052631578947367
     },
     "open_positions": [
       {
@@ -1475,32 +1475,65 @@
         "avg_entry": 2997.0
       },
       {
-        "ticker": "HDFCBANK",
-        "qty": 257,
-        "avg_entry": 728.3
-      },
-      {
         "ticker": "ICICIBANK",
         "qty": 132,
-        "avg_entry": 1419.8
+        "avg_entry": 1420.0
       },
       {
         "ticker": "SBIN",
-        "qty": 175,
-        "avg_entry": 1065.7
+        "qty": 176,
+        "avg_entry": 1064.2
+      },
+      {
+        "ticker": "AXISBANK",
+        "qty": 152,
+        "avg_entry": 1230.6
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 20,
+        "trades": 23,
         "wins": 3,
-        "losses": 17,
-        "total_pnl": -4771.59,
-        "win_rate": 15.0
+        "losses": 20,
+        "total_pnl": -8623.89,
+        "win_rate": 13.0
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-17 08:50:08.354665",
+        "ticker": "AXISBANK",
+        "side": "buy",
+        "qty": 152.0,
+        "price": 1230.5999755859375,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1214.00 TGT=1263.80"
+      },
+      {
+        "ts": "2026-08-17 08:50:07.943962",
+        "ticker": "SBIN",
+        "side": "buy",
+        "qty": 176.0,
+        "price": 1064.199951171875,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1055.00 TGT=1082.60"
+      },
+      {
+        "ts": "2026-08-17 08:50:07.686187",
+        "ticker": "ICICIBANK",
+        "side": "buy",
+        "qty": 132.0,
+        "price": 1420.0,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1412.20 TGT=1435.60"
+      },
       {
         "ts": "2026-08-17 07:59:29.449219",
         "ticker": "SBIN",
@@ -1509,8 +1542,8 @@
         "price": 1065.699951171875,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1055.00 TGT=1087.10"
+        "pnl": -1872.491455078125,
+        "notes": "SL=1055.00 TGT=1087.10 | STOP @1055.0"
       },
       {
         "ts": "2026-08-17 07:59:29.069465",
@@ -1520,8 +1553,8 @@
         "price": 1419.800048828125,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1412.20 TGT=1435.00"
+        "pnl": -1003.206445312494,
+        "notes": "SL=1412.20 TGT=1435.00 | STOP @1412.2"
       },
       {
         "ts": "2026-08-17 07:59:28.560251",
@@ -1531,8 +1564,8 @@
         "price": 728.2999877929688,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=724.50 TGT=735.90"
+        "pnl": -976.5968627929688,
+        "notes": "SL=724.50 TGT=735.90 | STOP @724.5"
       },
       {
         "ts": "2026-08-17 04:35:31.881162",
@@ -2375,11 +2408,11 @@
   "india_daily_history": [
     {
       "date": "2026-08-17",
-      "pnl": 2167.204199218758,
-      "num_trades": 4,
+      "pnl": -1685.09056396483,
+      "num_trades": 7,
       "wins": 16,
-      "losses": 57,
-      "win_rate": 0.2191780821917808
+      "losses": 60,
+      "win_rate": 0.21052631578947367
     },
     {
       "date": "2026-08-14",
