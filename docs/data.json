@@ -1,28 +1,50 @@
 {
-  "generated_at": "2026-08-18T05:04:01.941176",
+  "generated_at": "2026-08-18T05:44:10.392021",
   "today": "2026-08-18",
   "summary": {
-    "trades_today": 1,
-    "realized_pnl": 0.0,
+    "trades_today": 3,
+    "realized_pnl": -1343.004150390625,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 29,
+      "trades": 30,
       "wins": 3,
-      "losses": 26,
-      "total_pnl": -17835.39,
-      "win_rate": 10.3,
-      "avg_r": -12.3
+      "losses": 27,
+      "total_pnl": -19178.39,
+      "win_rate": 10.0,
+      "avg_r": -12.786
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-18 05:44:09.471867",
+      "ticker": "BAJFINANCE",
+      "side": "buy",
+      "qty": 171.0,
+      "price": 1095.699951171875,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
+    {
+      "ts": "2026-08-18 05:44:08.813894",
+      "ticker": "AXISBANK",
+      "side": "buy",
+      "qty": 151.0,
+      "price": 1237.4000244140625,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-18 05:04:01.183452",
       "ticker": "BAJFINANCE",
@@ -31,7 +53,7 @@
       "price": 1096.9000244140625,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1343.004150390625,
       "portfolio_type": "india_paper"
     },
     {
@@ -550,31 +572,27 @@
       "status": "paper_fill",
       "pnl": -1340.9956054687336,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-19 09:04:09.318923",
-      "ticker": "BEL",
-      "side": "buy",
-      "qty": 874.0,
-      "price": 428.6,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -12096.160000000027,
-      "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-19 09:04:09.064781",
-      "ticker": "BAJFINANCE",
-      "side": "buy",
-      "qty": 194.0,
-      "price": 964.5,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -2017.5999999999956,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-18 05:44:09.468924",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.619,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-18 05:44:08.637351",
+      "ticker": "AXISBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.57,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-18 05:04:01.179915",
       "ticker": "BAJFINANCE",
@@ -826,35 +844,17 @@
       "confidence": 0.597,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-07-30 06:22:44.160196",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.693,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-07-29 09:21:19.369949",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.617,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
     {
       "date": "2026-08-18",
-      "pnl": 0.0,
+      "pnl": -1343.004150390625,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 1,
+      "num_trades": 3,
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
@@ -1450,13 +1450,13 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 1,
-      "pnl_today": 0.0,
-      "total_pnl": 29669.85819458003,
-      "total_trades": 86,
+      "trades_today": 3,
+      "pnl_today": -1343.004150390625,
+      "total_pnl": 28326.854044189404,
+      "total_trades": 88,
       "wins": 16,
-      "losses": 66,
-      "win_rate": 0.1951219512195122
+      "losses": 67,
+      "win_rate": 0.1927710843373494
     },
     "open_positions": [
       {
@@ -1475,22 +1475,49 @@
         "avg_entry": 2997.0
       },
       {
+        "ticker": "AXISBANK",
+        "qty": 151,
+        "avg_entry": 1237.4
+      },
+      {
         "ticker": "BAJFINANCE",
-        "qty": 170,
-        "avg_entry": 1096.9
+        "qty": 171,
+        "avg_entry": 1095.7
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 29,
+        "trades": 30,
         "wins": 3,
-        "losses": 26,
-        "total_pnl": -17835.39,
-        "win_rate": 10.3
+        "losses": 27,
+        "total_pnl": -19178.39,
+        "win_rate": 10.0
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-18 05:44:09.471867",
+        "ticker": "BAJFINANCE",
+        "side": "buy",
+        "qty": 171.0,
+        "price": 1095.699951171875,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1089.00 TGT=1109.10"
+      },
+      {
+        "ts": "2026-08-18 05:44:08.813894",
+        "ticker": "AXISBANK",
+        "side": "buy",
+        "qty": 151.0,
+        "price": 1237.4000244140625,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1223.90 TGT=1264.40"
+      },
       {
         "ts": "2026-08-18 05:04:01.183452",
         "ticker": "BAJFINANCE",
@@ -1499,8 +1526,8 @@
         "price": 1096.9000244140625,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1089.00 TGT=1112.70"
+        "pnl": -1343.004150390625,
+        "notes": "SL=1089.00 TGT=1112.70 | STOP @1089.0"
       },
       {
         "ts": "2026-08-17 09:35:31.473644",
@@ -2442,11 +2469,11 @@
   "india_daily_history": [
     {
       "date": "2026-08-18",
-      "pnl": 0.0,
-      "num_trades": 1,
+      "pnl": -1343.004150390625,
+      "num_trades": 3,
       "wins": 16,
-      "losses": 66,
-      "win_rate": 0.1951219512195122
+      "losses": 67,
+      "win_rate": 0.1927710843373494
     },
     {
       "date": "2026-08-17",
