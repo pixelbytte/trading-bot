@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T10:47:14.263476",
+  "generated_at": "2026-08-18T14:38:29.500522",
   "today": "2026-08-18",
   "summary": {
     "trades_today": 6,
@@ -576,6 +576,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-18 14:09:39.590996",
+      "ticker": "AMZN",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-08-18 14:09:37.534932",
+      "ticker": "NVDA",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Daily loss limit hit: $-6796.20"
+    },
+    {
       "ts": "2026-08-18 08:29:45.354168",
       "ticker": "BAJFINANCE",
       "strategy": "india_orb",
@@ -824,24 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.664,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-05 06:23:41.463763",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.593,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-03 06:55:11.631463",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.747,
       "acted": true,
       "skip_reason": ""
     }
