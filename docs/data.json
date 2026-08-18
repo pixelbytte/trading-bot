@@ -1,28 +1,39 @@
 {
-  "generated_at": "2026-08-18T07:02:46.856981",
+  "generated_at": "2026-08-18T07:52:29.956510",
   "today": "2026-08-18",
   "summary": {
-    "trades_today": 4,
-    "realized_pnl": -2488.69580078125,
+    "trades_today": 5,
+    "realized_pnl": -4171.699951171875,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 2,
+    "losses": 3,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 31,
+      "trades": 32,
       "wins": 3,
-      "losses": 28,
-      "total_pnl": -20324.08,
-      "win_rate": 9.7,
-      "avg_r": -13.112
+      "losses": 29,
+      "total_pnl": -22007.09,
+      "win_rate": 9.4,
+      "avg_r": -13.754
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-18 07:52:29.221910",
+      "ticker": "BAJFINANCE",
+      "side": "buy",
+      "qty": 170.0,
+      "price": 1097.9000244140625,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-18 07:02:45.937290",
       "ticker": "BAJFINANCE",
@@ -31,7 +42,7 @@
       "price": 1098.9000244140625,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1683.004150390625,
       "portfolio_type": "india_paper"
     },
     {
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": 7844.697106933583,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-22 09:44:55.133170",
-      "ticker": "KOTAKBANK",
-      "side": "buy",
-      "qty": 466.0,
-      "price": 402.0,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1514.5,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-18 07:52:29.218138",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.719,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-18 07:02:45.933928",
       "ticker": "BAJFINANCE",
@@ -835,26 +844,17 @@
       "confidence": 0.72,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-07-30 09:12:03.311365",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
     {
       "date": "2026-08-18",
-      "pnl": -2488.69580078125,
+      "pnl": -4171.699951171875,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 4,
+      "num_trades": 5,
       "wins": 0,
-      "losses": 2,
+      "losses": 3,
       "win_rate": 0.0
     },
     {
@@ -1450,13 +1450,13 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 4,
-      "pnl_today": -2488.69580078125,
-      "total_pnl": 27181.16239379878,
-      "total_trades": 89,
+      "trades_today": 5,
+      "pnl_today": -4171.699951171875,
+      "total_pnl": 25498.158243408154,
+      "total_trades": 90,
       "wins": 16,
-      "losses": 68,
-      "win_rate": 0.19047619047619047
+      "losses": 69,
+      "win_rate": 0.18823529411764706
     },
     "open_positions": [
       {
@@ -1482,20 +1482,31 @@
       {
         "ticker": "BAJFINANCE",
         "qty": 170,
-        "avg_entry": 1098.9
+        "avg_entry": 1097.9
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 31,
+        "trades": 32,
         "wins": 3,
-        "losses": 28,
-        "total_pnl": -20324.08,
-        "win_rate": 9.7
+        "losses": 29,
+        "total_pnl": -22007.09,
+        "win_rate": 9.4
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-18 07:52:29.221910",
+        "ticker": "BAJFINANCE",
+        "side": "buy",
+        "qty": 170.0,
+        "price": 1097.9000244140625,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1089.00 TGT=1115.70"
+      },
       {
         "ts": "2026-08-18 07:02:45.937290",
         "ticker": "BAJFINANCE",
@@ -1504,8 +1515,8 @@
         "price": 1098.9000244140625,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1089.00 TGT=1118.70"
+        "pnl": -1683.004150390625,
+        "notes": "SL=1089.00 TGT=1118.70 | STOP @1089.0"
       },
       {
         "ts": "2026-08-18 05:44:09.471867",
@@ -2480,11 +2491,11 @@
   "india_daily_history": [
     {
       "date": "2026-08-18",
-      "pnl": -2488.69580078125,
-      "num_trades": 4,
+      "pnl": -4171.699951171875,
+      "num_trades": 5,
       "wins": 16,
-      "losses": 68,
-      "win_rate": 0.19047619047619047
+      "losses": 69,
+      "win_rate": 0.18823529411764706
     },
     {
       "date": "2026-08-17",
