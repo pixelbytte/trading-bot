@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T21:42:52.203930",
+  "generated_at": "2026-08-19T22:03:00.535028",
   "today": "2026-08-19",
   "summary": {
     "trades_today": 2,
@@ -576,6 +576,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-19 22:03:00.246270",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-19 22:03:00.215994",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-08-19 21:42:51.899681",
       "ticker": "UNH",
       "strategy": "momentum",
@@ -822,24 +840,6 @@
       "ts": "2026-08-19 16:36:46.446423",
       "ticker": "UNH",
       "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-19 16:36:46.403020",
-      "ticker": "GS",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-19 15:49:17.346838",
-      "ticker": "XOM",
-      "strategy": "mean_reversion",
       "action": "sell",
       "confidence": 0.65,
       "acted": false,
