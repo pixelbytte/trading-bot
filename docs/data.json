@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T19:30:25.011889",
+  "generated_at": "2026-08-19T19:54:28.323778",
   "today": "2026-08-19",
   "summary": {
     "trades_today": 2,
@@ -576,6 +576,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-19 19:54:27.994253",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-19 19:54:27.965842",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-08-19 19:30:24.731545",
       "ticker": "UNH",
       "strategy": "momentum",
@@ -822,24 +840,6 @@
       "ts": "2026-08-19 15:13:24.889853",
       "ticker": "GS",
       "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-19 15:13:24.861665",
-      "ticker": "MA",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-19 15:13:24.803219",
-      "ticker": "PLTR",
-      "strategy": "mean_reversion",
       "action": "sell",
       "confidence": 0.65,
       "acted": false,
