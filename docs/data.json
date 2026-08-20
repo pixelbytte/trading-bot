@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T19:47:19.000461",
+  "generated_at": "2026-08-20T20:34:19.905552",
   "today": "2026-08-20",
   "summary": {
     "trades_today": 1,
@@ -576,6 +576,51 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-20 20:34:19.611323",
+      "ticker": "MRVL",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-20 20:34:19.589359",
+      "ticker": "XOM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-20 20:34:19.568726",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-20 20:34:19.548134",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-20 20:34:19.519465",
+      "ticker": "PLTR",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-08-20 19:47:18.725142",
       "ticker": "UNH",
       "strategy": "momentum",
@@ -795,51 +840,6 @@
       "ts": "2026-08-20 15:17:30.055987",
       "ticker": "GS",
       "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-20 15:17:30.029648",
-      "ticker": "PLTR",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-20 14:41:23.805852",
-      "ticker": "XOM",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-20 14:41:23.787721",
-      "ticker": "UNH",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-20 14:41:23.696422",
-      "ticker": "GS",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-08-20 14:41:23.516973",
-      "ticker": "PLTR",
-      "strategy": "mean_reversion",
       "action": "sell",
       "confidence": 0.65,
       "acted": false,
