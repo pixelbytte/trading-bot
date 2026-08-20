@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-20T05:14:32.952233",
+  "generated_at": "2026-08-20T05:47:54.558686",
   "today": "2026-08-20",
   "summary": {
-    "trades_today": 0,
+    "trades_today": 1,
     "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -23,6 +23,17 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-20 05:47:53.590951",
+      "ticker": "KOTAKBANK",
+      "side": "buy",
+      "qty": 472.0,
+      "price": 396.5,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-19 05:47:20.680641",
       "ticker": "KOTAKBANK",
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": 27071.529999999984,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-25 07:38:46.936886",
-      "ticker": "KOTAKBANK",
-      "side": "buy",
-      "qty": 454.0,
-      "price": 412.3500061035156,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -2179.2027709960885,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-20 05:47:53.586827",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.569,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-19 05:47:20.677216",
       "ticker": "KOTAKBANK",
@@ -835,15 +844,6 @@
       "confidence": 0.612,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-05 09:18:13.850105",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.664,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
@@ -852,7 +852,7 @@
       "pnl": 0.0,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 0,
+      "num_trades": 1,
       "wins": 0,
       "losses": 0,
       "win_rate": 0.0
@@ -1450,10 +1450,10 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 0,
+      "trades_today": 1,
       "pnl_today": 0.0,
       "total_pnl": 23670.64820922846,
-      "total_trades": 93,
+      "total_trades": 94,
       "wins": 17,
       "losses": 72,
       "win_rate": 0.19101123595505617
@@ -1478,6 +1478,11 @@
         "ticker": "AXISBANK",
         "qty": 151,
         "avg_entry": 1237.4
+      },
+      {
+        "ticker": "KOTAKBANK",
+        "qty": 472,
+        "avg_entry": 396.5
       }
     ],
     "strategy_stats": [
@@ -1491,6 +1496,17 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-20 05:47:53.590951",
+        "ticker": "KOTAKBANK",
+        "side": "buy",
+        "qty": 472.0,
+        "price": 396.5,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=393.60 TGT=402.30"
+      },
       {
         "ts": "2026-08-19 05:47:20.680641",
         "ticker": "KOTAKBANK",
@@ -2520,7 +2536,7 @@
     {
       "date": "2026-08-20",
       "pnl": 0.0,
-      "num_trades": 0,
+      "num_trades": 1,
       "wins": 17,
       "losses": 72,
       "win_rate": 0.19101123595505617
