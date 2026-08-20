@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:41:24.035246",
+  "generated_at": "2026-08-20T15:17:30.386015",
   "today": "2026-08-20",
   "summary": {
     "trades_today": 1,
@@ -576,6 +576,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-20 15:17:30.096920",
+      "ticker": "XOM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-20 15:17:30.077131",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-20 15:17:30.055987",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-20 15:17:30.029648",
+      "ticker": "PLTR",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-08-20 14:41:23.805852",
       "ticker": "XOM",
       "strategy": "mean_reversion",
@@ -806,42 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.573,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-14 09:19:45.705558",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.563,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-13 07:01:57.274716",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.62,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-12 09:31:50.974154",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.869,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-12 09:31:49.346924",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.601,
       "acted": true,
       "skip_reason": ""
     }
