@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T10:48:19.547002",
+  "generated_at": "2026-08-21T14:40:16.713823",
   "today": "2026-08-21",
   "summary": {
     "trades_today": 6,
@@ -576,6 +576,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-21 14:10:43.964779",
+      "ticker": "AMZN",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-08-21 14:10:42.344230",
+      "ticker": "NVDA",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-08-21 14:10:40.712921",
+      "ticker": "DE",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-08-21 14:10:38.528411",
+      "ticker": "ABBV",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Daily loss limit hit: $-4633.21"
+    },
+    {
       "ts": "2026-08-21 09:34:29.377841",
       "ticker": "ICICIBANK",
       "strategy": "india_orb",
@@ -806,42 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.563,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-13 07:01:57.274716",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.62,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-12 09:31:50.974154",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.869,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-12 09:31:49.346924",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.601,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-11 08:36:24.422040",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.6,
       "acted": true,
       "skip_reason": ""
     }
