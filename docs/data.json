@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-21T07:28:17.430456",
+  "generated_at": "2026-08-21T08:06:07.922863",
   "today": "2026-08-21",
   "summary": {
-    "trades_today": 3,
+    "trades_today": 4,
     "realized_pnl": -1689.6064453125,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -23,6 +23,17 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-21 08:06:07.341357",
+      "ticker": "ICICIBANK",
+      "side": "buy",
+      "qty": 132.0,
+      "price": 1419.300048828125,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-21 06:37:07.361995",
       "ticker": "ICICIBANK",
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": 28498.039999999983,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-07-01 08:07:21.305461",
-      "ticker": "ICICIBANK",
-      "side": "buy",
-      "qty": 135.0,
-      "price": 1381.800048828125,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": 3752.9934082031127,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-21 08:06:07.338227",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.638,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-21 06:37:07.358652",
       "ticker": "ICICIBANK",
@@ -835,15 +844,6 @@
       "confidence": 0.673,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-10 05:21:17.226598",
-      "ticker": "TRENT",
-      "strategy": "ma_rsi",
-      "action": "buy",
-      "confidence": 0.7,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
@@ -852,7 +852,7 @@
       "pnl": -1689.6064453125,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 3,
+      "num_trades": 4,
       "wins": 0,
       "losses": 2,
       "win_rate": 0.0
@@ -1450,10 +1450,10 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 3,
+      "trades_today": 4,
       "pnl_today": -1689.6064453125,
       "total_pnl": 24718.641763915966,
-      "total_trades": 97,
+      "total_trades": 98,
       "wins": 18,
       "losses": 74,
       "win_rate": 0.1956521739130435
@@ -1483,6 +1483,11 @@
         "ticker": "HDFCBANK",
         "qty": 255,
         "avg_entry": 732.45
+      },
+      {
+        "ticker": "ICICIBANK",
+        "qty": 132,
+        "avg_entry": 1419.3
       }
     ],
     "strategy_stats": [
@@ -1496,6 +1501,17 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-21 08:06:07.341357",
+        "ticker": "ICICIBANK",
+        "side": "buy",
+        "qty": 132.0,
+        "price": 1419.300048828125,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1411.50 TGT=1434.90"
+      },
       {
         "ts": "2026-08-21 06:37:07.361995",
         "ticker": "ICICIBANK",
@@ -2569,7 +2585,7 @@
     {
       "date": "2026-08-21",
       "pnl": -1689.6064453125,
-      "num_trades": 3,
+      "num_trades": 4,
       "wins": 18,
       "losses": 74,
       "win_rate": 0.1956521739130435
