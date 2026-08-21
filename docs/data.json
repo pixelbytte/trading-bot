@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-08-21T09:34:29.793237",
+  "generated_at": "2026-08-21T10:05:50.111427",
   "today": "2026-08-21",
   "summary": {
     "trades_today": 6,
-    "realized_pnl": -3643.212890625,
+    "realized_pnl": -4633.212890625,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 4,
+    "losses": 5,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 40,
+      "trades": 41,
       "wins": 4,
-      "losses": 36,
-      "total_pnl": -53513.01,
-      "win_rate": 10.0,
-      "avg_r": -26.757
+      "losses": 37,
+      "total_pnl": -54503.01,
+      "win_rate": 9.8,
+      "avg_r": -26.587
     }
   ],
   "recent_trades": [
@@ -31,7 +31,7 @@
       "price": 1419.0,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -990.0,
       "portfolio_type": "india_paper"
     },
     {
@@ -849,12 +849,12 @@
   "daily_history": [
     {
       "date": "2026-08-21",
-      "pnl": -3643.212890625,
+      "pnl": -4633.212890625,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
       "num_trades": 6,
       "wins": 0,
-      "losses": 4,
+      "losses": 5,
       "win_rate": 0.0
     },
     {
@@ -1451,12 +1451,12 @@
   "india": {
     "summary": {
       "trades_today": 6,
-      "pnl_today": -3643.212890625,
-      "total_pnl": 22765.035318603466,
+      "pnl_today": -4633.212890625,
+      "total_pnl": 21775.035318603466,
       "total_trades": 100,
       "wins": 18,
-      "losses": 76,
-      "win_rate": 0.19148936170212766
+      "losses": 77,
+      "win_rate": 0.18947368421052632
     },
     "open_positions": [
       {
@@ -1483,21 +1483,16 @@
         "ticker": "HDFCBANK",
         "qty": 255,
         "avg_entry": 732.45
-      },
-      {
-        "ticker": "ICICIBANK",
-        "qty": 132,
-        "avg_entry": 1419.0
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 40,
+        "trades": 41,
         "wins": 4,
-        "losses": 36,
-        "total_pnl": -53513.01,
-        "win_rate": 10.0
+        "losses": 37,
+        "total_pnl": -54503.01,
+        "win_rate": 9.8
       }
     ],
     "recent_trades": [
@@ -1509,8 +1504,8 @@
         "price": 1419.0,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1411.50 TGT=1434.00"
+        "pnl": -990.0,
+        "notes": "SL=1411.50 TGT=1434.00 | STOP @1411.5"
       },
       {
         "ts": "2026-08-21 08:56:59.176759",
@@ -2606,11 +2601,11 @@
   "india_daily_history": [
     {
       "date": "2026-08-21",
-      "pnl": -3643.212890625,
+      "pnl": -4633.212890625,
       "num_trades": 6,
       "wins": 18,
-      "losses": 76,
-      "win_rate": 0.19148936170212766
+      "losses": 77,
+      "win_rate": 0.18947368421052632
     },
     {
       "date": "2026-08-20",
