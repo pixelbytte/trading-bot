@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-21T05:15:33.590057",
+  "generated_at": "2026-08-21T05:50:06.961752",
   "today": "2026-08-21",
   "summary": {
-    "trades_today": 1,
+    "trades_today": 2,
     "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -23,6 +23,17 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-21 05:50:06.317791",
+      "ticker": "ICICIBANK",
+      "side": "buy",
+      "qty": 132.0,
+      "price": 1418.0,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-21 05:15:32.097904",
       "ticker": "HDFCBANK",
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": -4114.0,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-06-26 07:46:00.704288",
-      "ticker": "AUROPHARMA",
-      "side": "buy",
-      "qty": 241.0,
-      "price": 1555.2,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": 27071.529999999984,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-21 05:50:06.315154",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.592,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-21 05:15:32.094737",
       "ticker": "HDFCBANK",
@@ -835,15 +844,6 @@
       "confidence": 0.768,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-07 05:36:20.256793",
-      "ticker": "SBIN",
-      "strategy": "momentum",
-      "action": "buy",
-      "confidence": 0.72,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
@@ -852,7 +852,7 @@
       "pnl": 0.0,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 1,
+      "num_trades": 2,
       "wins": 0,
       "losses": 0,
       "win_rate": 0.0
@@ -1450,10 +1450,10 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 1,
+      "trades_today": 2,
       "pnl_today": 0.0,
       "total_pnl": 26408.248209228466,
-      "total_trades": 95,
+      "total_trades": 96,
       "wins": 18,
       "losses": 72,
       "win_rate": 0.2
@@ -1483,6 +1483,11 @@
         "ticker": "HDFCBANK",
         "qty": 255,
         "avg_entry": 732.45
+      },
+      {
+        "ticker": "ICICIBANK",
+        "qty": 132,
+        "avg_entry": 1418.0
       }
     ],
     "strategy_stats": [
@@ -1496,6 +1501,17 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-21 05:50:06.317791",
+        "ticker": "ICICIBANK",
+        "side": "buy",
+        "qty": 132.0,
+        "price": 1418.0,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1411.50 TGT=1431.00"
+      },
       {
         "ts": "2026-08-21 05:15:32.097904",
         "ticker": "HDFCBANK",
@@ -2547,7 +2563,7 @@
     {
       "date": "2026-08-21",
       "pnl": 0.0,
-      "num_trades": 1,
+      "num_trades": 2,
       "wins": 18,
       "losses": 72,
       "win_rate": 0.2
