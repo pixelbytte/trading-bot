@@ -1,28 +1,39 @@
 {
-  "generated_at": "2026-08-21T08:06:07.922863",
+  "generated_at": "2026-08-21T08:56:59.776757",
   "today": "2026-08-21",
   "summary": {
-    "trades_today": 4,
-    "realized_pnl": -1689.6064453125,
+    "trades_today": 5,
+    "realized_pnl": -2719.212890625,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 2,
+    "losses": 3,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 38,
+      "trades": 39,
       "wins": 4,
-      "losses": 34,
-      "total_pnl": -51559.4,
-      "win_rate": 10.5,
-      "avg_r": -27.137
+      "losses": 35,
+      "total_pnl": -52589.01,
+      "win_rate": 10.3,
+      "avg_r": -26.969
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-21 08:56:59.176759",
+      "ticker": "ICICIBANK",
+      "side": "buy",
+      "qty": 132.0,
+      "price": 1418.5,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-21 08:06:07.341357",
       "ticker": "ICICIBANK",
@@ -31,7 +42,7 @@
       "price": 1419.300048828125,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1029.6064453125,
       "portfolio_type": "india_paper"
     },
     {
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": -5333.600000000005,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-07-03 06:58:24.720336",
-      "ticker": "TVSMOTOR",
-      "side": "buy",
-      "qty": 103.0,
-      "price": 3626.8,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": 28498.039999999983,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-21 08:56:59.171602",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.61,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-21 08:06:07.338227",
       "ticker": "ICICIBANK",
@@ -835,26 +844,17 @@
       "confidence": 0.601,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-10 06:50:46.107396",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.673,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
     {
       "date": "2026-08-21",
-      "pnl": -1689.6064453125,
+      "pnl": -2719.212890625,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 4,
+      "num_trades": 5,
       "wins": 0,
-      "losses": 2,
+      "losses": 3,
       "win_rate": 0.0
     },
     {
@@ -1450,13 +1450,13 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 4,
-      "pnl_today": -1689.6064453125,
-      "total_pnl": 24718.641763915966,
-      "total_trades": 98,
+      "trades_today": 5,
+      "pnl_today": -2719.212890625,
+      "total_pnl": 23689.035318603466,
+      "total_trades": 99,
       "wins": 18,
-      "losses": 74,
-      "win_rate": 0.1956521739130435
+      "losses": 75,
+      "win_rate": 0.1935483870967742
     },
     "open_positions": [
       {
@@ -1487,20 +1487,31 @@
       {
         "ticker": "ICICIBANK",
         "qty": 132,
-        "avg_entry": 1419.3
+        "avg_entry": 1418.5
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 38,
+        "trades": 39,
         "wins": 4,
-        "losses": 34,
-        "total_pnl": -51559.4,
-        "win_rate": 10.5
+        "losses": 35,
+        "total_pnl": -52589.01,
+        "win_rate": 10.3
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-21 08:56:59.176759",
+        "ticker": "ICICIBANK",
+        "side": "buy",
+        "qty": 132.0,
+        "price": 1418.5,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1411.50 TGT=1432.50"
+      },
       {
         "ts": "2026-08-21 08:06:07.341357",
         "ticker": "ICICIBANK",
@@ -1509,8 +1520,8 @@
         "price": 1419.300048828125,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1411.50 TGT=1434.90"
+        "pnl": -1029.6064453125,
+        "notes": "SL=1411.50 TGT=1434.90 | STOP @1411.5"
       },
       {
         "ts": "2026-08-21 06:37:07.361995",
@@ -2584,11 +2595,11 @@
   "india_daily_history": [
     {
       "date": "2026-08-21",
-      "pnl": -1689.6064453125,
-      "num_trades": 4,
+      "pnl": -2719.212890625,
+      "num_trades": 5,
       "wins": 18,
-      "losses": 74,
-      "win_rate": 0.1956521739130435
+      "losses": 75,
+      "win_rate": 0.1935483870967742
     },
     {
       "date": "2026-08-20",
