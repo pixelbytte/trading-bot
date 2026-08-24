@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-08-21T22:01:21.901712",
-  "today": "2026-08-21",
+  "generated_at": "2026-08-24T04:39:23.463676",
+  "today": "2026-08-24",
   "summary": {
-    "trades_today": 6,
-    "realized_pnl": -4633.212890625,
+    "trades_today": 0,
+    "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 5,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 41,
-      "wins": 4,
+      "trades": 40,
+      "wins": 3,
       "losses": 37,
-      "total_pnl": -54503.01,
-      "win_rate": 9.8,
-      "avg_r": -26.587
+      "total_pnl": -57577.41,
+      "win_rate": 7.5,
+      "avg_r": -28.789
     }
   ],
   "recent_trades": [
@@ -576,42 +576,6 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-08-21 14:10:43.964779",
-      "ticker": "AMZN",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-08-21 14:10:42.344230",
-      "ticker": "NVDA",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-08-21 14:10:40.712921",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-08-21 14:10:38.528411",
-      "ticker": "ABBV",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Daily loss limit hit: $-4633.21"
-    },
-    {
       "ts": "2026-08-21 09:34:29.377841",
       "ticker": "ICICIBANK",
       "strategy": "india_orb",
@@ -844,9 +808,55 @@
       "confidence": 0.563,
       "acted": true,
       "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-13 07:01:57.274716",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.62,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-12 09:31:50.974154",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.869,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-12 09:31:49.346924",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.601,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-11 08:36:24.422040",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.6,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-08-24",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-08-21",
       "pnl": -4633.212890625,
@@ -1436,22 +1446,12 @@
       "wins": 0,
       "losses": 2,
       "win_rate": 0.0
-    },
-    {
-      "date": "2026-06-01",
-      "pnl": 0.0,
-      "dt_pnl": 0.0,
-      "lt_pnl": 0.0,
-      "num_trades": 0,
-      "wins": 0,
-      "losses": 0,
-      "win_rate": 0.0
     }
   ],
   "india": {
     "summary": {
-      "trades_today": 6,
-      "pnl_today": -4633.212890625,
+      "trades_today": 0,
+      "pnl_today": 0.0,
       "total_pnl": 21775.035318603466,
       "total_trades": 100,
       "wins": 18,
@@ -1488,11 +1488,11 @@
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 41,
-        "wins": 4,
+        "trades": 40,
+        "wins": 3,
         "losses": 37,
-        "total_pnl": -54503.01,
-        "win_rate": 9.8
+        "total_pnl": -57577.41,
+        "win_rate": 7.5
       }
     ],
     "recent_trades": [
@@ -2600,6 +2600,14 @@
   },
   "india_daily_history": [
     {
+      "date": "2026-08-24",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 18,
+      "losses": 77,
+      "win_rate": 0.18947368421052632
+    },
+    {
       "date": "2026-08-21",
       "pnl": -4633.212890625,
       "num_trades": 6,
@@ -3069,14 +3077,6 @@
       "num_trades": 4,
       "wins": 0,
       "losses": 4,
-      "win_rate": 0.0
-    },
-    {
-      "date": "2026-06-01",
-      "pnl": 0.0,
-      "num_trades": 0,
-      "wins": 0,
-      "losses": 2,
       "win_rate": 0.0
     }
   ]
