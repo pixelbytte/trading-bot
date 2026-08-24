@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T06:02:22.696644",
+  "generated_at": "2026-08-24T07:18:58.970937",
   "today": "2026-08-24",
   "summary": {
     "trades_today": 0,
@@ -14,12 +14,12 @@
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 40,
+      "trades": 41,
       "wins": 3,
-      "losses": 37,
-      "total_pnl": -57577.41,
-      "win_rate": 7.5,
-      "avg_r": -28.789
+      "losses": 38,
+      "total_pnl": -59056.41,
+      "win_rate": 7.3,
+      "avg_r": -28.808
     }
   ],
   "recent_trades": [
@@ -86,7 +86,7 @@
       "price": 732.4500122070312,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1479.0031127929747,
       "portfolio_type": "india_paper"
     },
     {
@@ -1452,11 +1452,11 @@
     "summary": {
       "trades_today": 0,
       "pnl_today": 0.0,
-      "total_pnl": 21775.035318603466,
+      "total_pnl": 20296.03220581049,
       "total_trades": 100,
       "wins": 18,
-      "losses": 77,
-      "win_rate": 0.18947368421052632
+      "losses": 78,
+      "win_rate": 0.1875
     },
     "open_positions": [
       {
@@ -1478,21 +1478,16 @@
         "ticker": "AXISBANK",
         "qty": 151,
         "avg_entry": 1237.4
-      },
-      {
-        "ticker": "HDFCBANK",
-        "qty": 255,
-        "avg_entry": 732.45
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 40,
+        "trades": 41,
         "wins": 3,
-        "losses": 37,
-        "total_pnl": -57577.41,
-        "win_rate": 7.5
+        "losses": 38,
+        "total_pnl": -59056.41,
+        "win_rate": 7.3
       }
     ],
     "recent_trades": [
@@ -1559,8 +1554,8 @@
         "price": 732.4500122070312,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=726.65 TGT=744.05"
+        "pnl": -1479.0031127929747,
+        "notes": "SL=726.65 TGT=744.05 | STOP @726.65"
       },
       {
         "ts": "2026-08-20 05:47:53.590951",
@@ -2604,8 +2599,8 @@
       "pnl": 0.0,
       "num_trades": 0,
       "wins": 18,
-      "losses": 77,
-      "win_rate": 0.18947368421052632
+      "losses": 78,
+      "win_rate": 0.1875
     },
     {
       "date": "2026-08-21",
