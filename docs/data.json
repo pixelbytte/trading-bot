@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-25T05:16:57.930311",
+  "generated_at": "2026-08-25T05:57:17.753189",
   "today": "2026-08-25",
   "summary": {
-    "trades_today": 0,
+    "trades_today": 1,
     "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -23,6 +23,17 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-25 05:57:16.950846",
+      "ticker": "BAJFINANCE",
+      "side": "buy",
+      "qty": 174.0,
+      "price": 1077.0999755859375,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-21 09:34:29.380940",
       "ticker": "ICICIBANK",
@@ -561,20 +572,18 @@
       "status": "paper_fill",
       "pnl": -2969.991210937492,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-07-07 07:33:52.416762",
-      "ticker": "KOTAKBANK",
-      "side": "buy",
-      "qty": 490.0,
-      "price": 382.1000061035156,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1494.5029907226508,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-25 05:57:16.947620",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.573,
+      "acted": true,
+      "skip_reason": ""
+    },
     {
       "ts": "2026-08-21 09:34:29.377841",
       "ticker": "ICICIBANK",
@@ -835,15 +844,6 @@
       "confidence": 0.601,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-11 08:36:24.422040",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.6,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
@@ -852,7 +852,7 @@
       "pnl": 0.0,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 0,
+      "num_trades": 1,
       "wins": 0,
       "losses": 0,
       "win_rate": 0.0
@@ -1450,10 +1450,10 @@
   ],
   "india": {
     "summary": {
-      "trades_today": 0,
+      "trades_today": 1,
       "pnl_today": 0.0,
       "total_pnl": 20296.03220581049,
-      "total_trades": 100,
+      "total_trades": 101,
       "wins": 18,
       "losses": 78,
       "win_rate": 0.1875
@@ -1478,6 +1478,11 @@
         "ticker": "AXISBANK",
         "qty": 151,
         "avg_entry": 1237.4
+      },
+      {
+        "ticker": "BAJFINANCE",
+        "qty": 174,
+        "avg_entry": 1077.1
       }
     ],
     "strategy_stats": [
@@ -1491,6 +1496,17 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-25 05:57:16.950846",
+        "ticker": "BAJFINANCE",
+        "side": "buy",
+        "qty": 174.0,
+        "price": 1077.0999755859375,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=1067.30 TGT=1096.70"
+      },
       {
         "ts": "2026-08-21 09:34:29.380940",
         "ticker": "ICICIBANK",
@@ -2597,7 +2613,7 @@
     {
       "date": "2026-08-25",
       "pnl": 0.0,
-      "num_trades": 0,
+      "num_trades": 1,
       "wins": 18,
       "losses": 78,
       "win_rate": 0.1875
