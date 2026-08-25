@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T10:50:09.273798",
+  "generated_at": "2026-08-25T14:51:34.106962",
   "today": "2026-08-25",
   "summary": {
     "trades_today": 5,
@@ -576,6 +576,33 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-08-25 14:24:17.695814",
+      "ticker": "AMZN",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-08-25 14:24:16.425603",
+      "ticker": "DE",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-08-25 14:24:14.725530",
+      "ticker": "ABBV",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Daily loss limit hit: $-6641.69"
+    },
+    {
       "ts": "2026-08-25 09:06:57.486510",
       "ticker": "ICICIBANK",
       "strategy": "india_orb",
@@ -815,33 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.644,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 07:59:29.067270",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.589,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 07:59:28.556436",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.564,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 04:35:31.878120",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.573,
       "acted": true,
       "skip_reason": ""
     }
