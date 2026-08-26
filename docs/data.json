@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-25T22:01:17.467051",
-  "today": "2026-08-25",
+  "generated_at": "2026-08-26T04:34:49.578956",
+  "today": "2026-08-26",
   "summary": {
-    "trades_today": 5,
-    "realized_pnl": -6641.693603515625,
+    "trades_today": 1,
+    "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 4,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
@@ -23,6 +23,17 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-26 04:34:48.706917",
+      "ticker": "KOTAKBANK",
+      "side": "buy",
+      "qty": 457.0,
+      "price": 410.1499938964844,
+      "strategy": "bracket",
+      "status": "paper_fill",
+      "pnl": null,
+      "portfolio_type": "india_paper"
+    },
     {
       "ts": "2026-08-25 09:06:57.489617",
       "ticker": "ICICIBANK",
@@ -561,46 +572,17 @@
       "status": "paper_fill",
       "pnl": -1975.006103515625,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-07-24 06:22:03.478811",
-      "ticker": "KOTAKBANK",
-      "side": "buy",
-      "qty": 488.0,
-      "price": 383.6000061035156,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": 3074.397021484364,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
     {
-      "ts": "2026-08-25 14:24:17.695814",
-      "ticker": "AMZN",
-      "strategy": "stage2_trend",
+      "ts": "2026-08-26 04:34:48.702274",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
       "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-08-25 14:24:16.425603",
-      "ticker": "DE",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Trading halted (kill switch active)"
-    },
-    {
-      "ts": "2026-08-25 14:24:14.725530",
-      "ticker": "ABBV",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Daily loss limit hit: $-6641.69"
+      "confidence": 0.697,
+      "acted": true,
+      "skip_reason": ""
     },
     {
       "ts": "2026-08-25 09:06:57.486510",
@@ -844,9 +826,37 @@
       "confidence": 0.644,
       "acted": true,
       "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-17 07:59:29.067270",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.589,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-17 07:59:28.556436",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.564,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-08-26",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 1,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-08-25",
       "pnl": -6641.693603515625,
@@ -1436,24 +1446,14 @@
       "wins": 0,
       "losses": 1,
       "win_rate": 0.0
-    },
-    {
-      "date": "2026-06-03",
-      "pnl": -7088.452746582042,
-      "dt_pnl": 0.0,
-      "lt_pnl": 0.0,
-      "num_trades": 4,
-      "wins": 0,
-      "losses": 4,
-      "win_rate": 0.0
     }
   ],
   "india": {
     "summary": {
-      "trades_today": 5,
-      "pnl_today": -6641.693603515625,
+      "trades_today": 1,
+      "pnl_today": 0.0,
       "total_pnl": 13654.338602294865,
-      "total_trades": 105,
+      "total_trades": 106,
       "wins": 18,
       "losses": 82,
       "win_rate": 0.18
@@ -1483,6 +1483,11 @@
         "ticker": "BAJFINANCE",
         "qty": 174,
         "avg_entry": 1077.1
+      },
+      {
+        "ticker": "KOTAKBANK",
+        "qty": 457,
+        "avg_entry": 410.15
       }
     ],
     "strategy_stats": [
@@ -1496,6 +1501,17 @@
       }
     ],
     "recent_trades": [
+      {
+        "ts": "2026-08-26 04:34:48.706917",
+        "ticker": "KOTAKBANK",
+        "side": "buy",
+        "qty": 457.0,
+        "price": 410.1499938964844,
+        "strategy": "bracket",
+        "status": "paper_fill",
+        "pnl": null,
+        "notes": "SL=402.20 TGT=426.05"
+      },
       {
         "ts": "2026-08-25 09:06:57.489617",
         "ticker": "ICICIBANK",
@@ -2655,6 +2671,14 @@
   },
   "india_daily_history": [
     {
+      "date": "2026-08-26",
+      "pnl": 0.0,
+      "num_trades": 1,
+      "wins": 18,
+      "losses": 82,
+      "win_rate": 0.18
+    },
+    {
       "date": "2026-08-25",
       "pnl": -6641.693603515625,
       "num_trades": 5,
@@ -3124,14 +3148,6 @@
       "num_trades": 2,
       "wins": 0,
       "losses": 9,
-      "win_rate": 0.0
-    },
-    {
-      "date": "2026-06-03",
-      "pnl": -7088.452746582041,
-      "num_trades": 4,
-      "wins": 0,
-      "losses": 8,
       "win_rate": 0.0
     }
   ]
