@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-26T14:49:47.166726",
+  "generated_at": "2026-08-26T16:22:18.553956",
   "today": "2026-08-26",
   "summary": {
-    "trades_today": 1,
+    "trades_today": 2,
     "realized_pnl": 0.0,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
@@ -23,6 +23,17 @@
     }
   ],
   "recent_trades": [
+    {
+      "ts": "2026-08-26 16:22:17.747981",
+      "ticker": "LLY",
+      "side": "sell",
+      "qty": 25.0,
+      "price": 1189.1,
+      "strategy": "momentum",
+      "status": "submitted",
+      "pnl": null,
+      "portfolio_type": "day_trading"
+    },
     {
       "ts": "2026-08-26 04:34:48.706917",
       "ticker": "KOTAKBANK",
@@ -561,20 +572,63 @@
       "status": "paper_fill",
       "pnl": -1508.80224609375,
       "portfolio_type": "india_paper"
-    },
-    {
-      "ts": "2026-07-29 09:21:19.373904",
-      "ticker": "HDFCBANK",
-      "side": "buy",
-      "qty": 250.0,
-      "price": 748.9000244140625,
-      "strategy": "bracket",
-      "status": "paper_fill",
-      "pnl": -1975.006103515625,
-      "portfolio_type": "india_paper"
     }
   ],
   "recent_signals": [
+    {
+      "ts": "2026-08-26 16:22:18.277078",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-26 16:22:17.770208",
+      "ticker": "LLY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-08-26 16:22:17.686850",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-26 16:22:17.667773",
+      "ticker": "MA",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-26 16:22:17.648531",
+      "ticker": "V",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-08-26 16:22:17.620964",
+      "ticker": "MSFT",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
     {
       "ts": "2026-08-26 14:49:46.869322",
       "ticker": "UNH",
@@ -790,60 +844,6 @@
       "confidence": 0.609,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-18 07:52:29.218138",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.719,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-18 07:02:45.933928",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.765,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-18 05:44:09.468924",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.619,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-18 05:44:08.637351",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.57,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-18 05:04:01.179915",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.673,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 09:35:31.471469",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.555,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
@@ -852,7 +852,7 @@
       "pnl": 0.0,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
-      "num_trades": 1,
+      "num_trades": 2,
       "wins": 0,
       "losses": 0,
       "win_rate": 0.0
