@@ -1,17 +1,26 @@
 {
-  "generated_at": "2026-08-27T23:41:14.237495",
-  "today": "2026-08-27",
+  "generated_at": "2026-08-28T05:03:37.109713",
+  "today": "2026-08-28",
   "summary": {
-    "trades_today": 3,
-    "realized_pnl": -1031.94,
-    "dt_pnl": -1031.94,
+    "trades_today": 0,
+    "realized_pnl": 0.0,
+    "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 1,
+    "losses": 0,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
+    {
+      "strategy": "momentum",
+      "trades": 1,
+      "wins": 0,
+      "losses": 1,
+      "total_pnl": -821.34,
+      "win_rate": 0.0,
+      "avg_r": -16.427
+    },
     {
       "strategy": "stage2_trend",
       "trades": 1,
@@ -40,7 +49,7 @@
       "price": 240.41,
       "strategy": "momentum",
       "status": "OrderStatus.ACCEPTED",
-      "pnl": null,
+      "pnl": -821.3400000000001,
       "portfolio_type": "day_trading"
     },
     {
@@ -857,6 +866,16 @@
   ],
   "daily_history": [
     {
+      "date": "2026-08-28",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
+    {
       "date": "2026-08-27",
       "pnl": -1031.94,
       "dt_pnl": -1031.94,
@@ -1444,16 +1463,6 @@
       "num_trades": 0,
       "wins": 0,
       "losses": 0,
-      "win_rate": 0.0
-    },
-    {
-      "date": "2026-06-05",
-      "pnl": -710.3963867187567,
-      "dt_pnl": 0.0,
-      "lt_pnl": 0.0,
-      "num_trades": 1,
-      "wins": 0,
-      "losses": 1,
       "win_rate": 0.0
     }
   ],
@@ -2660,6 +2669,14 @@
   },
   "india_daily_history": [
     {
+      "date": "2026-08-28",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 21,
+      "losses": 83,
+      "win_rate": 0.20192307692307693
+    },
+    {
       "date": "2026-08-27",
       "pnl": 0.0,
       "num_trades": 0,
@@ -3127,14 +3144,6 @@
       "date": "2026-06-08",
       "pnl": 0.0,
       "num_trades": 0,
-      "wins": 0,
-      "losses": 10,
-      "win_rate": 0.0
-    },
-    {
-      "date": "2026-06-05",
-      "pnl": -710.3963867187567,
-      "num_trades": 1,
       "wins": 0,
       "losses": 10,
       "win_rate": 0.0
