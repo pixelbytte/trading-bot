@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T14:35:19.595383",
+  "generated_at": "2026-09-03T17:43:24.109649",
   "today": "2026-09-03",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,78 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-09-03 17:43:23.836487",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-03 17:43:23.816197",
+      "ticker": "LLY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-03 17:43:23.794666",
+      "ticker": "LLY",
+      "strategy": "ma_rsi",
+      "action": "sell",
+      "confidence": 0.7,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-03 17:43:23.775385",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-03 17:43:23.755775",
+      "ticker": "AMD",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-03 17:43:23.730452",
+      "ticker": "MSFT",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-03 17:10:07.557626",
+      "ticker": "NVDA",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-09-03 17:10:05.637177",
+      "ticker": "ABBV",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
       "ts": "2026-09-02 08:19:40.304831",
       "ticker": "BAJFINANCE",
       "strategy": "india_orb",
@@ -770,78 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.57,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-18 05:04:01.179915",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.673,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 09:35:31.471469",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.555,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 09:35:30.924415",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.652,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 09:35:30.661337",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.639,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 08:50:08.352539",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.693,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 08:50:07.941724",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.574,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 08:50:07.682930",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.596,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-17 07:59:29.447127",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.644,
       "acted": true,
       "skip_reason": ""
     }
