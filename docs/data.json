@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T17:50:54.516776",
+  "generated_at": "2026-09-08T20:58:11.560049",
   "today": "2026-09-08",
   "summary": {
     "trades_today": 2,
@@ -576,6 +576,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-09-08 20:58:11.292376",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-08 20:58:11.272429",
+      "ticker": "LLY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-08 20:58:11.252595",
+      "ticker": "GS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-08 20:58:11.230246",
+      "ticker": "SPY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-09-08 17:50:54.252788",
       "ticker": "UNH",
       "strategy": "momentum",
@@ -806,42 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.584,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-20 05:47:53.586827",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.569,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-19 05:47:20.677216",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.569,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-19 04:31:54.429630",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.602,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-18 08:29:45.354168",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.609,
       "acted": true,
       "skip_reason": ""
     }
