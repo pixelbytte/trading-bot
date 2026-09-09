@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-09-09T08:33:48.722669",
+  "generated_at": "2026-09-09T13:09:42.435190",
   "today": "2026-09-09",
   "summary": {
     "trades_today": 3,
-    "realized_pnl": 0.0,
+    "realized_pnl": -2378.802246093748,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 0,
+    "losses": 2,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 44,
+      "trades": 46,
       "wins": 6,
-      "losses": 38,
-      "total_pnl": -27583.57,
-      "win_rate": 13.6,
-      "avg_r": -12.538
+      "losses": 40,
+      "total_pnl": -29962.37,
+      "win_rate": 13.0,
+      "avg_r": -13.027
     }
   ],
   "recent_trades": [
@@ -42,7 +42,7 @@
       "price": 1008.9000244140625,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1481.2022460937542,
       "portfolio_type": "india_paper"
     },
     {
@@ -53,7 +53,7 @@
       "price": 1400.0,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -897.599999999994,
       "portfolio_type": "india_paper"
     },
     {
@@ -849,12 +849,12 @@
   "daily_history": [
     {
       "date": "2026-09-09",
-      "pnl": 0.0,
+      "pnl": -2378.802246093748,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
       "num_trades": 3,
       "wins": 0,
-      "losses": 0,
+      "losses": 2,
       "win_rate": 0.0
     },
     {
@@ -1451,19 +1451,14 @@
   "india": {
     "summary": {
       "trades_today": 3,
-      "pnl_today": 0.0,
-      "total_pnl": -5504.000994873095,
+      "pnl_today": -2378.802246093748,
+      "total_pnl": -25309.16324096685,
       "total_trades": 119,
       "wins": 21,
-      "losses": 92,
-      "win_rate": 0.18584070796460178
+      "losses": 95,
+      "win_rate": 0.1810344827586207
     },
     "open_positions": [
-      {
-        "ticker": "TECHM",
-        "qty": 238,
-        "avg_entry": 1572.9
-      },
       {
         "ticker": "HAL",
         "qty": 38,
@@ -1475,16 +1470,6 @@
         "avg_entry": 3999.0
       },
       {
-        "ticker": "ICICIBANK",
-        "qty": 66,
-        "avg_entry": 1400.0
-      },
-      {
-        "ticker": "SBIN",
-        "qty": 92,
-        "avg_entry": 1008.9
-      },
-      {
         "ticker": "AXISBANK",
         "qty": 74,
         "avg_entry": 1255.2
@@ -1493,11 +1478,11 @@
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 44,
+        "trades": 46,
         "wins": 6,
-        "losses": 38,
-        "total_pnl": -27583.57,
-        "win_rate": 13.6
+        "losses": 40,
+        "total_pnl": -29962.37,
+        "win_rate": 13.0
       }
     ],
     "recent_trades": [
@@ -1520,8 +1505,8 @@
         "price": 1008.9000244140625,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=992.80 TGT=1041.10"
+        "pnl": -1481.2022460937542,
+        "notes": "SL=992.80 TGT=1041.10 | STOP @992.8"
       },
       {
         "ts": "2026-09-09 08:33:46.077618",
@@ -1531,8 +1516,8 @@
         "price": 1400.0,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1386.40 TGT=1427.20"
+        "pnl": -897.599999999994,
+        "notes": "SL=1386.40 TGT=1427.20 | STOP @1386.4"
       },
       {
         "ts": "2026-09-08 08:31:07.199214",
@@ -2224,8 +2209,8 @@
         "price": 1572.9,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=1499.68 TGT=1719.35"
+        "pnl": -17426.360000000008,
+        "notes": "SL=1499.68 TGT=1719.35 | STOP @1499.68"
       },
       {
         "ts": "2026-07-08 09:05:18.377797",
@@ -2815,11 +2800,11 @@
   "india_daily_history": [
     {
       "date": "2026-09-09",
-      "pnl": 0.0,
+      "pnl": -2378.802246093748,
       "num_trades": 3,
       "wins": 21,
-      "losses": 92,
-      "win_rate": 0.18584070796460178
+      "losses": 95,
+      "win_rate": 0.1810344827586207
     },
     {
       "date": "2026-09-08",
