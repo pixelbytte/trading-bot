@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T14:26:51.855600",
+  "generated_at": "2026-09-11T17:40:25.539675",
   "today": "2026-09-11",
   "summary": {
     "trades_today": 4,
@@ -576,6 +576,24 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-09-11 17:10:19.687593",
+      "ticker": "NVDA",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Trading halted (kill switch active)"
+    },
+    {
+      "ts": "2026-09-11 17:10:18.368732",
+      "ticker": "ABBV",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Daily loss limit hit: $-4502.40"
+    },
+    {
       "ts": "2026-09-11 08:30:07.851576",
       "ticker": "KOTAKBANK",
       "strategy": "india_orb",
@@ -824,24 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.638,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-21 06:37:07.358652",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.585,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-21 05:50:06.315154",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.592,
       "acted": true,
       "skip_reason": ""
     }
