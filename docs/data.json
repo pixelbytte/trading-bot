@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T15:01:17.012258",
+  "generated_at": "2026-09-15T18:03:19.442705",
   "today": "2026-09-15",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,69 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-09-15 18:03:19.110868",
+      "ticker": "XOM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-15 18:03:19.090489",
+      "ticker": "UNH",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-15 18:03:19.046125",
+      "ticker": "LLY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-15 18:03:19.027205",
+      "ticker": "BAC",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-15 18:03:19.007884",
+      "ticker": "MA",
+      "strategy": "ma_rsi",
+      "action": "sell",
+      "confidence": 0.7,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-15 18:03:18.886224",
+      "ticker": "AMD",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-15 18:03:18.093403",
+      "ticker": "META",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-09-11 08:30:07.851576",
       "ticker": "KOTAKBANK",
       "strategy": "india_orb",
@@ -779,69 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.656,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-25 06:43:42.196640",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.642,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-25 05:57:16.947620",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.573,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-21 09:34:29.377841",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.628,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-21 08:56:59.171602",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.61,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-21 08:06:07.338227",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.638,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-21 06:37:07.358652",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.585,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-21 05:50:06.315154",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.592,
       "acted": true,
       "skip_reason": ""
     }
