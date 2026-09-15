@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T09:08:54.372116",
+  "generated_at": "2026-09-15T14:19:28.537256",
   "today": "2026-09-15",
   "summary": {
     "trades_today": 0,
@@ -14,12 +14,12 @@
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 48,
+      "trades": 49,
       "wins": 6,
-      "losses": 42,
-      "total_pnl": -33975.44,
-      "win_rate": 12.5,
-      "avg_r": -14.156
+      "losses": 43,
+      "total_pnl": -39714.2,
+      "win_rate": 12.2,
+      "avg_r": -16.21
     }
   ],
   "recent_trades": [
@@ -152,7 +152,7 @@
       "price": 4856.0,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -5738.760000000017,
       "portfolio_type": "india_paper"
     },
     {
@@ -1452,18 +1452,13 @@
     "summary": {
       "trades_today": 0,
       "pnl_today": 0.0,
-      "total_pnl": -37789.79256958011,
+      "total_pnl": -43528.552569580126,
       "total_trades": 125,
       "wins": 21,
-      "losses": 102,
-      "win_rate": 0.17073170731707318
+      "losses": 103,
+      "win_rate": 0.1693548387096774
     },
     "open_positions": [
-      {
-        "ticker": "HAL",
-        "qty": 38,
-        "avg_entry": 4856.0
-      },
       {
         "ticker": "TVSMOTOR",
         "qty": 45,
@@ -1473,11 +1468,11 @@
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 48,
+        "trades": 49,
         "wins": 6,
-        "losses": 42,
-        "total_pnl": -33975.44,
-        "win_rate": 12.5
+        "losses": 43,
+        "total_pnl": -39714.2,
+        "win_rate": 12.2
       }
     ],
     "recent_trades": [
@@ -1610,8 +1605,8 @@
         "price": 4856.0,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=4704.98 TGT=5158.05"
+        "pnl": -5738.760000000017,
+        "notes": "SL=4704.98 TGT=5158.05 | STOP @4704.98"
       },
       {
         "ts": "2026-09-07 08:51:11.770697",
@@ -2864,8 +2859,8 @@
       "pnl": 0.0,
       "num_trades": 0,
       "wins": 21,
-      "losses": 102,
-      "win_rate": 0.17073170731707318
+      "losses": 103,
+      "win_rate": 0.1693548387096774
     },
     {
       "date": "2026-09-14",
