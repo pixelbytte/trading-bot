@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T14:58:59.215047",
+  "generated_at": "2026-09-16T18:02:25.359951",
   "today": "2026-09-16",
   "summary": {
     "trades_today": 4,
@@ -576,6 +576,15 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-09-16 17:43:22.248943",
+      "ticker": "ABBV",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Daily loss limit hit: $-5704.54"
+    },
+    {
       "ts": "2026-09-16 09:00:51.435068",
       "ticker": "KOTAKBANK",
       "strategy": "india_orb",
@@ -833,15 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.573,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-08-21 09:34:29.377841",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.628,
       "acted": true,
       "skip_reason": ""
     }
