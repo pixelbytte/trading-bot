@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T16:25:14.124475",
+  "generated_at": "2026-09-30T18:59:56.650842",
   "today": "2026-09-30",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,78 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-09-30 18:59:56.396015",
+      "ticker": "HIMS",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-30 18:59:56.377760",
+      "ticker": "XOM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-30 18:59:56.359333",
+      "ticker": "LLY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-30 18:59:56.340779",
+      "ticker": "V",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-30 18:59:56.262275",
+      "ticker": "AMD",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-30 18:59:56.235641",
+      "ticker": "MSFT",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-09-30 18:33:01.070844",
+      "ticker": "ABBV",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
+      "ts": "2026-09-30 18:32:59.282029",
+      "ticker": "NVDA",
+      "strategy": "stage2_trend",
+      "action": "buy",
+      "confidence": 0.8,
+      "acted": false,
+      "skip_reason": "Already at max open positions (4)"
+    },
+    {
       "ts": "2026-09-25 09:18:09.132295",
       "ticker": "BAJFINANCE",
       "strategy": "india_orb",
@@ -770,78 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.711,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-08 08:31:07.197062",
-      "ticker": "LT",
-      "strategy": "nse_oversold_bounce",
-      "action": "buy",
-      "confidence": 0.557,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-08 08:31:06.307653",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.59,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-07 08:51:12.111719",
-      "ticker": "HAL",
-      "strategy": "nse_oversold_bounce",
-      "action": "buy",
-      "confidence": 0.58,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-07 08:51:11.766621",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.603,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-04 08:24:51.736328",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.607,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-04 08:24:51.034613",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.609,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-04 08:24:50.520114",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.889,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-04 08:24:49.320347",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.75,
       "acted": true,
       "skip_reason": ""
     }
