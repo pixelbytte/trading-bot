@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T00:19:24.959120",
+  "generated_at": "2026-10-01T10:39:57.926923",
   "today": "2026-10-01",
   "summary": {
     "trades_today": 0,
@@ -17,9 +17,9 @@
       "trades": 31,
       "wins": 0,
       "losses": 31,
-      "total_pnl": -49828.24,
+      "total_pnl": -55855.39,
       "win_rate": 0.0,
-      "avg_r": -32.147
+      "avg_r": -36.036
     }
   ],
   "recent_trades": [
@@ -218,7 +218,7 @@
       "price": 4151.1,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -6951.1500000000115,
       "portfolio_type": "india_paper"
     },
     {
@@ -576,114 +576,6 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-09-30 22:57:47.178405",
-      "ticker": "XOM",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 22:57:47.157531",
-      "ticker": "LLY",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 22:57:47.135539",
-      "ticker": "V",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 22:57:47.062084",
-      "ticker": "AMD",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 18:59:56.396015",
-      "ticker": "HIMS",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 18:59:56.377760",
-      "ticker": "XOM",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 18:59:56.359333",
-      "ticker": "LLY",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 18:59:56.340779",
-      "ticker": "V",
-      "strategy": "momentum",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 18:59:56.262275",
-      "ticker": "AMD",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 18:59:56.235641",
-      "ticker": "MSFT",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-09-30 18:33:01.070844",
-      "ticker": "ABBV",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
-      "ts": "2026-09-30 18:32:59.282029",
-      "ticker": "NVDA",
-      "strategy": "stage2_trend",
-      "action": "buy",
-      "confidence": 0.8,
-      "acted": false,
-      "skip_reason": "Already at max open positions (4)"
-    },
-    {
       "ts": "2026-09-25 09:18:09.132295",
       "ticker": "BAJFINANCE",
       "strategy": "india_orb",
@@ -842,6 +734,114 @@
       "strategy": "nse_oversold_bounce",
       "action": "buy",
       "confidence": 0.638,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-10 08:35:31.737920",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.659,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-09 08:33:47.899379",
+      "ticker": "AXISBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-09 08:33:46.976527",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.619,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-09 08:33:46.073089",
+      "ticker": "ICICIBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.711,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-08 08:31:07.197062",
+      "ticker": "LT",
+      "strategy": "nse_oversold_bounce",
+      "action": "buy",
+      "confidence": 0.557,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-08 08:31:06.307653",
+      "ticker": "SBIN",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.59,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-07 08:51:12.111719",
+      "ticker": "HAL",
+      "strategy": "nse_oversold_bounce",
+      "action": "buy",
+      "confidence": 0.58,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-07 08:51:11.766621",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.603,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-04 08:24:51.736328",
+      "ticker": "BAJFINANCE",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.607,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-04 08:24:51.034613",
+      "ticker": "KOTAKBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.609,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-04 08:24:50.520114",
+      "ticker": "AXISBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.889,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-04 08:24:49.320347",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.75,
       "acted": true,
       "skip_reason": ""
     }
@@ -1452,26 +1452,20 @@
     "summary": {
       "trades_today": 0,
       "pnl_today": 0.0,
-      "total_pnl": -65800.9968017579,
+      "total_pnl": -72752.1468017579,
       "total_trades": 138,
       "wins": 21,
-      "losses": 116,
-      "win_rate": 0.15328467153284672
+      "losses": 117,
+      "win_rate": 0.15217391304347827
     },
-    "open_positions": [
-      {
-        "ticker": "TVSMOTOR",
-        "qty": 45,
-        "avg_entry": 4151.1
-      }
-    ],
+    "open_positions": [],
     "strategy_stats": [
       {
         "strategy": "bracket",
         "trades": 31,
         "wins": 0,
         "losses": 31,
-        "total_pnl": -49828.24,
+        "total_pnl": -55855.39,
         "win_rate": 0.0
       }
     ],
@@ -1671,8 +1665,8 @@
         "price": 4151.1,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=3996.63 TGT=4460.04"
+        "pnl": -6951.1500000000115,
+        "notes": "SL=3996.63 TGT=4460.04 | STOP @3996.63"
       },
       {
         "ts": "2026-09-10 08:35:31.741290",
@@ -3002,8 +2996,8 @@
       "pnl": 0.0,
       "num_trades": 0,
       "wins": 21,
-      "losses": 116,
-      "win_rate": 0.15328467153284672
+      "losses": 117,
+      "win_rate": 0.15217391304347827
     },
     {
       "date": "2026-09-30",
