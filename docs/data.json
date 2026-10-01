@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T19:21:51.583746",
+  "generated_at": "2026-10-01T23:22:17.432809",
   "today": "2026-10-01",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-10-01 23:22:17.153576",
+      "ticker": "XOM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-01 23:22:17.133447",
+      "ticker": "LLY",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-01 23:22:17.114288",
+      "ticker": "V",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-01 23:22:17.053506",
+      "ticker": "AMD",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-10-01 19:21:51.359551",
       "ticker": "XOM",
       "strategy": "momentum",
@@ -806,42 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.619,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-09 08:33:46.073089",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.711,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-08 08:31:07.197062",
-      "ticker": "LT",
-      "strategy": "nse_oversold_bounce",
-      "action": "buy",
-      "confidence": 0.557,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-08 08:31:06.307653",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.59,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-07 08:51:12.111719",
-      "ticker": "HAL",
-      "strategy": "nse_oversold_bounce",
-      "action": "buy",
-      "confidence": 0.58,
       "acted": true,
       "skip_reason": ""
     }
