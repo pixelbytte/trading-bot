@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T18:24:19.791082",
+  "generated_at": "2026-10-20T21:48:23.790034",
   "today": "2026-10-20",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,78 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-10-20 21:48:23.463831",
+      "ticker": "HIMS",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-20 21:48:23.442767",
+      "ticker": "XOM",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-20 21:48:23.420753",
+      "ticker": "COST",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-20 21:48:23.398044",
+      "ticker": "UNH",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-20 21:48:23.375055",
+      "ticker": "LLY",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-20 21:48:23.353531",
+      "ticker": "MA",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-20 21:48:23.331758",
+      "ticker": "V",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-10-20 21:48:23.304544",
+      "ticker": "JPM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-10-20 18:24:19.514259",
       "ticker": "HIMS",
       "strategy": "momentum",
@@ -770,78 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-23 09:00:53.922571",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.753,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-23 09:00:52.142964",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.691,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-18 08:41:11.177617",
-      "ticker": "HAL",
-      "strategy": "nse_oversold_bounce",
-      "action": "buy",
-      "confidence": 0.553,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-18 08:41:10.722530",
-      "ticker": "BAJFINANCE",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.594,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-18 08:41:10.143272",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.73,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-18 08:41:09.421257",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.641,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-18 08:41:08.354179",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-16 09:00:51.435068",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.737,
       "acted": true,
       "skip_reason": ""
     }
