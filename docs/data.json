@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T18:30:27.286758",
+  "generated_at": "2026-10-21T21:57:25.466889",
   "today": "2026-10-21",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,15 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-10-21 21:57:25.121147",
+      "ticker": "JPM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-10-21 18:30:27.063218",
       "ticker": "MRVL",
       "strategy": "momentum",
@@ -833,15 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-11 08:30:07.201394",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.768,
       "acted": true,
       "skip_reason": ""
     }
