@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-10-22T09:06:31.476680",
+  "generated_at": "2026-10-22T14:30:20.387296",
   "today": "2026-10-22",
   "summary": {
     "trades_today": 2,
-    "realized_pnl": 0.0,
+    "realized_pnl": -2352.2000000000044,
     "dt_pnl": 0.0,
     "lt_pnl": 0.0,
     "wins": 0,
-    "losses": 0,
+    "losses": 2,
     "win_rate": 0.0
   },
   "open_positions": [],
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 10,
+      "trades": 12,
       "wins": 0,
-      "losses": 10,
-      "total_pnl": -15459.61,
+      "losses": 12,
+      "total_pnl": -17811.81,
       "win_rate": 0.0,
-      "avg_r": -30.919
+      "avg_r": -29.686
     }
   ],
   "recent_trades": [
@@ -31,7 +31,7 @@
       "price": 437.25,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -749.0,
       "portfolio_type": "india_paper"
     },
     {
@@ -42,7 +42,7 @@
       "price": 966.75,
       "strategy": "bracket",
       "status": "paper_fill",
-      "pnl": null,
+      "pnl": -1603.2000000000044,
       "portfolio_type": "india_paper"
     },
     {
@@ -849,12 +849,12 @@
   "daily_history": [
     {
       "date": "2026-10-22",
-      "pnl": 0.0,
+      "pnl": -2352.2000000000044,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
       "num_trades": 2,
       "wins": 0,
-      "losses": 0,
+      "losses": 2,
       "win_rate": 0.0
     },
     {
@@ -1451,37 +1451,27 @@
   "india": {
     "summary": {
       "trades_today": 2,
-      "pnl_today": 0.0,
-      "total_pnl": -82899.1519531251,
+      "pnl_today": -2352.2000000000044,
+      "total_pnl": -85251.3519531251,
       "total_trades": 147,
       "wins": 21,
-      "losses": 123,
-      "win_rate": 0.14583333333333334
+      "losses": 125,
+      "win_rate": 0.14383561643835616
     },
     "open_positions": [
       {
         "ticker": "ICICIBANK",
         "qty": 67,
         "avg_entry": 1383.7
-      },
-      {
-        "ticker": "SBIN",
-        "qty": 96,
-        "avg_entry": 966.75
-      },
-      {
-        "ticker": "KOTAKBANK",
-        "qty": 214,
-        "avg_entry": 437.25
       }
     ],
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 10,
+        "trades": 12,
         "wins": 0,
-        "losses": 10,
-        "total_pnl": -15459.61,
+        "losses": 12,
+        "total_pnl": -17811.81,
         "win_rate": 0.0
       }
     ],
@@ -1494,8 +1484,8 @@
         "price": 437.25,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=433.75 TGT=444.25"
+        "pnl": -749.0,
+        "notes": "SL=433.75 TGT=444.25 | STOP @433.75"
       },
       {
         "ts": "2026-10-22 09:06:28.637527",
@@ -1505,8 +1495,8 @@
         "price": 966.75,
         "strategy": "bracket",
         "status": "paper_fill",
-        "pnl": null,
-        "notes": "SL=950.05 TGT=1000.15"
+        "pnl": -1603.2000000000044,
+        "notes": "SL=950.05 TGT=1000.15 | STOP @950.05"
       },
       {
         "ts": "2026-10-16 08:41:54.317817",
@@ -3108,11 +3098,11 @@
   "india_daily_history": [
     {
       "date": "2026-10-22",
-      "pnl": 0.0,
+      "pnl": -2352.2000000000044,
       "num_trades": 2,
       "wins": 21,
-      "losses": 123,
-      "win_rate": 0.14583333333333334
+      "losses": 125,
+      "win_rate": 0.14383561643835616
     },
     {
       "date": "2026-10-21",
