@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-30T22:59:55.088571",
-  "today": "2026-10-30",
+  "generated_at": "2026-10-31T00:18:57.703501",
+  "today": "2026-10-31",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -848,6 +848,16 @@
   ],
   "daily_history": [
     {
+      "date": "2026-10-31",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
+    {
       "date": "2026-10-30",
       "pnl": 0.0,
       "dt_pnl": 0.0,
@@ -1430,16 +1440,6 @@
     {
       "date": "2026-08-14",
       "pnl": -1094.802905273432,
-      "dt_pnl": 0.0,
-      "lt_pnl": 0.0,
-      "num_trades": 1,
-      "wins": 0,
-      "losses": 1,
-      "win_rate": 0.0
-    },
-    {
-      "date": "2026-08-13",
-      "pnl": -1457.9029174804632,
       "dt_pnl": 0.0,
       "lt_pnl": 0.0,
       "num_trades": 1,
@@ -3108,6 +3108,14 @@
   },
   "india_daily_history": [
     {
+      "date": "2026-10-31",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 21,
+      "losses": 126,
+      "win_rate": 0.14285714285714285
+    },
+    {
       "date": "2026-10-30",
       "pnl": 0.0,
       "num_trades": 0,
@@ -3578,14 +3586,6 @@
       "wins": 15,
       "losses": 56,
       "win_rate": 0.2112676056338028
-    },
-    {
-      "date": "2026-08-13",
-      "pnl": -1457.9029174804632,
-      "num_trades": 1,
-      "wins": 15,
-      "losses": 55,
-      "win_rate": 0.21428571428571427
     }
   ]
 }
