@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T17:30:26.313802",
+  "generated_at": "2026-11-06T20:19:03.172561",
   "today": "2026-11-06",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,33 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-11-06 20:19:02.834456",
+      "ticker": "XOM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-06 20:19:02.802470",
+      "ticker": "COST",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-06 20:19:02.740559",
+      "ticker": "JPM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-10-26 09:35:55.844888",
       "ticker": "AXISBANK",
       "strategy": "india_orb",
@@ -812,33 +839,6 @@
     {
       "ts": "2026-09-11 08:30:06.272833",
       "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-10 08:35:32.691049",
-      "ticker": "TVSMOTOR",
-      "strategy": "nse_oversold_bounce",
-      "action": "buy",
-      "confidence": 0.638,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-10 08:35:31.737920",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.659,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-09 08:33:47.899379",
-      "ticker": "AXISBANK",
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
