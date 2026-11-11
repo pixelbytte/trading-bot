@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-10T20:44:24.761838",
-  "today": "2026-11-10",
+  "generated_at": "2026-11-11T00:56:21.450657",
+  "today": "2026-11-11",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -576,6 +576,60 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-11-11 00:56:21.096811",
+      "ticker": "HD",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-11 00:56:21.071801",
+      "ticker": "COST",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-11 00:56:21.045992",
+      "ticker": "LLY",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-11 00:56:21.022302",
+      "ticker": "MA",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-11 00:56:20.998001",
+      "ticker": "AMD",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-11 00:56:20.967269",
+      "ticker": "MSFT",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-11-10 20:44:24.554410",
       "ticker": "XOM",
       "strategy": "momentum",
@@ -790,63 +844,19 @@
       "confidence": 0.641,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-18 08:41:08.354179",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-16 09:00:51.435068",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.737,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-16 09:00:50.943410",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-16 09:00:50.301521",
-      "ticker": "SBIN",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-16 09:00:48.533642",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.679,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-11 08:30:07.851576",
-      "ticker": "KOTAKBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-11-11",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-11-10",
       "pnl": 0.0,
@@ -1435,16 +1445,6 @@
       "num_trades": 3,
       "wins": 0,
       "losses": 1,
-      "win_rate": 0.0
-    },
-    {
-      "date": "2026-08-26",
-      "pnl": 0.0,
-      "dt_pnl": 0.0,
-      "lt_pnl": 0.0,
-      "num_trades": 2,
-      "wins": 0,
-      "losses": 0,
       "win_rate": 0.0
     }
   ],
@@ -3102,6 +3102,14 @@
   },
   "india_daily_history": [
     {
+      "date": "2026-11-11",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 22,
+      "losses": 126,
+      "win_rate": 0.14864864864864866
+    },
+    {
       "date": "2026-11-10",
       "pnl": 0.0,
       "num_trades": 0,
@@ -3572,14 +3580,6 @@
       "wins": 21,
       "losses": 83,
       "win_rate": 0.20192307692307693
-    },
-    {
-      "date": "2026-08-26",
-      "pnl": 0.0,
-      "num_trades": 1,
-      "wins": 18,
-      "losses": 82,
-      "win_rate": 0.18
     }
   ]
 }
