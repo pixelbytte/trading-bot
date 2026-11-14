@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T01:12:25.544259",
+  "generated_at": "2026-11-14T01:21:36.653988",
   "today": "2026-11-14",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,42 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-11-14 01:21:36.419537",
+      "ticker": "XOM",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-14 01:21:36.404098",
+      "ticker": "COST",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-14 01:21:36.388556",
+      "ticker": "LLY",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
+      "ts": "2026-11-14 01:21:36.367455",
+      "ticker": "AMD",
+      "strategy": "momentum",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-11-13 20:48:23.590439",
       "ticker": "COST",
       "strategy": "mean_reversion",
@@ -806,42 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-11 08:30:07.201394",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.768,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-11 08:30:06.752440",
-      "ticker": "ICICIBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.823,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-11 08:30:06.272833",
-      "ticker": "HDFCBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-10 08:35:32.691049",
-      "ticker": "TVSMOTOR",
-      "strategy": "nse_oversold_bounce",
-      "action": "buy",
-      "confidence": 0.638,
       "acted": true,
       "skip_reason": ""
     }
