@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T18:59:22.118348",
+  "generated_at": "2026-11-19T22:01:47.120207",
   "today": "2026-11-19",
   "summary": {
     "trades_today": 0,
@@ -576,6 +576,15 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-11-19 22:01:46.765064",
+      "ticker": "COST",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-10-26 09:35:55.844888",
       "ticker": "AXISBANK",
       "strategy": "india_orb",
@@ -833,15 +842,6 @@
       "strategy": "india_orb",
       "action": "buy",
       "confidence": 0.659,
-      "acted": true,
-      "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-09 08:33:47.899379",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
       "acted": true,
       "skip_reason": ""
     }
