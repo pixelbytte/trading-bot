@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-21T02:52:01.469269",
-  "today": "2026-11-21",
+  "generated_at": "2026-11-23T13:57:20.870260",
+  "today": "2026-11-23",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -14,12 +14,12 @@
   "strategy_stats": [
     {
       "strategy": "bracket",
-      "trades": 3,
+      "trades": 1,
       "wins": 0,
-      "losses": 3,
-      "total_pnl": -3195.8,
+      "losses": 1,
+      "total_pnl": -843.6,
       "win_rate": 0.0,
-      "avg_r": -21.305
+      "avg_r": -16.872
     }
   ],
   "recent_trades": [
@@ -576,24 +576,6 @@
   ],
   "recent_signals": [
     {
-      "ts": "2026-11-21 02:52:01.186063",
-      "ticker": "COST",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
-      "ts": "2026-11-20 21:43:53.683590",
-      "ticker": "COST",
-      "strategy": "mean_reversion",
-      "action": "sell",
-      "confidence": 0.65,
-      "acted": false,
-      "skip_reason": "no position to sell"
-    },
-    {
       "ts": "2026-10-26 09:35:55.844888",
       "ticker": "AXISBANK",
       "strategy": "india_orb",
@@ -844,9 +826,37 @@
       "confidence": 0.638,
       "acted": true,
       "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-10 08:35:31.737920",
+      "ticker": "HDFCBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.659,
+      "acted": true,
+      "skip_reason": ""
+    },
+    {
+      "ts": "2026-09-09 08:33:47.899379",
+      "ticker": "AXISBANK",
+      "strategy": "india_orb",
+      "action": "buy",
+      "confidence": 0.9,
+      "acted": true,
+      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-11-23",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-11-21",
       "pnl": 0.0,
@@ -1436,16 +1446,6 @@
       "wins": 0,
       "losses": 2,
       "win_rate": 0.0
-    },
-    {
-      "date": "2026-09-08",
-      "pnl": -437.10000000000423,
-      "dt_pnl": 0.0,
-      "lt_pnl": 0.0,
-      "num_trades": 2,
-      "wins": 0,
-      "losses": 1,
-      "win_rate": 0.0
     }
   ],
   "india": {
@@ -1462,10 +1462,10 @@
     "strategy_stats": [
       {
         "strategy": "bracket",
-        "trades": 3,
+        "trades": 1,
         "wins": 0,
-        "losses": 3,
-        "total_pnl": -3195.8,
+        "losses": 1,
+        "total_pnl": -843.6,
         "win_rate": 0.0
       }
     ],
@@ -3102,6 +3102,14 @@
   },
   "india_daily_history": [
     {
+      "date": "2026-11-23",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 22,
+      "losses": 126,
+      "win_rate": 0.14864864864864866
+    },
+    {
       "date": "2026-11-21",
       "pnl": 0.0,
       "num_trades": 0,
@@ -3572,14 +3580,6 @@
       "wins": 21,
       "losses": 95,
       "win_rate": 0.1810344827586207
-    },
-    {
-      "date": "2026-09-08",
-      "pnl": -437.10000000000423,
-      "num_trades": 2,
-      "wins": 21,
-      "losses": 91,
-      "win_rate": 0.1875
     }
   ]
 }
