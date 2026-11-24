@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-23T22:03:07.562631",
-  "today": "2026-11-23",
+  "generated_at": "2026-11-24T01:33:24.718695",
+  "today": "2026-11-24",
   "summary": {
     "trades_today": 0,
     "realized_pnl": 0.0,
@@ -576,6 +576,15 @@
   ],
   "recent_signals": [
     {
+      "ts": "2026-11-24 01:33:24.391975",
+      "ticker": "COST",
+      "strategy": "mean_reversion",
+      "action": "sell",
+      "confidence": 0.65,
+      "acted": false,
+      "skip_reason": "no position to sell"
+    },
+    {
       "ts": "2026-10-26 09:35:55.844888",
       "ticker": "AXISBANK",
       "strategy": "india_orb",
@@ -835,18 +844,19 @@
       "confidence": 0.659,
       "acted": true,
       "skip_reason": ""
-    },
-    {
-      "ts": "2026-09-09 08:33:47.899379",
-      "ticker": "AXISBANK",
-      "strategy": "india_orb",
-      "action": "buy",
-      "confidence": 0.9,
-      "acted": true,
-      "skip_reason": ""
     }
   ],
   "daily_history": [
+    {
+      "date": "2026-11-24",
+      "pnl": 0.0,
+      "dt_pnl": 0.0,
+      "lt_pnl": 0.0,
+      "num_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
     {
       "date": "2026-11-23",
       "pnl": 0.0,
@@ -1435,16 +1445,6 @@
       "num_trades": 2,
       "wins": 0,
       "losses": 1,
-      "win_rate": 0.0
-    },
-    {
-      "date": "2026-09-09",
-      "pnl": -2378.802246093748,
-      "dt_pnl": 0.0,
-      "lt_pnl": 0.0,
-      "num_trades": 3,
-      "wins": 0,
-      "losses": 2,
       "win_rate": 0.0
     }
   ],
@@ -3102,6 +3102,14 @@
   },
   "india_daily_history": [
     {
+      "date": "2026-11-24",
+      "pnl": 0.0,
+      "num_trades": 0,
+      "wins": 22,
+      "losses": 126,
+      "win_rate": 0.14864864864864866
+    },
+    {
       "date": "2026-11-23",
       "pnl": 0.0,
       "num_trades": 0,
@@ -3572,14 +3580,6 @@
       "wins": 21,
       "losses": 97,
       "win_rate": 0.17796610169491525
-    },
-    {
-      "date": "2026-09-09",
-      "pnl": -2378.802246093748,
-      "num_trades": 3,
-      "wins": 21,
-      "losses": 95,
-      "win_rate": 0.1810344827586207
     }
   ]
 }
